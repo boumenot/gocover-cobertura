@@ -34,6 +34,7 @@ func main() {
 	flag.BoolVar(&ignore.GeneratedFiles, "ignore-gen-files", false, "ignore generated files")
 	ignoreDirsRe := flag.String("ignore-dirs", "", "ignore dirs matching this regexp")
 	ignoreFilesRe := flag.String("ignore-files", "", "ignore files matching this regexp")
+	tagsStr := flag.String("tags", "", "comma separated list of build tags")
 
 	flag.Parse()
 
@@ -52,18 +53,18 @@ func main() {
 		}
 	}
 
-	if err := convert(os.Stdin, os.Stdout, &ignore); err != nil {
-		fatal("code coverage conversion failed: %s", err)
+	if err := convert(os.Stdin, os.Stdout, &ignore, *tagsStr); err != nil {
+		fatal("code coverage conversion failed: %s\n", err)
 	}
 }
 
-func convert(in io.Reader, out io.Writer, ignore *Ignore) error {
+func convert(in io.Reader, out io.Writer, ignore *Ignore, tags string) error {
 	profiles, err := ParseProfiles(in, ignore)
 	if err != nil {
 		return err
 	}
 
-	pkgs, err := getPackages(profiles)
+	pkgs, err := getPackages(profiles, tags)
 	if err != nil {
 		return err
 	}
@@ -93,12 +94,17 @@ func convert(in io.Reader, out io.Writer, ignore *Ignore) error {
 	return nil
 }
 
-func getPackages(profiles []*Profile) ([]*packages.Package, error) {
+func getPackages(profiles []*Profile, tags string) ([]*packages.Package, error) {
 	var pkgNames []string
 	for _, profile := range profiles {
 		pkgNames = append(pkgNames, getPackageName(profile.FileName))
 	}
-	return packages.Load(&packages.Config{Mode: packages.NeedFiles | packages.NeedModule}, pkgNames...)
+	cfg := &packages.Config{Mode: packages.NeedFiles | packages.NeedModule}
+	if len(tags) > 0 {
+		cfg.BuildFlags = []string{"-tags", tags}
+	}
+
+	return packages.Load(cfg, pkgNames...)
 }
 
 func appendIfUnique(sources []*Source, dir string) []*Source {
@@ -116,14 +122,14 @@ func getPackageName(filename string) string {
 	return strings.TrimRight(strings.TrimRight(pkgName, "\\"), "/")
 }
 
-func findAbsFilePath(pkg *packages.Package, profileName string) string {
+func findAbsFilePath(pkg *packages.Package, profileName string) (string, error) {
 	filename := filepath.Base(profileName)
 	for _, fullpath := range pkg.GoFiles {
 		if filepath.Base(fullpath) == filename {
-			return fullpath
+			return fullpath, nil
 		}
 	}
-	return ""
+	return "", fmt.Errorf("unable to determine file path for %s", profileName)
 }
 
 func (cov *Coverage) parseProfiles(profiles []*Profile, pkgMap map[string]*packages.Package, ignore *Ignore) error {
@@ -146,7 +152,10 @@ func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ig
 		return fmt.Errorf("package required when using go modules")
 	}
 	fileName := profile.FileName[len(pkgPkg.Module.Path)+1:]
-	absFilePath := findAbsFilePath(pkgPkg, profile.FileName)
+	absFilePath, err := findAbsFilePath(pkgPkg, profile.FileName)
+	if err != nil {
+		return err
+	}
 	fset := token.NewFileSet()
 	parsed, err := parser.ParseFile(fset, absFilePath, nil, 0)
 	if err != nil {
