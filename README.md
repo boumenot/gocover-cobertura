@@ -1,10 +1,9 @@
-## Forked from t-yuki
-
-This is a **fork** of https://github.com/boumenot/gocover-cobertura.
+## Forked from [Christopher Boumenot (boumenot)](https://github.com/boumenot)
 
 At the time of this writing the repository appears to be on *pause* with
-several outstanding PRs, and forks with interesting contributions.  This
-repo consolidates those outstanding forks, and combines them into one repo.
+several outstanding PRs, issues and forks with interesting contributions.
+
+This repo aims to add improvements so that it can be used by our services.
 
 go tool cover XML (Cobertura) export
 ====================================
@@ -18,15 +17,15 @@ Installation
 
 Just type the following to install the program and its dependencies:
 
-    $ go get github.com/boumenot/gocover-cobertura
+    $ go get github.com/bountylabs/gocover-cobertura
 
 Usage
 -----
 
 `gocover-cobertura` reads from the standard input:
 
-    $ go test -coverprofile=coverage.txt -covermode count github.com/gorilla/mux
-    $ gocover-cobertura < coverage.txt > coverage.xml
+    $ go test -coverprofile=coverage.out -covermode count ./
+    $ gocover-cobertura < coverage.out > coverage.xml
     
 Note that you should run this from the directory which holds your `go.mod` file.
 
@@ -41,11 +40,11 @@ Some flags can be passed (each flag should only be used once):
 
   ignore directories matching `PATTERN` regular expression. Full
   directory names are matched, as
-  `github.com/boumenot/gocover-cobertura` (and so `github.com/boumenot`
+  `github.com/bountylabs /gocover-cobertura` (and so `github.com/bountylabs`
   and `github.com`), examples of use:
   ```
   # A specific directory
-  -ignore-dirs '^github\.com/boumenot/gocover-cobertura/testdata$'
+  -ignore-dirs '^github\.com/bountylabs/gocover-cobertura/testdata$'
   # All directories autogen and any of their subdirs
   -ignore-dirs '/autogen$'
   ```
@@ -53,11 +52,11 @@ Some flags can be passed (each flag should only be used once):
 - `-ignore-files PATTERN`
 
   ignore files matching `PATTERN` regular expression. Full file names
-  are matched, as `github.com/boumenot/gocover-cobertura/profile.go`,
+  are matched, as `github.com/bountylabs/gocover-cobertura/profile.go`,
   examples of use:
   ```
   # A specific file
-  -ignore-files '^github\.com/boumenot/gocover-cobertura/profile\.go$'
+  -ignore-files '^github\.com/bountylabs/gocover-cobertura/profile\.go$'
   # All files ending with _gen.go
   -ignore-files '_gen\.go$'
   # All files in a directory autogen (or any of its subdirs)
@@ -70,11 +69,7 @@ Some flags can be passed (each flag should only be used once):
   indicating that the file has been automatically generated. See
   `genCodeRe` regexp in [ignore.go](ignore.go).
 
-~~Authors~~Merger
--------
-
-[Christopher Boumenot (boumenot)](https://github.com/boumenot)
-
+  
 Thanks
 ------
 
