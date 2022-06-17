@@ -25,7 +25,7 @@ Usage
 
 `gocover-cobertura` reads from the standard input:
 
-    $ go test -coverprofile=coverage.txt -covermode count github.com/gorilla/mux
+    $ go test -coverprofile=coverage.txt -covermode=count -coverpkg=./... ./...
     $ gocover-cobertura < coverage.txt > coverage.xml
     
 Note that you should run this from the directory which holds your `go.mod` file.
