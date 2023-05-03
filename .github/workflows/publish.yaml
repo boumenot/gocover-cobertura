@@ -24,6 +24,6 @@ jobs:
         goos: ${{ matrix.goos }}
         goarch: ${{ matrix.goarch }}
         goversion: "https://dl.google.com/go/go1.20.4.linux-amd64.tar.gz"
-        project_path: "./cmd/test-binary"
-        binary_name: "test-binary"
+        project_path: "./"
+        binary_name: "gocover-cobertura"
         extra_files: LICENSE README.md
