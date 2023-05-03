@@ -125,7 +125,7 @@ func TestParseProfilePermissionDenied(t *testing.T) {
 	require.NoError(t, err)
 
 	defer func() { err := os.Remove(tempFile.Name()); require.NoError(t, err) }()
-	err = tempFile.Chmod(000)
+	err = tempFile.Chmod(0o00)
 	require.NoError(t, err)
 	v := Coverage{}
 	profile := Profile{FileName: tempFile.Name()}
@@ -178,7 +178,7 @@ func TestConvertSetMode(t *testing.T) {
 	require.Len(t, v.Packages, 1)
 
 	p := v.Packages[0]
-	require.Equal(t, "github.com/boumenot/gocover-cobertura/testdata", strings.TrimRight(p.Name, "/"))
+	require.Equal(t, "github.com/anicoll/gocover-cobertura/testdata", strings.TrimRight(p.Name, "/"))
 	require.NotNil(t, p.Classes)
 	require.Len(t, p.Classes, 2)
 
