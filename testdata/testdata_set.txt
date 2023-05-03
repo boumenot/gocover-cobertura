@@ -1,9 +1,9 @@
 mode: set
-github.com/boumenot/gocover-cobertura/testdata/func1.go:4.23,5.16 1 1
-github.com/boumenot/gocover-cobertura/testdata/func1.go:5.16,7.3 1 0
-github.com/boumenot/gocover-cobertura/testdata/func2.go:7.34,8.16 1 1
-github.com/boumenot/gocover-cobertura/testdata/func2.go:8.16,10.3 1 1
-github.com/boumenot/gocover-cobertura/testdata/func2.go:13.35,14.2 0 0
-github.com/boumenot/gocover-cobertura/testdata/func2.go:16.35,17.2 0 0
-github.com/boumenot/gocover-cobertura/testdata/func3.go:6.35,17.2 0 0
-github.com/boumenot/gocover-cobertura/testdata/func4.go:6.35,17.2 0 0
+github.com/anicoll/gocover-cobertura/testdata/func1.go:4.23,5.16 1 1
+github.com/anicoll/gocover-cobertura/testdata/func1.go:5.16,7.3 1 0
+github.com/anicoll/gocover-cobertura/testdata/func2.go:7.34,8.16 1 1
+github.com/anicoll/gocover-cobertura/testdata/func2.go:8.16,10.3 1 1
+github.com/anicoll/gocover-cobertura/testdata/func2.go:13.35,14.2 0 0
+github.com/anicoll/gocover-cobertura/testdata/func2.go:16.35,17.2 0 0
+github.com/anicoll/gocover-cobertura/testdata/func3.go:6.35,17.2 0 0
+github.com/anicoll/gocover-cobertura/testdata/func4.go:6.35,17.2 0 0

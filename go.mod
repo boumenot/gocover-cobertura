@@ -1,8 +1,10 @@
-module github.com/boumenot/gocover-cobertura
+module github.com/anicoll/gocover-cobertura
 
-go 1.14
+go 1.20
+
+require golang.org/x/tools v0.8.0
 
 require (
-	github.com/stretchr/testify v1.6.1
-	golang.org/x/tools v0.0.0-20200526224456-8b020aee10d2
+	golang.org/x/mod v0.10.0 // indirect
+	golang.org/x/sys v0.7.0 // indirect
 )
