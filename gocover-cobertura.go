@@ -28,9 +28,11 @@ func fatal(format string, a ...interface{}) {
 
 func main() {
 	var ignore Ignore
+	var reportTotalCoverageToStdErr bool
 
 	flag.BoolVar(&byFiles, "by-files", false, "code coverage by file, not class")
 	flag.BoolVar(&ignore.GeneratedFiles, "ignore-gen-files", false, "ignore generated files")
+	flag.BoolVar(&reportTotalCoverageToStdErr, "report-total-coverage-to-stderr", false, "write the total coverage percentage to stderr")
 	ignoreDirsRe := flag.String("ignore-dirs", "", "ignore dirs matching this regexp")
 	ignoreFilesRe := flag.String("ignore-files", "", "ignore files matching this regexp")
 
@@ -51,12 +53,17 @@ func main() {
 		}
 	}
 
-	if err := convert(os.Stdin, os.Stdout, &ignore); err != nil {
+	outErr := io.Discard
+	if reportTotalCoverageToStdErr {
+		outErr = os.Stderr
+	}
+
+	if err := convert(os.Stdin, os.Stdout, outErr, &ignore); err != nil {
 		fatal("code coverage conversion failed: %s", err)
 	}
 }
 
-func convert(in io.Reader, out io.Writer, ignore *Ignore) error {
+func convert(in io.Reader, out, outErr io.Writer, ignore *Ignore) error {
 	profiles, err := ParseProfiles(in, ignore)
 	if err != nil {
 		return err
@@ -89,6 +96,8 @@ func convert(in io.Reader, out io.Writer, ignore *Ignore) error {
 	}
 
 	_, _ = fmt.Fprintln(out)
+
+	fmt.Fprintf(outErr, "Total test coverage is %.2f%% of lines\n", coverage.LineRate*100)
 	return nil
 }
 

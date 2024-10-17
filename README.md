@@ -27,7 +27,7 @@ Usage
 
     $ go test -coverprofile=coverage.txt -covermode count github.com/gorilla/mux
     $ gocover-cobertura < coverage.txt > coverage.xml
-    
+
 Note that you should run this from the directory which holds your `go.mod` file.
 
 Some flags can be passed (each flag should only be used once):
@@ -69,6 +69,12 @@ Some flags can be passed (each flag should only be used once):
   ignore generated files. Typically files containing a comment
   indicating that the file has been automatically generated. See
   `genCodeRe` regexp in [ignore.go](ignore.go).
+
+- `-report-total-coverage-to-stderr`
+
+  write the total coverage percentage to stderr.
+  This is usefull when working with CI pipelines (i.e. Gitlab) that search the
+  logs to retrieve the coverage number for reporting.
 
 ~~Authors~~Merger
 -------
