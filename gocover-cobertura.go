@@ -52,7 +52,7 @@ func main() {
 	}
 
 	if err := convert(os.Stdin, os.Stdout, &ignore); err != nil {
-		fatal("code coverage conversion failed: %s", err)
+		fatal("code coverage conversion failed: %s\n", err)
 	}
 }
 
