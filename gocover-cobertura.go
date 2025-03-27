@@ -52,7 +52,7 @@ func main() {
 	}
 
 	if err := convert(os.Stdin, os.Stdout, &ignore); err != nil {
-		fatal("code coverage conversion failed: %s", err)
+		fatal("code coverage conversion failed: %s\n", err)
 	}
 }
 
@@ -119,14 +119,14 @@ func getPackageName(filename string) string {
 	return strings.TrimRight(strings.TrimRight(pkgName, "\\"), "/")
 }
 
-func findAbsFilePath(pkg *packages.Package, profileName string) string {
+func findAbsFilePath(pkg *packages.Package, profileName string) (string, error) {
 	filename := filepath.Base(profileName)
 	for _, fullpath := range pkg.GoFiles {
 		if filepath.Base(fullpath) == filename {
-			return fullpath
+			return fullpath, nil
 		}
 	}
-	return ""
+	return "", fmt.Errorf("unable to determine file path for %s", profileName)
 }
 
 func (cov *Coverage) parseProfiles(profiles []*Profile, pkgMap map[string]*packages.Package, ignore *Ignore) error {
@@ -149,7 +149,11 @@ func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ig
 		return fmt.Errorf("package required when using go modules")
 	}
 	fileName := profile.FileName[len(pkgPkg.Module.Path)+1:]
-	absFilePath := findAbsFilePath(pkgPkg, profile.FileName)
+	absFilePath, err := findAbsFilePath(pkgPkg, profile.FileName)
+	if err != nil {
+		return err
+	}
+
 	fset := token.NewFileSet()
 	parsed, err := parser.ParseFile(fset, absFilePath, nil, 0)
 	if err != nil {

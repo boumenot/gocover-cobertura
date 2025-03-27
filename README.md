@@ -70,6 +70,16 @@ Some flags can be passed (each flag should only be used once):
   indicating that the file has been automatically generated. See
   `genCodeRe` regexp in [ignore.go](ignore.go).
 
+Troubleshooting
+---------------
+
+*Error*: code coverage conversion failed: unable to determine file path for <file>
+
+If you encounter this error, it may be due to missing build tags when running `gocover-cobertura`. You need to run the tool with the same tags you used when running the tests.
+To pass the tags, set the GOFLAGS environment variable:
+
+    GOFLAGS="-tags=<tags from go test>" gocover-cobertura < coverage.txt > coverage.xml
+
 ~~Authors~~Merger
 -------
 
