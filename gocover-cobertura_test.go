@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/xml"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -23,7 +22,7 @@ func Test_Main(t *testing.T) {
 	require.NoError(t, err)
 	os.Stdout = temp
 	main()
-	outputBytes, err := ioutil.ReadFile(fname)
+	outputBytes, err := os.ReadFile(fname)
 	require.NoError(t, err)
 
 	outputString := string(outputBytes)
@@ -58,14 +57,15 @@ func TestConvertEmpty(t *testing.T) {
 	data := `mode: set`
 
 	pipe2rd, pipe2wr := io.Pipe()
+	var readErr error
 	go func() {
-		err := convert(strings.NewReader(data), pipe2wr, &Ignore{})
-		require.NoError(t, err)
+		readErr = convert(strings.NewReader(data), pipe2wr, &Ignore{})
 	}()
 
 	v := Coverage{}
 	dec := xml.NewDecoder(pipe2rd)
 	err := dec.Decode(&v)
+	require.NoError(t, readErr)
 	require.NoError(t, err)
 
 	require.Equal(t, "coverage", v.XMLName.Local)
@@ -104,7 +104,7 @@ func TestParseProfileDoesNotExist(t *testing.T) {
 	// Windows vs. Linux
 	if !strings.Contains(err.Error(), "system cannot find the file specified") &&
 		!strings.Contains(err.Error(), "no such file or directory") {
-		t.Errorf(err.Error())
+		t.Error(err.Error())
 	}
 }
 
@@ -121,11 +121,11 @@ func TestParseProfilePermissionDenied(t *testing.T) {
 		t.Skip("chmod is not supported by Windows")
 	}
 
-	tempFile, err := ioutil.TempFile("", "not-readable")
+	tempFile, err := os.CreateTemp("", "not-readable")
 	require.NoError(t, err)
 
 	defer func() { err := os.Remove(tempFile.Name()); require.NoError(t, err) }()
-	err = tempFile.Chmod(000)
+	err = tempFile.Chmod(0o00)
 	require.NoError(t, err)
 	v := Coverage{}
 	profile := Profile{FileName: tempFile.Name()}

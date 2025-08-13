@@ -15,8 +15,13 @@ linters:
     - misspell
 
 linters-settings:
-  govet:
-    check-shadowing: false
+  gocognit:
+    min-complexity: 31 # TODO: update to 20
+  cyclop:
+    max-complexity: 20 # TODO: update to 10
+  funlen:
+    statements: 45     # TODO: update to 40
+    lines: 75          # TODO: update to 60
   misspell:
     locale: US
 
