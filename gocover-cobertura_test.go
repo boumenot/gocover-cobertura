@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/xml"
+	"flag"
 	"io"
 	"os"
 	"path/filepath"
@@ -16,7 +17,21 @@ import (
 
 var SaveTestResults = false
 
+func mainCleanup(t *testing.T) {
+	origStdout := os.Stdout
+	origArgs := os.Args
+	t.Cleanup(
+		func() {
+			os.Stdout = origStdout
+			os.Args = origArgs
+			flag.CommandLine = flag.NewFlagSet(origArgs[0], flag.ExitOnError)
+		},
+	)
+}
+
 func Test_Main(t *testing.T) {
+	mainCleanup(t)
+
 	fname := filepath.Join(os.TempDir(), "stdout")
 	temp, err := os.Create(fname)
 	require.NoError(t, err)
@@ -28,6 +43,41 @@ func Test_Main(t *testing.T) {
 	outputString := string(outputBytes)
 	require.Contains(t, outputString, xml.Header)
 	require.Contains(t, outputString, coberturaDTDDecl)
+}
+
+func Test_MainCustomInput(t *testing.T) {
+	mainCleanup(t)
+
+	fname := filepath.Join(os.TempDir(), "stdout")
+	stdout, err := os.Create(fname)
+	require.NoError(t, err)
+	os.Stdout = stdout
+	os.Args = []string{"gocover-cobertura", "testdata/testdata_set.txt"}
+	main()
+	outputBytes, err := ioutil.ReadFile(fname)
+	require.NoError(t, err)
+
+	outputString := string(outputBytes)
+	require.Contains(t, outputString, xml.Header)
+	require.Contains(t, outputString, coberturaDTDDecl)
+	require.Contains(t, outputString, "func1")
+}
+
+func Test_MainCustomInputAndOutput(t *testing.T) {
+	mainCleanup(t)
+
+	fname := filepath.Join(os.TempDir(), "stdout")
+	_, err := os.Create(fname)
+	require.NoError(t, err)
+	os.Args = []string{"gocover-cobertura", "testdata/testdata_set.txt", fname}
+	main()
+	outputBytes, err := ioutil.ReadFile(fname)
+	require.NoError(t, err)
+
+	outputString := string(outputBytes)
+	require.Contains(t, outputString, xml.Header)
+	require.Contains(t, outputString, coberturaDTDDecl)
+	require.Contains(t, outputString, "func1")
 }
 
 func TestConvertParseProfilesError(t *testing.T) {

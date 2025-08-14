@@ -51,7 +51,24 @@ func main() {
 		}
 	}
 
-	if err := convert(os.Stdin, os.Stdout, &ignore); err != nil {
+	inputFile := os.Stdin
+	if flag.NArg() > 0 {
+		inputFile, err = os.Open(flag.Arg(0))
+		if err != nil {
+			fatal("Failed to open input file: %s\n", err)
+		}
+		defer func() { _ = inputFile.Close() }()
+	}
+	outputFile := os.Stdout
+	if flag.NArg() > 1 {
+		outputFile, err = os.Create(flag.Arg(1))
+		if err != nil {
+			fatal("Failed to open output file: %s\n", err)
+		}
+		defer func() { _ = outputFile.Close() }()
+	}
+
+	if err := convert(inputFile, outputFile, &ignore); err != nil {
 		fatal("code coverage conversion failed: %s", err)
 	}
 }
