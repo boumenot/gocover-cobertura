@@ -146,7 +146,7 @@ func (cov *Coverage) parseProfiles(profiles []*Profile, pkgMap map[string]*packa
 
 func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ignore *Ignore) error {
 	if pkgPkg == nil || pkgPkg.Module == nil {
-		return fmt.Errorf("package required when using go modules")
+		return fmt.Errorf("package or module info not found for %s", profile.FileName)
 	}
 	fileName := profile.FileName[len(pkgPkg.Module.Path)+1:]
 	absFilePath, err := findAbsFilePath(pkgPkg, profile.FileName)
