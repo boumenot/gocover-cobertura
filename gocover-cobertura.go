@@ -31,21 +31,33 @@ func main() {
 
 	flag.BoolVar(&byFiles, "by-files", false, "code coverage by file, not class")
 	flag.BoolVar(&ignore.GeneratedFiles, "ignore-gen-files", false, "ignore generated files")
-	ignoreDirsRe := flag.String("ignore-dirs", "", "ignore dirs matching this regexp")
-	ignoreFilesRe := flag.String("ignore-files", "", "ignore files matching this regexp")
+
+	var ignoreDirsPatterns []string
+	flag.Func("ignore-dirs", "ignore dirs matching this regexp (can be repeated)", func(s string) error {
+		ignoreDirsPatterns = append(ignoreDirsPatterns, s)
+		return nil
+	})
+
+	var ignoreFilePatterns []string
+	flag.Func("ignore-files", "ignore files matching this regexp (can be repeated)", func(s string) error {
+		ignoreFilePatterns = append(ignoreFilePatterns, s)
+		return nil
+	})
 
 	flag.Parse()
 
 	var err error
-	if *ignoreDirsRe != "" {
-		ignore.Dirs, err = regexp.Compile(*ignoreDirsRe)
+	if len(ignoreDirsPatterns) > 0 {
+		combined := strings.Join(ignoreDirsPatterns, "|")
+		ignore.Dirs, err = regexp.Compile(combined)
 		if err != nil {
 			fatal("Bad -ignore-dirs regexp: %s\n", err)
 		}
 	}
 
-	if *ignoreFilesRe != "" {
-		ignore.Files, err = regexp.Compile(*ignoreFilesRe)
+	if len(ignoreFilePatterns) > 0 {
+		combined := strings.Join(ignoreFilePatterns, "|")
+		ignore.Files, err = regexp.Compile(combined)
 		if err != nil {
 			fatal("Bad -ignore-files regexp: %s\n", err)
 		}
