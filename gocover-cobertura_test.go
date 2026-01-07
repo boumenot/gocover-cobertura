@@ -101,9 +101,7 @@ func TestParseProfileDoesNotExist(t *testing.T) {
 	err := v.parseProfile(&profile, &pkg, &Ignore{})
 	require.Error(t, err)
 
-	// Windows vs. Linux
-	if !strings.Contains(err.Error(), "system cannot find the file specified") &&
-		!strings.Contains(err.Error(), "no such file or directory") {
+	if !strings.Contains(err.Error(), "unable to determine file path") {
 		t.Error(err.Error())
 	}
 }
