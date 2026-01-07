@@ -78,7 +78,7 @@ func TestParseProfileNilPackages(t *testing.T) {
 	profile := Profile{FileName: "does-not-exist"}
 	err := v.parseProfile(&profile, nil, &Ignore{})
 	require.Error(t, err)
-	require.Contains(t, `package required when using go modules`, err.Error())
+	require.Contains(t, `package or module info not found for does-not-exist`, err.Error())
 }
 
 func TestParseProfileEmptyPackages(t *testing.T) {
@@ -86,7 +86,7 @@ func TestParseProfileEmptyPackages(t *testing.T) {
 	profile := Profile{FileName: "does-not-exist"}
 	err := v.parseProfile(&profile, &packages.Package{}, &Ignore{})
 	require.Error(t, err)
-	require.Contains(t, `package required when using go modules`, err.Error())
+	require.Contains(t, `package or module info not found for does-not-exist`, err.Error())
 }
 
 func TestParseProfileDoesNotExist(t *testing.T) {
@@ -111,7 +111,7 @@ func TestParseProfileNotReadable(t *testing.T) {
 	profile := Profile{FileName: os.DevNull}
 	err := v.parseProfile(&profile, nil, &Ignore{})
 	require.Error(t, err)
-	require.Contains(t, err.Error(), "package required when using go modules")
+	require.Contains(t, err.Error(), "package or module info not found for")
 }
 
 func TestParseProfilePermissionDenied(t *testing.T) {
