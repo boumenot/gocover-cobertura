@@ -70,6 +70,9 @@ func convert(in io.Reader, out io.Writer, ignore *Ignore) error {
 	sources := make([]*Source, 0)
 	pkgMap := make(map[string]*packages.Package)
 	for _, pkg := range pkgs {
+		if pkg.Module == nil {
+			continue
+		}
 		sources = appendIfUnique(sources, pkg.Module.Dir)
 		pkgMap[pkg.ID] = pkg
 	}
@@ -146,7 +149,8 @@ func (cov *Coverage) parseProfiles(profiles []*Profile, pkgMap map[string]*packa
 
 func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ignore *Ignore) error {
 	if pkgPkg == nil || pkgPkg.Module == nil {
-		return fmt.Errorf("package or module info not found for %s", profile.FileName)
+		fmt.Fprintf(os.Stderr, "warning: skipping profile %s: no package/module information available\n", profile.FileName)
+		return nil
 	}
 	fileName := profile.FileName[len(pkgPkg.Module.Path)+1:]
 	absFilePath, err := findAbsFilePath(pkgPkg, profile.FileName)
