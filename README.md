@@ -70,6 +70,11 @@ Some flags can be passed (each flag should only be used once):
   indicating that the file has been automatically generated. See
   `genCodeRe` regexp in [ignore.go](ignore.go).
 
+
+- `-path`
+
+  specifies the path to the directory for which coverage must be calculated
+
 Troubleshooting
 ---------------
 

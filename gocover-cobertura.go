@@ -20,6 +20,7 @@ import (
 const coberturaDTDDecl = `<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">`
 
 var byFiles bool
+var path string
 
 func fatal(format string, a ...interface{}) {
 	_, _ = fmt.Fprintf(os.Stderr, format, a...)
@@ -31,6 +32,7 @@ func main() {
 
 	flag.BoolVar(&byFiles, "by-files", false, "code coverage by file, not class")
 	flag.BoolVar(&ignore.GeneratedFiles, "ignore-gen-files", false, "ignore generated files")
+	flag.StringVar(&path, "path", ".", "set directory to cover in")
 	ignoreDirsRe := flag.String("ignore-dirs", "", "ignore dirs matching this regexp")
 	ignoreFilesRe := flag.String("ignore-files", "", "ignore files matching this regexp")
 
@@ -48,6 +50,13 @@ func main() {
 		ignore.Files, err = regexp.Compile(*ignoreFilesRe)
 		if err != nil {
 			fatal("Bad -ignore-files regexp: %s\n", err)
+		}
+	}
+
+	if path != "" {
+		err := os.Chdir(path)
+		if err != nil {
+			fatal("failed to change working directory to path %s\n", path)
 		}
 	}
 
