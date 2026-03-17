@@ -208,7 +208,7 @@ type fileVisitor struct {
 
 func (v *fileVisitor) Visit(node ast.Node) ast.Visitor {
 	switch n := node.(type) {
-	case *ast.FuncDecl:
+	case *ast.FuncDecl, *ast.ValueSpec:
 		class := v.class(n)
 		method := v.method(n)
 		method.LineRate = method.Lines.HitRate()
@@ -220,8 +220,13 @@ func (v *fileVisitor) Visit(node ast.Node) ast.Visitor {
 	return v
 }
 
-func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
-	method := &Method{Name: n.Name.Name}
+func (v *fileVisitor) method(n ast.Node) *Method {
+	method := &Method{Name: "Unknown"}
+	if funcDecl, ok := n.(*ast.FuncDecl); ok {
+		method.Name = funcDecl.Name.Name
+	} else if valueSpec, ok := n.(*ast.ValueSpec); ok && len(valueSpec.Names) > 0 {
+		method.Name = valueSpec.Names[0].Name
+	}
 	method.Lines = []*Line{}
 
 	start := v.fset.Position(n.Pos())
@@ -247,7 +252,7 @@ func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
 	return method
 }
 
-func (v *fileVisitor) class(n *ast.FuncDecl) *Class {
+func (v *fileVisitor) class(n ast.Node) *Class {
 	var className string
 	if byFiles {
 		//className = filepath.Base(v.fileName)
@@ -260,8 +265,10 @@ func (v *fileVisitor) class(n *ast.FuncDecl) *Class {
 		// src/lib/util/foo.go -> src.lib.util.foo.go
 		className = strings.Replace(v.fileName, "/", ".", -1)
 		className = strings.Replace(className, "\\", ".", -1)
+	} else if funcDecl, ok := n.(*ast.FuncDecl); ok {
+		className = v.recvName(funcDecl)
 	} else {
-		className = v.recvName(n)
+		className = "."
 	}
 	class := v.classes[className]
 	if class == nil {
