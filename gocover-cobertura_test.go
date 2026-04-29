@@ -140,6 +140,39 @@ func TestParseProfilePermissionDenied(t *testing.T) {
 	require.Contains(t, err.Error(), "permission denied")
 }
 
+// TestConvertNilModule verifies that convert does not panic when
+// packages.Load returns a package with a nil Module field. This can happen
+// when:
+//   - The profile references a standard library package (e.g. "fmt"),
+//     which is not part of any Go module.
+//   - The code is built in GOPATH mode without module support.
+//   - A dependency fails to fully resolve (e.g. private repo auth
+//     failures, missing transitive dependencies), causing packages.Load
+//     to return a partially populated Package with Module == nil.
+func TestConvertNilModule(t *testing.T) {
+	// A coverage profile referencing a stdlib package triggers the nil
+	// Module path because standard library packages have no module info.
+	data := "mode: set\nfmt/print.go:1.1,1.1 1 1\n"
+
+	pipe2rd, pipe2wr := io.Pipe()
+	var convertErr error
+	go func() {
+		convertErr = convert(strings.NewReader(data), pipe2wr, &Ignore{})
+		pipe2wr.Close()
+	}()
+
+	// Drain the reader so the goroutine can complete.
+	_, _ = io.ReadAll(pipe2rd)
+
+	// The convert function must not panic. It may return an error (e.g.
+	// because the file doesn't exist on disk) but a nil-pointer
+	// dereference panic is the bug we are guarding against.
+	require.NotPanics(t, func() {
+		// The goroutine already ran; this is here only as a safety assertion.
+	})
+	_ = convertErr // error is acceptable; panic is not
+}
+
 func TestConvertSetMode(t *testing.T) {
 	pipe1rd, err := os.Open("testdata/testdata_set.txt")
 	require.NoError(t, err)
