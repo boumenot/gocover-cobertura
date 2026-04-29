@@ -79,8 +79,7 @@ func ensureModuleCached(t *testing.T, project, tag string) {
 		t.Fatalf("no module path configured for project %q", project)
 	}
 
-	cmd := exec.Command("go", "get", modPath+"@"+tag)
-	cmd.Env = append(os.Environ(), "GOFLAGS=-mod=mod")
+	cmd := exec.Command("go", "mod", "download", modPath+"@"+tag)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		t.Fatalf("go get %s@%s failed: %v\n%s", modPath, tag, err, out)
@@ -94,7 +93,7 @@ var sourceRe = regexp.MustCompile(`<source>[^<]*</source>`)
 // golden comparisons are reproducible across machines and runs.
 func normalizeOutput(s string) string {
 	s = timestampRe.ReplaceAllString(s, `timestamp="0"`)
-	s = sourceRe.ReplaceAllString(s, `<source>$GOMODCACHE</source>`)
+	s = sourceRe.ReplaceAllLiteralString(s, `<source>$GOMODCACHE</source>`)
 	s = strings.ReplaceAll(s, `\`, `/`)
 
 	lines := strings.Split(s, "\n")
