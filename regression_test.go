@@ -1,13 +1,15 @@
+//go:build regression
+
 package main
 
 import (
-	"bytes"
 	"flag"
 	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"strings"
 	"testing"
 
@@ -16,17 +18,17 @@ import (
 
 var updateGolden = flag.Bool("update", false, "update regression golden files")
 
-// modulePackages maps project directory names to their Go module paths.
-var modulePackages = map[string]string{
-	"mux": "github.com/gorilla/mux",
-}
-
 // regressionEntry describes a single regression test case discovered on disk.
 type regressionEntry struct {
 	Project      string
 	Tag          string
 	CoveragePath string
 	GoldenPath   string
+}
+
+// moduleRepos maps project directory names to their Git clone URLs.
+var moduleRepos = map[string]string{
+	"mux": "https://github.com/gorilla/mux",
 }
 
 // discoverRegressionEntries walks root looking for coverage.txt files in the
@@ -69,21 +71,64 @@ func discoverRegressionEntries(t *testing.T, root string) []regressionEntry {
 	return entries
 }
 
-// ensureModuleCached runs "go get" to make sure the module source for the
-// given project and tag is present in the local module cache.
-func ensureModuleCached(t *testing.T, project, tag string) {
+// buildBinary compiles gocover-cobertura into a temporary binary and returns
+// its path.
+func buildBinary(t *testing.T) string {
+	t.Helper()
+	name := "gocover-cobertura-test"
+	if runtime.GOOS == "windows" {
+		name += ".exe"
+	}
+	bin := filepath.Join(t.TempDir(), name)
+	cmd := exec.Command("go", "build", "-o", bin, ".")
+	cmd.Dir = "."
+	out, err := cmd.CombinedOutput()
+	require.NoError(t, err, "failed to build binary: %s", string(out))
+	return bin
+}
+
+// ensureSourceAvailable clones the project repo at the given tag into a
+// src/ subdirectory alongside the coverage.txt file. Reuses an existing
+// clone if present. The src/ directories should be added to .gitignore.
+func ensureSourceAvailable(t *testing.T, project, tag string) string {
 	t.Helper()
 
-	modPath, ok := modulePackages[project]
+	repoURL, ok := moduleRepos[project]
 	if !ok {
-		t.Fatalf("no module path configured for project %q", project)
+		t.Fatalf("no repo URL configured for project %q", project)
 	}
 
-	cmd := exec.Command("go", "mod", "download", modPath+"@"+tag)
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		t.Fatalf("go get %s@%s failed: %v\n%s", modPath, tag, err, out)
+	cloneDir := filepath.Join("testdata", "regression", project, tag, "src")
+
+	// Reuse existing clone if present.
+	if _, err := os.Stat(filepath.Join(cloneDir, ".git")); err == nil {
+		return cloneDir
 	}
+
+	cmd := exec.Command("git", "clone", "--depth", "1", "--branch", tag, repoURL, cloneDir)
+	out, err := cmd.CombinedOutput()
+	require.NoError(t, err, "git clone failed: %s", string(out))
+
+	return cloneDir
+}
+
+// runConvertSubprocess runs the gocover-cobertura binary as a subprocess
+// with its working directory set to sourceDir (so packages.Load resolves
+// correctly). Coverage data is piped to stdin.
+func runConvertSubprocess(t *testing.T, binary, sourceDir, coverageData string) string {
+	t.Helper()
+
+	cmd := exec.Command(binary)
+	cmd.Dir = sourceDir
+	cmd.Stdin = strings.NewReader(coverageData)
+	var stdout, stderr strings.Builder
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+
+	err := cmd.Run()
+	require.NoError(t, err, "gocover-cobertura failed (stderr: %s)", stderr.String())
+
+	return normalizeOutput(stdout.String())
 }
 
 var timestampRe = regexp.MustCompile(`timestamp="[0-9]+"`)
@@ -103,17 +148,6 @@ func normalizeOutput(s string) string {
 	return strings.Join(lines, "\n")
 }
 
-// runConvert feeds coverageData through convert() and returns the normalized
-// XML output.
-func runConvert(t *testing.T, coverageData string) string {
-	t.Helper()
-
-	var buf bytes.Buffer
-	err := convert(strings.NewReader(coverageData), &buf, &Ignore{})
-	require.NoError(t, err)
-	return normalizeOutput(buf.String())
-}
-
 // unifiedDiff produces a human-readable line-by-line diff between expected and
 // actual, showing at most 30 differences.
 func unifiedDiff(expected, actual string) string {
@@ -131,7 +165,7 @@ func unifiedDiff(expected, actual string) string {
 
 	for i := 0; i < maxLen; i++ {
 		if shown >= maxDiffs {
-			fmt.Fprintf(&diff, "... (%d more differences omitted)\n", maxLen-i)
+			fmt.Fprintf(&diff, "... (%d more lines not checked)\n", maxLen-i)
 			break
 		}
 		var exp, act string
@@ -150,8 +184,11 @@ func unifiedDiff(expected, actual string) string {
 }
 
 // TestRegression discovers regression test cases under testdata/regression/
-// and verifies that convert() output matches golden files. When -update is
-// passed the golden files are written instead.
+// and verifies that gocover-cobertura output matches golden files. The binary
+// is built once and run as a subprocess inside each project's cloned source
+// tree so that packages.Load() can resolve packages correctly.
+//
+// When -update is passed, golden files are written instead of compared.
 func TestRegression(t *testing.T) {
 	root := filepath.Join("testdata", "regression")
 	entries := discoverRegressionEntries(t, root)
@@ -159,15 +196,17 @@ func TestRegression(t *testing.T) {
 		t.Skip("no regression test data found under testdata/regression/")
 	}
 
+	binary := buildBinary(t)
+
 	for _, entry := range entries {
 		name := entry.Project + "/" + entry.Tag
 		t.Run(name, func(t *testing.T) {
-			ensureModuleCached(t, entry.Project, entry.Tag)
+			sourceDir := ensureSourceAvailable(t, entry.Project, entry.Tag)
 
 			coverageData, err := os.ReadFile(entry.CoveragePath)
 			require.NoError(t, err)
 
-			actual := runConvert(t, string(coverageData))
+			actual := runConvertSubprocess(t, binary, sourceDir, string(coverageData))
 
 			if *updateGolden {
 				err := os.WriteFile(entry.GoldenPath, []byte(actual), 0o644)

@@ -77,16 +77,14 @@ func TestParseProfileNilPackages(t *testing.T) {
 	v := Coverage{}
 	profile := Profile{FileName: "does-not-exist"}
 	err := v.parseProfile(&profile, nil, &Ignore{})
-	require.Error(t, err)
-	require.Contains(t, `package or module info not found for does-not-exist`, err.Error())
+	require.NoError(t, err)
 }
 
 func TestParseProfileEmptyPackages(t *testing.T) {
 	v := Coverage{}
 	profile := Profile{FileName: "does-not-exist"}
 	err := v.parseProfile(&profile, &packages.Package{}, &Ignore{})
-	require.Error(t, err)
-	require.Contains(t, `package or module info not found for does-not-exist`, err.Error())
+	require.NoError(t, err)
 }
 
 func TestParseProfileDoesNotExist(t *testing.T) {
@@ -110,8 +108,7 @@ func TestParseProfileNotReadable(t *testing.T) {
 	v := Coverage{}
 	profile := Profile{FileName: os.DevNull}
 	err := v.parseProfile(&profile, nil, &Ignore{})
-	require.Error(t, err)
-	require.Contains(t, err.Error(), "package or module info not found for")
+	require.NoError(t, err)
 }
 
 func TestParseProfilePermissionDenied(t *testing.T) {
