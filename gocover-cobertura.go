@@ -216,19 +216,47 @@ type fileVisitor struct {
 func (v *fileVisitor) Visit(node ast.Node) ast.Visitor {
 	switch n := node.(type) {
 	case *ast.FuncDecl:
-		class := v.class(n)
-		method := v.method(n)
+		class := v.classForFunc(n)
+		method := v.methodFromNode(n, n.Name.Name)
 		method.LineRate = method.Lines.HitRate()
 		class.Methods = append(class.Methods, method)
 		class.Lines = append(class.Lines, method.Lines...)
-
 		class.LineRate = class.Lines.HitRate()
+		// Return nil to stop descent — all lines in the function body
+		// are already counted by methodFromNode using the Pos/End range.
+		// This prevents local var closures from being double-counted.
+		return nil
+	case *ast.GenDecl:
+		for _, spec := range n.Specs {
+			vs, ok := spec.(*ast.ValueSpec)
+			if !ok || len(vs.Names) == 0 || len(vs.Values) == 0 {
+				continue
+			}
+			for i, val := range vs.Values {
+				funcLit, isFuncLit := val.(*ast.FuncLit)
+				if !isFuncLit {
+					continue
+				}
+				name := vs.Names[i].Name
+				class := v.classForFunc(nil)
+				// Use the FuncLit node for Pos/End so the range covers
+				// the function body, not the entire var declaration.
+				method := v.methodFromNode(funcLit, name)
+				method.LineRate = method.Lines.HitRate()
+				class.Methods = append(class.Methods, method)
+				class.Lines = append(class.Lines, method.Lines...)
+				class.LineRate = class.Lines.HitRate()
+			}
+		}
+		return nil
 	}
 	return v
 }
 
-func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
-	method := &Method{Name: n.Name.Name}
+// methodFromNode creates a Method by scanning coverage blocks that overlap
+// with the AST node's source range.
+func (v *fileVisitor) methodFromNode(n ast.Node, name string) *Method {
+	method := &Method{Name: name}
 	method.Lines = []*Line{}
 
 	start := v.fset.Position(n.Pos())
@@ -254,21 +282,22 @@ func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
 	return method
 }
 
-func (v *fileVisitor) class(n *ast.FuncDecl) *Class {
+// classForFunc returns the Class for a function. For FuncDecl nodes, the
+// class is determined by the receiver type (or "-" for package-level funcs).
+// For variable functions (nil FuncDecl), the class is "-" (same as
+// package-level functions without receivers). When -by-files is set, the
+// file path is always used as the class name.
+func (v *fileVisitor) classForFunc(n *ast.FuncDecl) *Class {
 	var className string
 	if byFiles {
-		// className = filepath.Base(v.fileName)
-		//
 		// NOTE(boumenot): ReportGenerator creates links that collide if names are not distinct.
-		// This could be an issue in how I am generating the report, but I have not been able
-		// to figure it out.  The work around is to generate a fully qualified name based on
-		// the file path.
-		//
-		// src/lib/util/foo.go -> src.lib.util.foo.go
+		// The work around is to generate a fully qualified name based on the file path.
 		className = strings.Replace(v.fileName, "/", ".", -1)
 		className = strings.Replace(className, "\\", ".", -1)
-	} else {
+	} else if n != nil {
 		className = v.recvName(n)
+	} else {
+		className = "-"
 	}
 	class := v.classes[className]
 	if class == nil {
