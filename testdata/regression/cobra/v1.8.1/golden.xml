@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.8914027" branch-rate="0" version="" timestamp="0" lines-covered="3940" lines-valid="4420" branches-covered="0" branches-valid="0" complexity="0">
+<coverage line-rate="0.89186126" branch-rate="0" version="" timestamp="0" lines-covered="3934" lines-valid="4411" branches-covered="0" branches-valid="0" complexity="0">
   <sources>
     <source>$GOMODCACHE</source>
   </sources>
   <packages>
-    <package name="github.com/spf13/cobra" line-rate="0.90564597" branch-rate="0" complexity="0">
+    <package name="github.com/spf13/cobra" line-rate="0.9061942" branch-rate="0" complexity="0">
       <classes>
         <class name="-" filename="active_help.go" line-rate="1" branch-rate="0" complexity="0">
           <methods>
@@ -2579,7 +2579,7 @@
             <line number="242" hits="1"></line>
           </lines>
         </class>
-        <class name="Command" filename="command.go" line-rate="0.82507014" branch-rate="0" complexity="0">
+        <class name="Command" filename="command.go" line-rate="0.81962615" branch-rate="0" complexity="0">
           <methods>
             <method name="Context" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -2932,6 +2932,7 @@
                 <line number="580" hits="1"></line>
                 <line number="581" hits="1"></line>
                 <line number="582" hits="1"></line>
+                <line number="583" hits="1"></line>
               </lines>
             </method>
             <method name="HelpTemplate" signature="" line-rate="0.7" branch-rate="0" complexity="0">
@@ -3304,7 +3305,7 @@
                 <line number="1051" hits="1"></line>
               </lines>
             </method>
-            <method name="ExecuteC" signature="" line-rate="0.953125" branch-rate="0" complexity="0">
+            <method name="ExecuteC" signature="" line-rate="0.859375" branch-rate="0" complexity="0">
               <lines>
                 <line number="1054" hits="1"></line>
                 <line number="1055" hits="1"></line>
@@ -3313,9 +3314,9 @@
                 <line number="1060" hits="0"></line>
                 <line number="1061" hits="0"></line>
                 <line number="1062" hits="0"></line>
-                <line number="1065" hits="1"></line>
-                <line number="1066" hits="1"></line>
-                <line number="1067" hits="1"></line>
+                <line number="1065" hits="0"></line>
+                <line number="1066" hits="0"></line>
+                <line number="1067" hits="0"></line>
                 <line number="1070" hits="1"></line>
                 <line number="1071" hits="1"></line>
                 <line number="1072" hits="1"></line>
@@ -3327,9 +3328,9 @@
                 <line number="1078" hits="1"></line>
                 <line number="1079" hits="1"></line>
                 <line number="1080" hits="1"></line>
-                <line number="1081" hits="1"></line>
-                <line number="1082" hits="1"></line>
-                <line number="1083" hits="1"></line>
+                <line number="1081" hits="0"></line>
+                <line number="1082" hits="0"></line>
+                <line number="1083" hits="0"></line>
                 <line number="1086" hits="1"></line>
                 <line number="1087" hits="1"></line>
                 <line number="1088" hits="1"></line>
@@ -4317,6 +4318,7 @@
             <line number="580" hits="1"></line>
             <line number="581" hits="1"></line>
             <line number="582" hits="1"></line>
+            <line number="583" hits="1"></line>
             <line number="587" hits="1"></line>
             <line number="588" hits="0"></line>
             <line number="589" hits="0"></line>
@@ -4622,9 +4624,9 @@
             <line number="1060" hits="0"></line>
             <line number="1061" hits="0"></line>
             <line number="1062" hits="0"></line>
-            <line number="1065" hits="1"></line>
-            <line number="1066" hits="1"></line>
-            <line number="1067" hits="1"></line>
+            <line number="1065" hits="0"></line>
+            <line number="1066" hits="0"></line>
+            <line number="1067" hits="0"></line>
             <line number="1070" hits="1"></line>
             <line number="1071" hits="1"></line>
             <line number="1072" hits="1"></line>
@@ -4636,9 +4638,9 @@
             <line number="1078" hits="1"></line>
             <line number="1079" hits="1"></line>
             <line number="1080" hits="1"></line>
-            <line number="1081" hits="1"></line>
-            <line number="1082" hits="1"></line>
-            <line number="1083" hits="1"></line>
+            <line number="1081" hits="0"></line>
+            <line number="1082" hits="0"></line>
+            <line number="1083" hits="0"></line>
             <line number="1086" hits="1"></line>
             <line number="1087" hits="1"></line>
             <line number="1088" hits="1"></line>
@@ -5335,36 +5337,6 @@
             <line number="1291" hits="1"></line>
             <line number="1292" hits="1"></line>
             <line number="1293" hits="1"></line>
-          </lines>
-        </class>
-        <class name="-" filename="command_win.go" line-rate="0.1" branch-rate="0" complexity="0">
-          <methods>
-            <method name="preExecHook" signature="" line-rate="0.1" branch-rate="0" complexity="0">
-              <lines>
-                <line number="30" hits="1"></line>
-                <line number="31" hits="0"></line>
-                <line number="32" hits="0"></line>
-                <line number="33" hits="0"></line>
-                <line number="34" hits="0"></line>
-                <line number="35" hits="0"></line>
-                <line number="36" hits="0"></line>
-                <line number="37" hits="0"></line>
-                <line number="38" hits="0"></line>
-                <line number="39" hits="0"></line>
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="30" hits="1"></line>
-            <line number="31" hits="0"></line>
-            <line number="32" hits="0"></line>
-            <line number="33" hits="0"></line>
-            <line number="34" hits="0"></line>
-            <line number="35" hits="0"></line>
-            <line number="36" hits="0"></line>
-            <line number="37" hits="0"></line>
-            <line number="38" hits="0"></line>
-            <line number="39" hits="0"></line>
           </lines>
         </class>
         <class name="flagCompError" filename="completions.go" line-rate="0" branch-rate="0" complexity="0">

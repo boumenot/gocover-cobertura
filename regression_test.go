@@ -192,7 +192,14 @@ func unifiedDiff(expected, actual string) string {
 // tree so that packages.Load() can resolve packages correctly.
 //
 // When -update is passed, golden files are written instead of compared.
+// Golden files are generated on Linux and may include platform-specific
+// coverage. Skip on non-Linux to avoid false failures from missing
+// platform-specific source files (e.g. _windows.go on Linux or vice versa).
 func TestRegression(t *testing.T) {
+	if runtime.GOOS != "linux" {
+		t.Skip("regression tests are Linux-only (golden files generated on Linux)")
+	}
+
 	root := filepath.Join("testdata", "regression")
 	entries := discoverRegressionEntries(t, root)
 	if len(entries) == 0 {

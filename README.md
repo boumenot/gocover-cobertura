@@ -80,6 +80,37 @@ To pass the tags, set the GOFLAGS environment variable:
 
     GOFLAGS="-tags=<tags from go test>" gocover-cobertura < coverage.txt > coverage.xml
 
+Regression Tests
+----------------
+
+A snapshot-based regression test suite verifies that conversion output remains
+stable across code changes.  The suite converts real coverage profiles from
+open-source Go projects and compares the XML output against checked-in golden
+files.
+
+**Running regression tests** (Linux only):
+
+    go test -tags regression -run TestRegression -v -timeout 600s
+
+**Updating golden files** after intentional changes:
+
+    go test -tags regression -run TestRegression -update -v -timeout 600s
+    git diff testdata/regression/  # review the changes
+
+**Platform note:** Golden files are generated on Linux.  The regression tests
+are skipped on non-Linux platforms because coverage profiles may reference
+platform-specific source files (e.g. `_windows.go`) that are unavailable on
+other operating systems.  To regenerate golden files on Windows, use WSL.
+
+**Current corpus:**
+
+| Project | Tag | Lines |
+|---------|-----|-------|
+| gorilla/mux | v1.8.1 | 946 |
+| spf13/cobra | v1.8.1 | 4,420 |
+| approvals/go-approval-tests | v1.9.1 | 1,785 |
+| junegunn/fzf | v0.60.0 | 14,137 |
+
 ~~Authors~~Merger
 -------
 
