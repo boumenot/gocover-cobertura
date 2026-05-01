@@ -363,12 +363,9 @@ func TestConvertGlobalVarFunc(t *testing.T) {
 		}
 	}
 
-	// BUG: GlobalVarFunc is currently dropped because the AST visitor
-	// only matches *ast.FuncDecl. PR #25 fixes this but introduces
-	// double-counting of local var functions and spurious empty methods
-	// from non-function ValueSpec nodes.
-	require.NotContains(t, methods, "GlobalVarFunc",
-		"GlobalVarFunc is currently missing (unfixed bug, see PR #25)")
+	// GlobalVarFunc should be included after the fix.
+	require.Contains(t, methods, "GlobalVarFunc",
+		"GlobalVarFunc should be present in output")
 	require.Contains(t, methods, "FuncWithLocalVarFunc",
 		"Regular FuncDecl should be present")
 }
@@ -424,11 +421,97 @@ func TestConvertLocalVarFuncDoubleCounting(t *testing.T) {
 		}
 	}
 
-	// BUG: PR #25 causes local var functions inside FuncDecls to be
-	// double-counted. Lines inside the closure are visited once as part
-	// of the enclosing FuncDecl and again as a separate ValueSpec.
-	// This test documents the known issue.
-	if len(duplicates) > 0 {
-		t.Logf("WARNING: lines double-counted at: %v (known issue from PR #25 review)", duplicates)
+	// No line should appear more than once. If local var closures are
+	// double-counted, this assertion will catch it.
+	require.Empty(t, duplicates,
+		"lines should not be double-counted; duplicates at: %v", duplicates)
+}
+
+// TestConvertNonFuncVarIgnored verifies that non-function package-level
+// variables (e.g. `var x = "hello"`) do not produce method entries.
+func TestConvertNonFuncVarIgnored(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_varfunc.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			t.Logf("convert error: %v", err)
+		}
+		pipe2wr.Close()
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+
+	var methods []string
+	for _, c := range p.Classes {
+		if c.Filename == "testdata/func_varfunc.go" {
+			for _, m := range c.Methods {
+				methods = append(methods, m.Name)
+			}
+		}
 	}
+
+	require.NotContains(t, methods, "NonFuncVar",
+		"non-function var should not appear as a method")
+}
+
+// TestConvertShortAssignNotDoubleCounted verifies that closures assigned
+// with := (AssignStmt) inside a FuncDecl are not double-counted.
+func TestConvertShortAssignNotDoubleCounted(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_varfunc.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			t.Logf("convert error: %v", err)
+		}
+		pipe2wr.Close()
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+
+	// Find lines for FuncWithShortAssignClosure.
+	var allLines []*Line
+	for _, c := range p.Classes {
+		if c.Filename == "testdata/func_varfunc.go" {
+			for _, m := range c.Methods {
+				if m.Name == "FuncWithShortAssignClosure" {
+					allLines = append(allLines, m.Lines...)
+				}
+			}
+		}
+	}
+
+	lineNumbers := make(map[int]int)
+	for _, l := range allLines {
+		lineNumbers[l.Number]++
+	}
+
+	var duplicates []int
+	for lineNum, count := range lineNumbers {
+		if count > 1 {
+			duplicates = append(duplicates, lineNum)
+		}
+	}
+
+	require.Empty(t, duplicates,
+		":= closure lines should not be double-counted; duplicates at: %v", duplicates)
 }
