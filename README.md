@@ -6,6 +6,32 @@ At the time of this writing the repository appears to be on *pause* with
 several outstanding PRs, and forks with interesting contributions.  This
 repo consolidates those outstanding forks, and combines them into one repo.
 
+\[**2026-05-01**\]: This project has evolved from a private fork
+created for my own needs into something that is now used by many
+others. Historically, I have not focused heavily on maintaining this
+repository—I’ve occasionally merged PRs or made fixes, but for my
+purposes, the functionality was “good enough.”
+
+However, that context has changed. While this fork met my original
+goals, it is now clear that others are relying on it. As a result, I
+feel a greater sense of responsibility for its quality and stability.
+
+To address this, I plan to strengthen the repository by introducing a
+regression test suite based on popular open-source Go projects. The
+current test coverage is minimal and needs improvement. Although
+several PRs have identified issues, the lack of comprehensive testing
+makes it difficult to confidently ensure that new changes do not
+introduce regressions.
+
+The goal of the regression suite is to lock in current behavior and
+enable more deliberate, explicit decisions when making changes. I also
+hope to extract simplified reproductions from identified issues, which
+should help improve long-term maintainability (AI has been especially
+helpful in this area).
+
+I don’t expect to spend much more time here, but I will be more
+intentional about stewardship now that others depend on it.
+
 go tool cover XML (Cobertura) export
 ====================================
 
@@ -27,7 +53,7 @@ Usage
 
     $ go test -coverprofile=coverage.txt -covermode count github.com/gorilla/mux
     $ gocover-cobertura < coverage.txt > coverage.xml
-    
+
 Note that you should run this from the directory which holds your `go.mod` file.
 
 Some flags can be passed (each flag should only be used once):
