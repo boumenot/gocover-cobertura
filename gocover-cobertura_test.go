@@ -241,7 +241,7 @@ func TestConvertSetMode(t *testing.T) {
 	if l = c.Lines[0]; l.Number != 4 || l.Hits != 1 {
 		t.Errorf("unmatched line: Number:%d, Hits:%d", l.Number, l.Hits)
 	}
-	if l = c.Lines[1]; l.Number != 5 || l.Hits != 0 {
+	if l = c.Lines[1]; l.Number != 5 || l.Hits != 1 {
 		t.Errorf("unmatched line: Number:%d, Hits:%d", l.Number, l.Hits)
 	}
 	if l = c.Lines[2]; l.Number != 6 || l.Hits != 0 {
@@ -311,9 +311,13 @@ func TestConvertOverlappingBlocks(t *testing.T) {
 	m := c.Methods[0]
 	require.Equal(t, "FuncOverlap", m.Name)
 
-	// BUG: With the current dedup logic, overlapping blocks produce
-	// duplicate line entries (10 instead of 5). Once PR #24 is merged,
-	// update this test to assert 5 unique lines, all with hits=1.
-	require.Equal(t, 10, len(m.Lines),
-		"BUG: duplicate lines due to overlapping blocks (expected 5 after fix)")
+	// With PR #24's fix, overlapping blocks are properly deduplicated.
+	// All 5 lines should be unique and covered (OR of overlapping blocks).
+	require.Equal(t, 5, len(m.Lines),
+		"expected 5 unique lines after dedup fix")
+
+	for _, l := range m.Lines {
+		require.Equal(t, int64(1), l.Hits,
+			"line %d should be covered (OR of overlapping blocks)", l.Number)
+	}
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.22104551" branch-rate="0" version="" timestamp="0" lines-covered="2943" lines-valid="13314" branches-covered="0" branches-valid="0" complexity="0">
+<coverage line-rate="0.23321316" branch-rate="0" version="" timestamp="0" lines-covered="3105" lines-valid="13314" branches-covered="0" branches-valid="0" complexity="0">
   <sources>
     <source>$GOMODCACHE</source>
   </sources>
@@ -147,7 +147,7 @@
         </class>
       </classes>
     </package>
-    <package name="github.com/junegunn/fzf/src" line-rate="0.1904067" branch-rate="0" complexity="0">
+    <package name="github.com/junegunn/fzf/src" line-rate="0.20383343" branch-rate="0" complexity="0">
       <classes>
         <class name="-" filename="src/actiontype_string.go" line-rate="NaN" branch-rate="0" complexity="0">
           <methods>
@@ -157,12 +157,12 @@
           </methods>
           <lines></lines>
         </class>
-        <class name="actionType" filename="src/actiontype_string.go" line-rate="0.4" branch-rate="0" complexity="0">
+        <class name="actionType" filename="src/actiontype_string.go" line-rate="0.6" branch-rate="0" complexity="0">
           <methods>
-            <method name="String" signature="" line-rate="0.4" branch-rate="0" complexity="0">
+            <method name="String" signature="" line-rate="0.6" branch-rate="0" complexity="0">
               <lines>
                 <line number="149" hits="1"></line>
-                <line number="150" hits="0"></line>
+                <line number="150" hits="1"></line>
                 <line number="151" hits="0"></line>
                 <line number="152" hits="0"></line>
                 <line number="153" hits="1"></line>
@@ -171,13 +171,13 @@
           </methods>
           <lines>
             <line number="149" hits="1"></line>
-            <line number="150" hits="0"></line>
+            <line number="150" hits="1"></line>
             <line number="151" hits="0"></line>
             <line number="152" hits="0"></line>
             <line number="153" hits="1"></line>
           </lines>
         </class>
-        <class name="ansiState" filename="src/ansi.go" line-rate="0.70731705" branch-rate="0" complexity="0">
+        <class name="ansiState" filename="src/ansi.go" line-rate="0.80487806" branch-rate="0" complexity="0">
           <methods>
             <method name="colored" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -195,7 +195,7 @@
                 <line number="38" hits="1"></line>
               </lines>
             </method>
-            <method name="ToString" signature="" line-rate="0.6363636" branch-rate="0" complexity="0">
+            <method name="ToString" signature="" line-rate="0.75757575" branch-rate="0" complexity="0">
               <lines>
                 <line number="41" hits="1"></line>
                 <line number="42" hits="1"></line>
@@ -211,22 +211,22 @@
                 <line number="53" hits="1"></line>
                 <line number="54" hits="1"></line>
                 <line number="55" hits="1"></line>
-                <line number="56" hits="0"></line>
+                <line number="56" hits="1"></line>
                 <line number="57" hits="0"></line>
                 <line number="58" hits="0"></line>
-                <line number="59" hits="0"></line>
+                <line number="59" hits="1"></line>
                 <line number="60" hits="0"></line>
                 <line number="61" hits="0"></line>
                 <line number="62" hits="1"></line>
                 <line number="63" hits="1"></line>
                 <line number="64" hits="1"></line>
-                <line number="65" hits="0"></line>
+                <line number="65" hits="1"></line>
                 <line number="66" hits="0"></line>
                 <line number="67" hits="0"></line>
                 <line number="68" hits="1"></line>
                 <line number="69" hits="1"></line>
                 <line number="70" hits="1"></line>
-                <line number="71" hits="0"></line>
+                <line number="71" hits="1"></line>
                 <line number="72" hits="0"></line>
                 <line number="73" hits="0"></line>
                 <line number="74" hits="1"></line>
@@ -256,28 +256,28 @@
             <line number="53" hits="1"></line>
             <line number="54" hits="1"></line>
             <line number="55" hits="1"></line>
-            <line number="56" hits="0"></line>
+            <line number="56" hits="1"></line>
             <line number="57" hits="0"></line>
             <line number="58" hits="0"></line>
-            <line number="59" hits="0"></line>
+            <line number="59" hits="1"></line>
             <line number="60" hits="0"></line>
             <line number="61" hits="0"></line>
             <line number="62" hits="1"></line>
             <line number="63" hits="1"></line>
             <line number="64" hits="1"></line>
-            <line number="65" hits="0"></line>
+            <line number="65" hits="1"></line>
             <line number="66" hits="0"></line>
             <line number="67" hits="0"></line>
             <line number="68" hits="1"></line>
             <line number="69" hits="1"></line>
             <line number="70" hits="1"></line>
-            <line number="71" hits="0"></line>
+            <line number="71" hits="1"></line>
             <line number="72" hits="0"></line>
             <line number="73" hits="0"></line>
             <line number="74" hits="1"></line>
           </lines>
         </class>
-        <class name="-" filename="src/ansi.go" line-rate="0.8486647" branch-rate="0" complexity="0">
+        <class name="-" filename="src/ansi.go" line-rate="0.8635015" branch-rate="0" complexity="0">
           <methods>
             <method name="toAnsiString" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -411,7 +411,7 @@
                 <line number="224" hits="1"></line>
               </lines>
             </method>
-            <method name="extractColor" signature="" line-rate="0.9268293" branch-rate="0" complexity="0">
+            <method name="extractColor" signature="" line-rate="0.9512195" branch-rate="0" complexity="0">
               <lines>
                 <line number="227" hits="1"></line>
                 <line number="228" hits="1"></line>
@@ -437,7 +437,7 @@
                 <line number="250" hits="1"></line>
                 <line number="251" hits="1"></line>
                 <line number="252" hits="1"></line>
-                <line number="253" hits="0"></line>
+                <line number="253" hits="1"></line>
                 <line number="254" hits="0"></line>
                 <line number="255" hits="0"></line>
                 <line number="256" hits="1"></line>
@@ -482,7 +482,7 @@
                 <line number="301" hits="1"></line>
                 <line number="302" hits="1"></line>
                 <line number="303" hits="1"></line>
-                <line number="304" hits="0"></line>
+                <line number="304" hits="1"></line>
                 <line number="305" hits="0"></line>
                 <line number="306" hits="0"></line>
                 <line number="307" hits="1"></line>
@@ -525,7 +525,7 @@
                 <line number="348" hits="1"></line>
               </lines>
             </method>
-            <method name="interpretCode" signature="" line-rate="0.6666667" branch-rate="0" complexity="0">
+            <method name="interpretCode" signature="" line-rate="0.6910569" branch-rate="0" complexity="0">
               <lines>
                 <line number="351" hits="1"></line>
                 <line number="352" hits="1"></line>
@@ -535,9 +535,9 @@
                 <line number="356" hits="1"></line>
                 <line number="357" hits="1"></line>
                 <line number="358" hits="1"></line>
-                <line number="359" hits="0"></line>
+                <line number="359" hits="1"></line>
                 <line number="360" hits="0"></line>
-                <line number="361" hits="0"></line>
+                <line number="361" hits="1"></line>
                 <line number="362" hits="0"></line>
                 <line number="363" hits="0"></line>
                 <line number="364" hits="0"></line>
@@ -646,7 +646,7 @@
                 <line number="478" hits="1"></line>
                 <line number="479" hits="1"></line>
                 <line number="480" hits="1"></line>
-                <line number="482" hits="0"></line>
+                <line number="482" hits="1"></line>
                 <line number="483" hits="0"></line>
                 <line number="484" hits="0"></line>
                 <line number="485" hits="1"></line>
@@ -786,7 +786,7 @@
             <line number="250" hits="1"></line>
             <line number="251" hits="1"></line>
             <line number="252" hits="1"></line>
-            <line number="253" hits="0"></line>
+            <line number="253" hits="1"></line>
             <line number="254" hits="0"></line>
             <line number="255" hits="0"></line>
             <line number="256" hits="1"></line>
@@ -831,7 +831,7 @@
             <line number="301" hits="1"></line>
             <line number="302" hits="1"></line>
             <line number="303" hits="1"></line>
-            <line number="304" hits="0"></line>
+            <line number="304" hits="1"></line>
             <line number="305" hits="0"></line>
             <line number="306" hits="0"></line>
             <line number="307" hits="1"></line>
@@ -876,9 +876,9 @@
             <line number="356" hits="1"></line>
             <line number="357" hits="1"></line>
             <line number="358" hits="1"></line>
-            <line number="359" hits="0"></line>
+            <line number="359" hits="1"></line>
             <line number="360" hits="0"></line>
-            <line number="361" hits="0"></line>
+            <line number="361" hits="1"></line>
             <line number="362" hits="0"></line>
             <line number="363" hits="0"></line>
             <line number="364" hits="0"></line>
@@ -987,7 +987,7 @@
             <line number="478" hits="1"></line>
             <line number="479" hits="1"></line>
             <line number="480" hits="1"></line>
-            <line number="482" hits="0"></line>
+            <line number="482" hits="1"></line>
             <line number="483" hits="0"></line>
             <line number="484" hits="0"></line>
             <line number="485" hits="1"></line>
@@ -1231,7 +1231,7 @@
             <line number="42" hits="1"></line>
           </lines>
         </class>
-        <class name="ChunkList" filename="src/chunklist.go" line-rate="0.75409836" branch-rate="0" complexity="0">
+        <class name="ChunkList" filename="src/chunklist.go" line-rate="0.7704918" branch-rate="0" complexity="0">
           <methods>
             <method name="lastChunk" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -1262,7 +1262,7 @@
                 <line number="79" hits="0"></line>
               </lines>
             </method>
-            <method name="Snapshot" signature="" line-rate="0.77272725" branch-rate="0" complexity="0">
+            <method name="Snapshot" signature="" line-rate="0.79545456" branch-rate="0" complexity="0">
               <lines>
                 <line number="82" hits="1"></line>
                 <line number="83" hits="1"></line>
@@ -1283,7 +1283,7 @@
                 <line number="100" hits="1"></line>
                 <line number="101" hits="1"></line>
                 <line number="102" hits="1"></line>
-                <line number="103" hits="0"></line>
+                <line number="103" hits="1"></line>
                 <line number="104" hits="0"></line>
                 <line number="105" hits="0"></line>
                 <line number="106" hits="0"></line>
@@ -1348,7 +1348,7 @@
             <line number="100" hits="1"></line>
             <line number="101" hits="1"></line>
             <line number="102" hits="1"></line>
-            <line number="103" hits="0"></line>
+            <line number="103" hits="1"></line>
             <line number="104" hits="0"></line>
             <line number="105" hits="0"></line>
             <line number="106" hits="0"></line>
@@ -2221,13 +2221,13 @@
             <line number="507" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/functions.go" line-rate="0.45454547" branch-rate="0" complexity="0">
+        <class name="-" filename="src/functions.go" line-rate="0.5" branch-rate="0" complexity="0">
           <methods>
-            <method name="WriteTemporaryFile" signature="" line-rate="0.5833333" branch-rate="0" complexity="0">
+            <method name="WriteTemporaryFile" signature="" line-rate="0.6666667" branch-rate="0" complexity="0">
               <lines>
                 <line number="9" hits="1"></line>
                 <line number="10" hits="1"></line>
-                <line number="11" hits="0"></line>
+                <line number="11" hits="1"></line>
                 <line number="12" hits="0"></line>
                 <line number="13" hits="0"></line>
                 <line number="14" hits="0"></line>
@@ -2265,7 +2265,7 @@
           <lines>
             <line number="9" hits="1"></line>
             <line number="10" hits="1"></line>
-            <line number="11" hits="0"></line>
+            <line number="11" hits="1"></line>
             <line number="12" hits="0"></line>
             <line number="13" hits="0"></line>
             <line number="14" hits="0"></line>
@@ -2287,20 +2287,20 @@
             <line number="35" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/history.go" line-rate="0.7037037" branch-rate="0" complexity="0">
+        <class name="-" filename="src/history.go" line-rate="0.7777778" branch-rate="0" complexity="0">
           <methods>
-            <method name="NewHistory" signature="" line-rate="0.7037037" branch-rate="0" complexity="0">
+            <method name="NewHistory" signature="" line-rate="0.7777778" branch-rate="0" complexity="0">
               <lines>
                 <line number="19" hits="1"></line>
                 <line number="20" hits="1"></line>
-                <line number="21" hits="0"></line>
+                <line number="21" hits="1"></line>
                 <line number="22" hits="0"></line>
                 <line number="23" hits="0"></line>
                 <line number="24" hits="1"></line>
                 <line number="28" hits="1"></line>
                 <line number="29" hits="1"></line>
                 <line number="30" hits="1"></line>
-                <line number="31" hits="0"></line>
+                <line number="31" hits="1"></line>
                 <line number="32" hits="0"></line>
                 <line number="33" hits="0"></line>
                 <line number="34" hits="0"></line>
@@ -2324,14 +2324,14 @@
           <lines>
             <line number="19" hits="1"></line>
             <line number="20" hits="1"></line>
-            <line number="21" hits="0"></line>
+            <line number="21" hits="1"></line>
             <line number="22" hits="0"></line>
             <line number="23" hits="0"></line>
             <line number="24" hits="1"></line>
             <line number="28" hits="1"></line>
             <line number="29" hits="1"></line>
             <line number="30" hits="1"></line>
-            <line number="31" hits="0"></line>
+            <line number="31" hits="1"></line>
             <line number="32" hits="0"></line>
             <line number="33" hits="0"></line>
             <line number="34" hits="0"></line>
@@ -2443,7 +2443,7 @@
             <line number="94" hits="0"></line>
           </lines>
         </class>
-        <class name="Item" filename="src/item.go" line-rate="0.84210527" branch-rate="0" complexity="0">
+        <class name="Item" filename="src/item.go" line-rate="0.8947368" branch-rate="0" complexity="0">
           <methods>
             <method name="Index" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -2459,10 +2459,10 @@
                 <line number="33" hits="1"></line>
               </lines>
             </method>
-            <method name="Colors" signature="" line-rate="0.4" branch-rate="0" complexity="0">
+            <method name="Colors" signature="" line-rate="0.6" branch-rate="0" complexity="0">
               <lines>
                 <line number="36" hits="1"></line>
-                <line number="37" hits="0"></line>
+                <line number="37" hits="1"></line>
                 <line number="38" hits="0"></line>
                 <line number="39" hits="0"></line>
                 <line number="40" hits="1"></line>
@@ -2489,7 +2489,7 @@
             <line number="32" hits="1"></line>
             <line number="33" hits="1"></line>
             <line number="36" hits="1"></line>
-            <line number="37" hits="0"></line>
+            <line number="37" hits="1"></line>
             <line number="38" hits="0"></line>
             <line number="39" hits="0"></line>
             <line number="40" hits="1"></line>
@@ -2979,7 +2979,7 @@
             <line number="67" hits="1"></line>
           </lines>
         </class>
-        <class name="Merger" filename="src/merger.go" line-rate="0.43421054" branch-rate="0" complexity="0">
+        <class name="Merger" filename="src/merger.go" line-rate="0.47368422" branch-rate="0" complexity="0">
           <methods>
             <method name="Revision" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
@@ -3021,10 +3021,10 @@
                 <line number="103" hits="0"></line>
               </lines>
             </method>
-            <method name="Get" signature="" line-rate="0.37037036" branch-rate="0" complexity="0">
+            <method name="Get" signature="" line-rate="0.44444445" branch-rate="0" complexity="0">
               <lines>
                 <line number="107" hits="1"></line>
-                <line number="108" hits="0"></line>
+                <line number="108" hits="1"></line>
                 <line number="109" hits="0"></line>
                 <line number="110" hits="0"></line>
                 <line number="111" hits="0"></line>
@@ -3040,7 +3040,7 @@
                 <line number="123" hits="1"></line>
                 <line number="124" hits="1"></line>
                 <line number="125" hits="1"></line>
-                <line number="127" hits="0"></line>
+                <line number="127" hits="1"></line>
                 <line number="128" hits="0"></line>
                 <line number="129" hits="0"></line>
                 <line number="130" hits="1"></line>
@@ -3059,7 +3059,7 @@
                 <line number="142" hits="0"></line>
               </lines>
             </method>
-            <method name="mergedGet" signature="" line-rate="0.90909094" branch-rate="0" complexity="0">
+            <method name="mergedGet" signature="" line-rate="0.95454544" branch-rate="0" complexity="0">
               <lines>
                 <line number="144" hits="1"></line>
                 <line number="145" hits="1"></line>
@@ -3080,7 +3080,7 @@
                 <line number="164" hits="1"></line>
                 <line number="165" hits="1"></line>
                 <line number="166" hits="1"></line>
-                <line number="167" hits="0"></line>
+                <line number="167" hits="1"></line>
                 <line number="168" hits="0"></line>
                 <line number="171" hits="1"></line>
               </lines>
@@ -3112,7 +3112,7 @@
             <line number="99" hits="0"></line>
             <line number="103" hits="0"></line>
             <line number="107" hits="1"></line>
-            <line number="108" hits="0"></line>
+            <line number="108" hits="1"></line>
             <line number="109" hits="0"></line>
             <line number="110" hits="0"></line>
             <line number="111" hits="0"></line>
@@ -3128,7 +3128,7 @@
             <line number="123" hits="1"></line>
             <line number="124" hits="1"></line>
             <line number="125" hits="1"></line>
-            <line number="127" hits="0"></line>
+            <line number="127" hits="1"></line>
             <line number="128" hits="0"></line>
             <line number="129" hits="0"></line>
             <line number="130" hits="1"></line>
@@ -3160,7 +3160,7 @@
             <line number="164" hits="1"></line>
             <line number="165" hits="1"></line>
             <line number="166" hits="1"></line>
-            <line number="167" hits="0"></line>
+            <line number="167" hits="1"></line>
             <line number="168" hits="0"></line>
             <line number="171" hits="1"></line>
           </lines>
@@ -3185,7 +3185,7 @@
             <line number="268" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/options.go" line-rate="0.20449264" branch-rate="0" complexity="0">
+        <class name="-" filename="src/options.go" line-rate="0.23625097" branch-rate="0" complexity="0">
           <methods>
             <method name="defaultMargin" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -3312,13 +3312,13 @@
                 <line number="646" hits="1"></line>
               </lines>
             </method>
-            <method name="defaultOptions" signature="" line-rate="0.93333334" branch-rate="0" complexity="0">
+            <method name="defaultOptions" signature="" line-rate="0.98333335" branch-rate="0" complexity="0">
               <lines>
                 <line number="648" hits="1"></line>
                 <line number="649" hits="1"></line>
-                <line number="650" hits="0"></line>
+                <line number="650" hits="1"></line>
                 <line number="651" hits="0"></line>
-                <line number="652" hits="0"></line>
+                <line number="652" hits="1"></line>
                 <line number="653" hits="1"></line>
                 <line number="654" hits="1"></line>
                 <line number="656" hits="1"></line>
@@ -3373,7 +3373,7 @@
                 <line number="705" hits="1"></line>
                 <line number="706" hits="1"></line>
                 <line number="707" hits="1"></line>
-                <line number="708" hits="0"></line>
+                <line number="708" hits="1"></line>
               </lines>
             </method>
             <method name="isDir" signature="" line-rate="0" branch-rate="0" complexity="0">
@@ -3384,37 +3384,37 @@
                 <line number="737" hits="0"></line>
               </lines>
             </method>
-            <method name="atoi" signature="" line-rate="0.5" branch-rate="0" complexity="0">
+            <method name="atoi" signature="" line-rate="0.6666667" branch-rate="0" complexity="0">
               <lines>
                 <line number="739" hits="1"></line>
                 <line number="740" hits="1"></line>
-                <line number="741" hits="0"></line>
+                <line number="741" hits="1"></line>
                 <line number="742" hits="0"></line>
                 <line number="743" hits="0"></line>
                 <line number="744" hits="1"></line>
               </lines>
             </method>
-            <method name="atof" signature="" line-rate="0.5" branch-rate="0" complexity="0">
+            <method name="atof" signature="" line-rate="0.6666667" branch-rate="0" complexity="0">
               <lines>
                 <line number="747" hits="1"></line>
                 <line number="748" hits="1"></line>
-                <line number="749" hits="0"></line>
+                <line number="749" hits="1"></line>
                 <line number="750" hits="0"></line>
                 <line number="751" hits="0"></line>
                 <line number="752" hits="1"></line>
               </lines>
             </method>
-            <method name="splitNth" signature="" line-rate="0.53846157" branch-rate="0" complexity="0">
+            <method name="splitNth" signature="" line-rate="0.6923077" branch-rate="0" complexity="0">
               <lines>
                 <line number="755" hits="1"></line>
-                <line number="756" hits="0"></line>
+                <line number="756" hits="1"></line>
                 <line number="757" hits="0"></line>
                 <line number="758" hits="0"></line>
                 <line number="760" hits="1"></line>
                 <line number="761" hits="1"></line>
                 <line number="762" hits="1"></line>
                 <line number="763" hits="1"></line>
-                <line number="764" hits="0"></line>
+                <line number="764" hits="1"></line>
                 <line number="765" hits="0"></line>
                 <line number="766" hits="0"></line>
                 <line number="767" hits="1"></line>
@@ -3469,7 +3469,7 @@
                 <line number="823" hits="0"></line>
               </lines>
             </method>
-            <method name="delimiterRegexp" signature="" line-rate="0.8235294" branch-rate="0" complexity="0">
+            <method name="delimiterRegexp" signature="" line-rate="0.88235295" branch-rate="0" complexity="0">
               <lines>
                 <line number="828" hits="1"></line>
                 <line number="829" hits="1"></line>
@@ -3479,7 +3479,7 @@
                 <line number="833" hits="1"></line>
                 <line number="834" hits="1"></line>
                 <line number="835" hits="1"></line>
-                <line number="838" hits="0"></line>
+                <line number="838" hits="1"></line>
                 <line number="839" hits="0"></line>
                 <line number="840" hits="0"></line>
                 <line number="842" hits="1"></line>
@@ -3563,10 +3563,10 @@
                 <line number="912" hits="1"></line>
               </lines>
             </method>
-            <method name="parseKeyChordsImpl" signature="" line-rate="0.40350878" branch-rate="0" complexity="0">
+            <method name="parseKeyChordsImpl" signature="" line-rate="0.41520467" branch-rate="0" complexity="0">
               <lines>
                 <line number="914" hits="1"></line>
-                <line number="915" hits="0"></line>
+                <line number="915" hits="1"></line>
                 <line number="916" hits="0"></line>
                 <line number="917" hits="0"></line>
                 <line number="919" hits="1"></line>
@@ -3732,7 +3732,7 @@
                 <line number="1082" hits="1"></line>
                 <line number="1083" hits="1"></line>
                 <line number="1084" hits="1"></line>
-                <line number="1085" hits="0"></line>
+                <line number="1085" hits="1"></line>
                 <line number="1086" hits="0"></line>
                 <line number="1087" hits="0"></line>
                 <line number="1090" hits="1"></line>
@@ -3818,7 +3818,7 @@
                 <line number="1168" hits="1"></line>
               </lines>
             </method>
-            <method name="parseTheme" signature="" line-rate="0.14285715" branch-rate="0" complexity="0">
+            <method name="parseTheme" signature="" line-rate="0.17857143" branch-rate="0" complexity="0">
               <lines>
                 <line number="1170" hits="1"></line>
                 <line number="1171" hits="1"></line>
@@ -3835,14 +3835,14 @@
                 <line number="1182" hits="0"></line>
                 <line number="1183" hits="0"></line>
                 <line number="1184" hits="1"></line>
-                <line number="1185" hits="0"></line>
+                <line number="1185" hits="1"></line>
                 <line number="1186" hits="0"></line>
                 <line number="1187" hits="0"></line>
                 <line number="1188" hits="0"></line>
-                <line number="1190" hits="0"></line>
+                <line number="1190" hits="1"></line>
                 <line number="1191" hits="0"></line>
                 <line number="1194" hits="1"></line>
-                <line number="1195" hits="0"></line>
+                <line number="1195" hits="1"></line>
                 <line number="1196" hits="0"></line>
                 <line number="1197" hits="0"></line>
                 <line number="1199" hits="1"></line>
@@ -3898,11 +3898,11 @@
                 <line number="1249" hits="0"></line>
                 <line number="1250" hits="0"></line>
                 <line number="1251" hits="1"></line>
-                <line number="1252" hits="0"></line>
+                <line number="1252" hits="1"></line>
                 <line number="1253" hits="0"></line>
-                <line number="1254" hits="0"></line>
+                <line number="1254" hits="1"></line>
                 <line number="1255" hits="1"></line>
-                <line number="1256" hits="0"></line>
+                <line number="1256" hits="1"></line>
                 <line number="1257" hits="0"></line>
                 <line number="1258" hits="0"></line>
                 <line number="1259" hits="1"></line>
@@ -4032,7 +4032,7 @@
                 <line number="1399" hits="1"></line>
               </lines>
             </method>
-            <method name="maskActionContents" signature="" line-rate="0.84" branch-rate="0" complexity="0">
+            <method name="maskActionContents" signature="" line-rate="0.86" branch-rate="0" complexity="0">
               <lines>
                 <line number="1401" hits="1"></line>
                 <line number="1402" hits="1"></line>
@@ -4044,7 +4044,7 @@
                 <line number="1408" hits="1"></line>
                 <line number="1410" hits="1"></line>
                 <line number="1411" hits="1"></line>
-                <line number="1412" hits="0"></line>
+                <line number="1412" hits="1"></line>
                 <line number="1413" hits="0"></line>
                 <line number="1415" hits="1"></line>
                 <line number="1416" hits="1"></line>
@@ -4095,7 +4095,7 @@
                 <line number="1463" hits="1"></line>
               </lines>
             </method>
-            <method name="parseActionList" signature="" line-rate="0.24472573" branch-rate="0" complexity="0">
+            <method name="parseActionList" signature="" line-rate="0.25738397" branch-rate="0" complexity="0">
               <lines>
                 <line number="1465" hits="1"></line>
                 <line number="1466" hits="1"></line>
@@ -4301,9 +4301,9 @@
                 <line number="1666" hits="1"></line>
                 <line number="1667" hits="1"></line>
                 <line number="1668" hits="1"></line>
-                <line number="1669" hits="0"></line>
+                <line number="1669" hits="1"></line>
                 <line number="1670" hits="0"></line>
-                <line number="1671" hits="0"></line>
+                <line number="1671" hits="1"></line>
                 <line number="1672" hits="1"></line>
                 <line number="1673" hits="1"></line>
                 <line number="1674" hits="1"></line>
@@ -4313,7 +4313,7 @@
                 <line number="1678" hits="1"></line>
                 <line number="1679" hits="1"></line>
                 <line number="1680" hits="1"></line>
-                <line number="1681" hits="0"></line>
+                <line number="1681" hits="1"></line>
                 <line number="1682" hits="0"></line>
                 <line number="1683" hits="0"></line>
                 <line number="1685" hits="1"></line>
@@ -4336,7 +4336,7 @@
                 <line number="1707" hits="1"></line>
               </lines>
             </method>
-            <method name="parseKeymap" signature="" line-rate="0.65" branch-rate="0" complexity="0">
+            <method name="parseKeymap" signature="" line-rate="0.775" branch-rate="0" complexity="0">
               <lines>
                 <line number="1710" hits="1"></line>
                 <line number="1711" hits="1"></line>
@@ -4348,11 +4348,11 @@
                 <line number="1717" hits="1"></line>
                 <line number="1718" hits="1"></line>
                 <line number="1719" hits="1"></line>
-                <line number="1720" hits="0"></line>
+                <line number="1720" hits="1"></line>
                 <line number="1721" hits="0"></line>
                 <line number="1722" hits="0"></line>
                 <line number="1723" hits="1"></line>
-                <line number="1724" hits="0"></line>
+                <line number="1724" hits="1"></line>
                 <line number="1725" hits="0"></line>
                 <line number="1727" hits="1"></line>
                 <line number="1728" hits="1"></line>
@@ -4364,17 +4364,17 @@
                 <line number="1734" hits="1"></line>
                 <line number="1735" hits="1"></line>
                 <line number="1736" hits="1"></line>
-                <line number="1737" hits="0"></line>
+                <line number="1737" hits="1"></line>
                 <line number="1738" hits="0"></line>
                 <line number="1739" hits="0"></line>
                 <line number="1740" hits="1"></line>
                 <line number="1742" hits="1"></line>
                 <line number="1743" hits="1"></line>
-                <line number="1744" hits="0"></line>
+                <line number="1744" hits="1"></line>
                 <line number="1745" hits="0"></line>
                 <line number="1746" hits="0"></line>
                 <line number="1748" hits="1"></line>
-                <line number="1750" hits="0"></line>
+                <line number="1750" hits="1"></line>
                 <line number="1751" hits="0"></line>
                 <line number="1752" hits="0"></line>
                 <line number="1753" hits="1"></line>
@@ -4488,7 +4488,7 @@
                 <line number="1857" hits="0"></line>
               </lines>
             </method>
-            <method name="parseSize" signature="" line-rate="0.35714287" branch-rate="0" complexity="0">
+            <method name="parseSize" signature="" line-rate="0.5714286" branch-rate="0" complexity="0">
               <lines>
                 <line number="1859" hits="1"></line>
                 <line number="1860" hits="1"></line>
@@ -4496,25 +4496,25 @@
                 <line number="1862" hits="1"></line>
                 <line number="1863" hits="1"></line>
                 <line number="1864" hits="1"></line>
-                <line number="1865" hits="0"></line>
+                <line number="1865" hits="1"></line>
                 <line number="1866" hits="0"></line>
                 <line number="1867" hits="0"></line>
-                <line number="1869" hits="0"></line>
+                <line number="1869" hits="1"></line>
                 <line number="1870" hits="0"></line>
                 <line number="1871" hits="0"></line>
-                <line number="1872" hits="0"></line>
+                <line number="1872" hits="1"></line>
                 <line number="1873" hits="0"></line>
                 <line number="1874" hits="0"></line>
                 <line number="1875" hits="1"></line>
-                <line number="1876" hits="0"></line>
+                <line number="1876" hits="1"></line>
                 <line number="1877" hits="0"></line>
                 <line number="1878" hits="0"></line>
                 <line number="1880" hits="1"></line>
-                <line number="1881" hits="0"></line>
+                <line number="1881" hits="1"></line>
                 <line number="1882" hits="0"></line>
                 <line number="1883" hits="0"></line>
                 <line number="1884" hits="1"></line>
-                <line number="1885" hits="0"></line>
+                <line number="1885" hits="1"></line>
                 <line number="1886" hits="0"></line>
                 <line number="1887" hits="0"></line>
                 <line number="1889" hits="1"></line>
@@ -4590,7 +4590,7 @@
                 <line number="1956" hits="1"></line>
               </lines>
             </method>
-            <method name="parsePreviewWindowImpl" signature="" line-rate="0.30612245" branch-rate="0" complexity="0">
+            <method name="parsePreviewWindowImpl" signature="" line-rate="0.35714287" branch-rate="0" complexity="0">
               <lines>
                 <line number="1958" hits="1"></line>
                 <line number="1959" hits="1"></line>
@@ -4601,7 +4601,7 @@
                 <line number="1964" hits="1"></line>
                 <line number="1965" hits="1"></line>
                 <line number="1966" hits="1"></line>
-                <line number="1967" hits="0"></line>
+                <line number="1967" hits="1"></line>
                 <line number="1968" hits="0"></line>
                 <line number="1969" hits="0"></line>
                 <line number="1970" hits="0"></line>
@@ -4669,20 +4669,20 @@
                 <line number="2033" hits="0"></line>
                 <line number="2034" hits="0"></line>
                 <line number="2035" hits="1"></line>
-                <line number="2036" hits="0"></line>
+                <line number="2036" hits="1"></line>
                 <line number="2037" hits="0"></line>
                 <line number="2038" hits="0"></line>
                 <line number="2039" hits="0"></line>
                 <line number="2040" hits="1"></line>
-                <line number="2041" hits="0"></line>
+                <line number="2041" hits="1"></line>
                 <line number="2042" hits="0"></line>
                 <line number="2043" hits="0"></line>
                 <line number="2044" hits="1"></line>
                 <line number="2045" hits="1"></line>
-                <line number="2046" hits="0"></line>
+                <line number="2046" hits="1"></line>
                 <line number="2047" hits="0"></line>
                 <line number="2048" hits="0"></line>
-                <line number="2051" hits="0"></line>
+                <line number="2051" hits="1"></line>
                 <line number="2052" hits="0"></line>
                 <line number="2053" hits="0"></line>
                 <line number="2054" hits="0"></line>
@@ -4789,24 +4789,24 @@
                 <line number="2154" hits="0"></line>
               </lines>
             </method>
-            <method name="parseOptions" signature="" line-rate="0.062796205" branch-rate="0" complexity="0">
+            <method name="parseOptions" signature="" line-rate="0.09478673" branch-rate="0" complexity="0">
               <lines>
                 <line number="2157" hits="1"></line>
                 <line number="2158" hits="1"></line>
                 <line number="2159" hits="1"></line>
                 <line number="2160" hits="1"></line>
                 <line number="2161" hits="1"></line>
-                <line number="2162" hits="0"></line>
+                <line number="2162" hits="1"></line>
                 <line number="2163" hits="0"></line>
                 <line number="2164" hits="0"></line>
                 <line number="2165" hits="1"></line>
                 <line number="2166" hits="1"></line>
-                <line number="2167" hits="0"></line>
+                <line number="2167" hits="1"></line>
                 <line number="2168" hits="0"></line>
                 <line number="2169" hits="0"></line>
                 <line number="2170" hits="1"></line>
                 <line number="2171" hits="1"></line>
-                <line number="2173" hits="0"></line>
+                <line number="2173" hits="1"></line>
                 <line number="2174" hits="0"></line>
                 <line number="2175" hits="0"></line>
                 <line number="2176" hits="0"></line>
@@ -4816,7 +4816,7 @@
                 <line number="2180" hits="0"></line>
                 <line number="2181" hits="0"></line>
                 <line number="2183" hits="1"></line>
-                <line number="2184" hits="0"></line>
+                <line number="2184" hits="1"></line>
                 <line number="2185" hits="0"></line>
                 <line number="2186" hits="0"></line>
                 <line number="2187" hits="0"></line>
@@ -4836,11 +4836,11 @@
                 <line number="2202" hits="1"></line>
                 <line number="2203" hits="1"></line>
                 <line number="2204" hits="1"></line>
-                <line number="2205" hits="0"></line>
+                <line number="2205" hits="1"></line>
                 <line number="2206" hits="0"></line>
                 <line number="2207" hits="0"></line>
                 <line number="2208" hits="1"></line>
-                <line number="2211" hits="0"></line>
+                <line number="2211" hits="1"></line>
                 <line number="2212" hits="0"></line>
                 <line number="2213" hits="0"></line>
                 <line number="2214" hits="0"></line>
@@ -4850,7 +4850,7 @@
                 <line number="2218" hits="0"></line>
                 <line number="2219" hits="0"></line>
                 <line number="2220" hits="0"></line>
-                <line number="2223" hits="0"></line>
+                <line number="2223" hits="1"></line>
                 <line number="2224" hits="0"></line>
                 <line number="2225" hits="0"></line>
                 <line number="2226" hits="0"></line>
@@ -4867,7 +4867,7 @@
                 <line number="2239" hits="0"></line>
                 <line number="2240" hits="0"></line>
                 <line number="2241" hits="0"></line>
-                <line number="2244" hits="0"></line>
+                <line number="2244" hits="1"></line>
                 <line number="2245" hits="0"></line>
                 <line number="2246" hits="0"></line>
                 <line number="2247" hits="0"></line>
@@ -4883,7 +4883,7 @@
                 <line number="2257" hits="0"></line>
                 <line number="2258" hits="0"></line>
                 <line number="2259" hits="0"></line>
-                <line number="2262" hits="0"></line>
+                <line number="2262" hits="1"></line>
                 <line number="2263" hits="0"></line>
                 <line number="2264" hits="0"></line>
                 <line number="2265" hits="0"></line>
@@ -4993,11 +4993,11 @@
                 <line number="2371" hits="0"></line>
                 <line number="2372" hits="1"></line>
                 <line number="2373" hits="1"></line>
-                <line number="2374" hits="0"></line>
+                <line number="2374" hits="1"></line>
                 <line number="2375" hits="0"></line>
                 <line number="2376" hits="0"></line>
                 <line number="2377" hits="1"></line>
-                <line number="2378" hits="0"></line>
+                <line number="2378" hits="1"></line>
                 <line number="2379" hits="0"></line>
                 <line number="2380" hits="0"></line>
                 <line number="2381" hits="1"></line>
@@ -5021,10 +5021,10 @@
                 <line number="2399" hits="0"></line>
                 <line number="2400" hits="1"></line>
                 <line number="2401" hits="1"></line>
-                <line number="2402" hits="0"></line>
+                <line number="2402" hits="1"></line>
                 <line number="2403" hits="0"></line>
                 <line number="2404" hits="0"></line>
-                <line number="2405" hits="0"></line>
+                <line number="2405" hits="1"></line>
                 <line number="2406" hits="0"></line>
                 <line number="2407" hits="0"></line>
                 <line number="2408" hits="0"></line>
@@ -5051,10 +5051,10 @@
                 <line number="2430" hits="0"></line>
                 <line number="2431" hits="1"></line>
                 <line number="2432" hits="1"></line>
-                <line number="2433" hits="0"></line>
+                <line number="2433" hits="1"></line>
                 <line number="2434" hits="0"></line>
                 <line number="2435" hits="0"></line>
-                <line number="2436" hits="0"></line>
+                <line number="2436" hits="1"></line>
                 <line number="2437" hits="0"></line>
                 <line number="2438" hits="0"></line>
                 <line number="2439" hits="0"></line>
@@ -5282,10 +5282,10 @@
                 <line number="2661" hits="0"></line>
                 <line number="2662" hits="1"></line>
                 <line number="2663" hits="1"></line>
-                <line number="2664" hits="0"></line>
+                <line number="2664" hits="1"></line>
                 <line number="2665" hits="0"></line>
                 <line number="2666" hits="0"></line>
-                <line number="2667" hits="0"></line>
+                <line number="2667" hits="1"></line>
                 <line number="2668" hits="0"></line>
                 <line number="2669" hits="0"></line>
                 <line number="2670" hits="0"></line>
@@ -5337,17 +5337,17 @@
                 <line number="2716" hits="0"></line>
                 <line number="2717" hits="0"></line>
                 <line number="2718" hits="1"></line>
-                <line number="2719" hits="0"></line>
+                <line number="2719" hits="1"></line>
                 <line number="2720" hits="0"></line>
                 <line number="2721" hits="0"></line>
                 <line number="2722" hits="0"></line>
                 <line number="2723" hits="0"></line>
                 <line number="2724" hits="1"></line>
                 <line number="2725" hits="1"></line>
-                <line number="2726" hits="0"></line>
+                <line number="2726" hits="1"></line>
                 <line number="2727" hits="0"></line>
                 <line number="2728" hits="0"></line>
-                <line number="2729" hits="0"></line>
+                <line number="2729" hits="1"></line>
                 <line number="2730" hits="0"></line>
                 <line number="2731" hits="0"></line>
                 <line number="2732" hits="0"></line>
@@ -5609,27 +5609,27 @@
                 <line number="2990" hits="0"></line>
                 <line number="2991" hits="0"></line>
                 <line number="2992" hits="0"></line>
-                <line number="2995" hits="0"></line>
+                <line number="2995" hits="1"></line>
                 <line number="2996" hits="0"></line>
                 <line number="2997" hits="0"></line>
                 <line number="2999" hits="1"></line>
                 <line number="3000" hits="1"></line>
-                <line number="3001" hits="0"></line>
+                <line number="3001" hits="1"></line>
                 <line number="3002" hits="0"></line>
                 <line number="3003" hits="0"></line>
-                <line number="3005" hits="0"></line>
+                <line number="3005" hits="1"></line>
                 <line number="3006" hits="0"></line>
                 <line number="3007" hits="0"></line>
-                <line number="3009" hits="0"></line>
+                <line number="3009" hits="1"></line>
                 <line number="3010" hits="0"></line>
                 <line number="3011" hits="0"></line>
-                <line number="3013" hits="0"></line>
+                <line number="3013" hits="1"></line>
                 <line number="3014" hits="0"></line>
                 <line number="3015" hits="0"></line>
-                <line number="3017" hits="0"></line>
+                <line number="3017" hits="1"></line>
                 <line number="3018" hits="0"></line>
                 <line number="3019" hits="0"></line>
-                <line number="3021" hits="0"></line>
+                <line number="3021" hits="1"></line>
                 <line number="3022" hits="0"></line>
                 <line number="3023" hits="0"></line>
                 <line number="3024" hits="0"></line>
@@ -5746,10 +5746,10 @@
                 <line number="3145" hits="0"></line>
               </lines>
             </method>
-            <method name="postProcessOptions" signature="" line-rate="0.47826087" branch-rate="0" complexity="0">
+            <method name="postProcessOptions" signature="" line-rate="0.5962733" branch-rate="0" complexity="0">
               <lines>
                 <line number="3158" hits="1"></line>
-                <line number="3159" hits="0"></line>
+                <line number="3159" hits="1"></line>
                 <line number="3160" hits="0"></line>
                 <line number="3161" hits="0"></line>
                 <line number="3163" hits="1"></line>
@@ -5764,39 +5764,39 @@
                 <line number="3175" hits="1"></line>
                 <line number="3176" hits="1"></line>
                 <line number="3177" hits="1"></line>
-                <line number="3179" hits="0"></line>
+                <line number="3179" hits="1"></line>
                 <line number="3180" hits="0"></line>
-                <line number="3181" hits="0"></line>
+                <line number="3181" hits="1"></line>
                 <line number="3182" hits="1"></line>
                 <line number="3183" hits="1"></line>
                 <line number="3184" hits="1"></line>
-                <line number="3185" hits="0"></line>
+                <line number="3185" hits="1"></line>
                 <line number="3186" hits="0"></line>
-                <line number="3187" hits="0"></line>
+                <line number="3187" hits="1"></line>
                 <line number="3188" hits="1"></line>
                 <line number="3189" hits="1"></line>
                 <line number="3192" hits="1"></line>
                 <line number="3193" hits="1"></line>
-                <line number="3194" hits="0"></line>
+                <line number="3194" hits="1"></line>
                 <line number="3195" hits="0"></line>
                 <line number="3196" hits="0"></line>
                 <line number="3197" hits="1"></line>
                 <line number="3200" hits="1"></line>
                 <line number="3201" hits="1"></line>
-                <line number="3202" hits="0"></line>
+                <line number="3202" hits="1"></line>
                 <line number="3203" hits="0"></line>
                 <line number="3204" hits="0"></line>
                 <line number="3205" hits="1"></line>
                 <line number="3208" hits="1"></line>
                 <line number="3209" hits="1"></line>
-                <line number="3210" hits="0"></line>
+                <line number="3210" hits="1"></line>
                 <line number="3211" hits="0"></line>
                 <line number="3212" hits="0"></line>
                 <line number="3213" hits="0"></line>
-                <line number="3214" hits="0"></line>
+                <line number="3214" hits="1"></line>
                 <line number="3215" hits="1"></line>
                 <line number="3216" hits="1"></line>
-                <line number="3217" hits="0"></line>
+                <line number="3217" hits="1"></line>
                 <line number="3218" hits="0"></line>
                 <line number="3219" hits="0"></line>
                 <line number="3220" hits="1"></line>
@@ -5805,22 +5805,22 @@
                 <line number="3224" hits="0"></line>
                 <line number="3226" hits="1"></line>
                 <line number="3227" hits="1"></line>
-                <line number="3228" hits="0"></line>
+                <line number="3228" hits="1"></line>
                 <line number="3229" hits="0"></line>
                 <line number="3230" hits="0"></line>
-                <line number="3231" hits="0"></line>
+                <line number="3231" hits="1"></line>
                 <line number="3232" hits="1"></line>
-                <line number="3233" hits="0"></line>
+                <line number="3233" hits="1"></line>
                 <line number="3234" hits="0"></line>
                 <line number="3235" hits="0"></line>
                 <line number="3236" hits="0"></line>
                 <line number="3237" hits="0"></line>
                 <line number="3238" hits="0"></line>
                 <line number="3239" hits="1"></line>
-                <line number="3240" hits="0"></line>
+                <line number="3240" hits="1"></line>
                 <line number="3241" hits="0"></line>
                 <line number="3242" hits="0"></line>
-                <line number="3243" hits="0"></line>
+                <line number="3243" hits="1"></line>
                 <line number="3244" hits="0"></line>
                 <line number="3245" hits="0"></line>
                 <line number="3246" hits="0"></line>
@@ -5841,7 +5841,7 @@
                 <line number="3267" hits="1"></line>
                 <line number="3268" hits="0"></line>
                 <line number="3269" hits="0"></line>
-                <line number="3276" hits="0"></line>
+                <line number="3276" hits="1"></line>
                 <line number="3277" hits="0"></line>
                 <line number="3278" hits="0"></line>
                 <line number="3279" hits="0"></line>
@@ -5874,10 +5874,10 @@
                 <line number="3318" hits="1"></line>
                 <line number="3319" hits="1"></line>
                 <line number="3320" hits="1"></line>
-                <line number="3324" hits="0"></line>
+                <line number="3324" hits="1"></line>
                 <line number="3325" hits="0"></line>
                 <line number="3326" hits="0"></line>
-                <line number="3329" hits="0"></line>
+                <line number="3329" hits="1"></line>
                 <line number="3330" hits="0"></line>
                 <line number="3331" hits="0"></line>
                 <line number="3332" hits="0"></line>
@@ -5903,7 +5903,7 @@
                 <line number="3355" hits="0"></line>
                 <line number="3356" hits="0"></line>
                 <line number="3357" hits="0"></line>
-                <line number="3361" hits="0"></line>
+                <line number="3361" hits="1"></line>
                 <line number="3362" hits="0"></line>
                 <line number="3363" hits="0"></line>
                 <line number="3365" hits="1"></line>
@@ -6074,9 +6074,9 @@
             <line number="646" hits="1"></line>
             <line number="648" hits="1"></line>
             <line number="649" hits="1"></line>
-            <line number="650" hits="0"></line>
+            <line number="650" hits="1"></line>
             <line number="651" hits="0"></line>
-            <line number="652" hits="0"></line>
+            <line number="652" hits="1"></line>
             <line number="653" hits="1"></line>
             <line number="654" hits="1"></line>
             <line number="656" hits="1"></line>
@@ -6131,32 +6131,32 @@
             <line number="705" hits="1"></line>
             <line number="706" hits="1"></line>
             <line number="707" hits="1"></line>
-            <line number="708" hits="0"></line>
+            <line number="708" hits="1"></line>
             <line number="734" hits="0"></line>
             <line number="735" hits="0"></line>
             <line number="736" hits="0"></line>
             <line number="737" hits="0"></line>
             <line number="739" hits="1"></line>
             <line number="740" hits="1"></line>
-            <line number="741" hits="0"></line>
+            <line number="741" hits="1"></line>
             <line number="742" hits="0"></line>
             <line number="743" hits="0"></line>
             <line number="744" hits="1"></line>
             <line number="747" hits="1"></line>
             <line number="748" hits="1"></line>
-            <line number="749" hits="0"></line>
+            <line number="749" hits="1"></line>
             <line number="750" hits="0"></line>
             <line number="751" hits="0"></line>
             <line number="752" hits="1"></line>
             <line number="755" hits="1"></line>
-            <line number="756" hits="0"></line>
+            <line number="756" hits="1"></line>
             <line number="757" hits="0"></line>
             <line number="758" hits="0"></line>
             <line number="760" hits="1"></line>
             <line number="761" hits="1"></line>
             <line number="762" hits="1"></line>
             <line number="763" hits="1"></line>
-            <line number="764" hits="0"></line>
+            <line number="764" hits="1"></line>
             <line number="765" hits="0"></line>
             <line number="766" hits="0"></line>
             <line number="767" hits="1"></line>
@@ -6213,7 +6213,7 @@
             <line number="833" hits="1"></line>
             <line number="834" hits="1"></line>
             <line number="835" hits="1"></line>
-            <line number="838" hits="0"></line>
+            <line number="838" hits="1"></line>
             <line number="839" hits="0"></line>
             <line number="840" hits="0"></line>
             <line number="842" hits="1"></line>
@@ -6276,7 +6276,7 @@
             <line number="911" hits="1"></line>
             <line number="912" hits="1"></line>
             <line number="914" hits="1"></line>
-            <line number="915" hits="0"></line>
+            <line number="915" hits="1"></line>
             <line number="916" hits="0"></line>
             <line number="917" hits="0"></line>
             <line number="919" hits="1"></line>
@@ -6442,7 +6442,7 @@
             <line number="1082" hits="1"></line>
             <line number="1083" hits="1"></line>
             <line number="1084" hits="1"></line>
-            <line number="1085" hits="0"></line>
+            <line number="1085" hits="1"></line>
             <line number="1086" hits="0"></line>
             <line number="1087" hits="0"></line>
             <line number="1090" hits="1"></line>
@@ -6529,14 +6529,14 @@
             <line number="1182" hits="0"></line>
             <line number="1183" hits="0"></line>
             <line number="1184" hits="1"></line>
-            <line number="1185" hits="0"></line>
+            <line number="1185" hits="1"></line>
             <line number="1186" hits="0"></line>
             <line number="1187" hits="0"></line>
             <line number="1188" hits="0"></line>
-            <line number="1190" hits="0"></line>
+            <line number="1190" hits="1"></line>
             <line number="1191" hits="0"></line>
             <line number="1194" hits="1"></line>
-            <line number="1195" hits="0"></line>
+            <line number="1195" hits="1"></line>
             <line number="1196" hits="0"></line>
             <line number="1197" hits="0"></line>
             <line number="1199" hits="1"></line>
@@ -6592,11 +6592,11 @@
             <line number="1249" hits="0"></line>
             <line number="1250" hits="0"></line>
             <line number="1251" hits="1"></line>
-            <line number="1252" hits="0"></line>
+            <line number="1252" hits="1"></line>
             <line number="1253" hits="0"></line>
-            <line number="1254" hits="0"></line>
+            <line number="1254" hits="1"></line>
             <line number="1255" hits="1"></line>
-            <line number="1256" hits="0"></line>
+            <line number="1256" hits="1"></line>
             <line number="1257" hits="0"></line>
             <line number="1258" hits="0"></line>
             <line number="1259" hits="1"></line>
@@ -6722,7 +6722,7 @@
             <line number="1408" hits="1"></line>
             <line number="1410" hits="1"></line>
             <line number="1411" hits="1"></line>
-            <line number="1412" hits="0"></line>
+            <line number="1412" hits="1"></line>
             <line number="1413" hits="0"></line>
             <line number="1415" hits="1"></line>
             <line number="1416" hits="1"></line>
@@ -6971,9 +6971,9 @@
             <line number="1666" hits="1"></line>
             <line number="1667" hits="1"></line>
             <line number="1668" hits="1"></line>
-            <line number="1669" hits="0"></line>
+            <line number="1669" hits="1"></line>
             <line number="1670" hits="0"></line>
-            <line number="1671" hits="0"></line>
+            <line number="1671" hits="1"></line>
             <line number="1672" hits="1"></line>
             <line number="1673" hits="1"></line>
             <line number="1674" hits="1"></line>
@@ -6983,7 +6983,7 @@
             <line number="1678" hits="1"></line>
             <line number="1679" hits="1"></line>
             <line number="1680" hits="1"></line>
-            <line number="1681" hits="0"></line>
+            <line number="1681" hits="1"></line>
             <line number="1682" hits="0"></line>
             <line number="1683" hits="0"></line>
             <line number="1685" hits="1"></line>
@@ -7014,11 +7014,11 @@
             <line number="1717" hits="1"></line>
             <line number="1718" hits="1"></line>
             <line number="1719" hits="1"></line>
-            <line number="1720" hits="0"></line>
+            <line number="1720" hits="1"></line>
             <line number="1721" hits="0"></line>
             <line number="1722" hits="0"></line>
             <line number="1723" hits="1"></line>
-            <line number="1724" hits="0"></line>
+            <line number="1724" hits="1"></line>
             <line number="1725" hits="0"></line>
             <line number="1727" hits="1"></line>
             <line number="1728" hits="1"></line>
@@ -7030,17 +7030,17 @@
             <line number="1734" hits="1"></line>
             <line number="1735" hits="1"></line>
             <line number="1736" hits="1"></line>
-            <line number="1737" hits="0"></line>
+            <line number="1737" hits="1"></line>
             <line number="1738" hits="0"></line>
             <line number="1739" hits="0"></line>
             <line number="1740" hits="1"></line>
             <line number="1742" hits="1"></line>
             <line number="1743" hits="1"></line>
-            <line number="1744" hits="0"></line>
+            <line number="1744" hits="1"></line>
             <line number="1745" hits="0"></line>
             <line number="1746" hits="0"></line>
             <line number="1748" hits="1"></line>
-            <line number="1750" hits="0"></line>
+            <line number="1750" hits="1"></line>
             <line number="1751" hits="0"></line>
             <line number="1752" hits="0"></line>
             <line number="1753" hits="1"></line>
@@ -7146,25 +7146,25 @@
             <line number="1862" hits="1"></line>
             <line number="1863" hits="1"></line>
             <line number="1864" hits="1"></line>
-            <line number="1865" hits="0"></line>
+            <line number="1865" hits="1"></line>
             <line number="1866" hits="0"></line>
             <line number="1867" hits="0"></line>
-            <line number="1869" hits="0"></line>
+            <line number="1869" hits="1"></line>
             <line number="1870" hits="0"></line>
             <line number="1871" hits="0"></line>
-            <line number="1872" hits="0"></line>
+            <line number="1872" hits="1"></line>
             <line number="1873" hits="0"></line>
             <line number="1874" hits="0"></line>
             <line number="1875" hits="1"></line>
-            <line number="1876" hits="0"></line>
+            <line number="1876" hits="1"></line>
             <line number="1877" hits="0"></line>
             <line number="1878" hits="0"></line>
             <line number="1880" hits="1"></line>
-            <line number="1881" hits="0"></line>
+            <line number="1881" hits="1"></line>
             <line number="1882" hits="0"></line>
             <line number="1883" hits="0"></line>
             <line number="1884" hits="1"></line>
-            <line number="1885" hits="0"></line>
+            <line number="1885" hits="1"></line>
             <line number="1886" hits="0"></line>
             <line number="1887" hits="0"></line>
             <line number="1889" hits="1"></line>
@@ -7231,7 +7231,7 @@
             <line number="1964" hits="1"></line>
             <line number="1965" hits="1"></line>
             <line number="1966" hits="1"></line>
-            <line number="1967" hits="0"></line>
+            <line number="1967" hits="1"></line>
             <line number="1968" hits="0"></line>
             <line number="1969" hits="0"></line>
             <line number="1970" hits="0"></line>
@@ -7299,20 +7299,20 @@
             <line number="2033" hits="0"></line>
             <line number="2034" hits="0"></line>
             <line number="2035" hits="1"></line>
-            <line number="2036" hits="0"></line>
+            <line number="2036" hits="1"></line>
             <line number="2037" hits="0"></line>
             <line number="2038" hits="0"></line>
             <line number="2039" hits="0"></line>
             <line number="2040" hits="1"></line>
-            <line number="2041" hits="0"></line>
+            <line number="2041" hits="1"></line>
             <line number="2042" hits="0"></line>
             <line number="2043" hits="0"></line>
             <line number="2044" hits="1"></line>
             <line number="2045" hits="1"></line>
-            <line number="2046" hits="0"></line>
+            <line number="2046" hits="1"></line>
             <line number="2047" hits="0"></line>
             <line number="2048" hits="0"></line>
-            <line number="2051" hits="0"></line>
+            <line number="2051" hits="1"></line>
             <line number="2052" hits="0"></line>
             <line number="2053" hits="0"></line>
             <line number="2054" hits="0"></line>
@@ -7410,17 +7410,17 @@
             <line number="2159" hits="1"></line>
             <line number="2160" hits="1"></line>
             <line number="2161" hits="1"></line>
-            <line number="2162" hits="0"></line>
+            <line number="2162" hits="1"></line>
             <line number="2163" hits="0"></line>
             <line number="2164" hits="0"></line>
             <line number="2165" hits="1"></line>
             <line number="2166" hits="1"></line>
-            <line number="2167" hits="0"></line>
+            <line number="2167" hits="1"></line>
             <line number="2168" hits="0"></line>
             <line number="2169" hits="0"></line>
             <line number="2170" hits="1"></line>
             <line number="2171" hits="1"></line>
-            <line number="2173" hits="0"></line>
+            <line number="2173" hits="1"></line>
             <line number="2174" hits="0"></line>
             <line number="2175" hits="0"></line>
             <line number="2176" hits="0"></line>
@@ -7430,7 +7430,7 @@
             <line number="2180" hits="0"></line>
             <line number="2181" hits="0"></line>
             <line number="2183" hits="1"></line>
-            <line number="2184" hits="0"></line>
+            <line number="2184" hits="1"></line>
             <line number="2185" hits="0"></line>
             <line number="2186" hits="0"></line>
             <line number="2187" hits="0"></line>
@@ -7450,11 +7450,11 @@
             <line number="2202" hits="1"></line>
             <line number="2203" hits="1"></line>
             <line number="2204" hits="1"></line>
-            <line number="2205" hits="0"></line>
+            <line number="2205" hits="1"></line>
             <line number="2206" hits="0"></line>
             <line number="2207" hits="0"></line>
             <line number="2208" hits="1"></line>
-            <line number="2211" hits="0"></line>
+            <line number="2211" hits="1"></line>
             <line number="2212" hits="0"></line>
             <line number="2213" hits="0"></line>
             <line number="2214" hits="0"></line>
@@ -7464,7 +7464,7 @@
             <line number="2218" hits="0"></line>
             <line number="2219" hits="0"></line>
             <line number="2220" hits="0"></line>
-            <line number="2223" hits="0"></line>
+            <line number="2223" hits="1"></line>
             <line number="2224" hits="0"></line>
             <line number="2225" hits="0"></line>
             <line number="2226" hits="0"></line>
@@ -7481,7 +7481,7 @@
             <line number="2239" hits="0"></line>
             <line number="2240" hits="0"></line>
             <line number="2241" hits="0"></line>
-            <line number="2244" hits="0"></line>
+            <line number="2244" hits="1"></line>
             <line number="2245" hits="0"></line>
             <line number="2246" hits="0"></line>
             <line number="2247" hits="0"></line>
@@ -7497,7 +7497,7 @@
             <line number="2257" hits="0"></line>
             <line number="2258" hits="0"></line>
             <line number="2259" hits="0"></line>
-            <line number="2262" hits="0"></line>
+            <line number="2262" hits="1"></line>
             <line number="2263" hits="0"></line>
             <line number="2264" hits="0"></line>
             <line number="2265" hits="0"></line>
@@ -7607,11 +7607,11 @@
             <line number="2371" hits="0"></line>
             <line number="2372" hits="1"></line>
             <line number="2373" hits="1"></line>
-            <line number="2374" hits="0"></line>
+            <line number="2374" hits="1"></line>
             <line number="2375" hits="0"></line>
             <line number="2376" hits="0"></line>
             <line number="2377" hits="1"></line>
-            <line number="2378" hits="0"></line>
+            <line number="2378" hits="1"></line>
             <line number="2379" hits="0"></line>
             <line number="2380" hits="0"></line>
             <line number="2381" hits="1"></line>
@@ -7635,10 +7635,10 @@
             <line number="2399" hits="0"></line>
             <line number="2400" hits="1"></line>
             <line number="2401" hits="1"></line>
-            <line number="2402" hits="0"></line>
+            <line number="2402" hits="1"></line>
             <line number="2403" hits="0"></line>
             <line number="2404" hits="0"></line>
-            <line number="2405" hits="0"></line>
+            <line number="2405" hits="1"></line>
             <line number="2406" hits="0"></line>
             <line number="2407" hits="0"></line>
             <line number="2408" hits="0"></line>
@@ -7665,10 +7665,10 @@
             <line number="2430" hits="0"></line>
             <line number="2431" hits="1"></line>
             <line number="2432" hits="1"></line>
-            <line number="2433" hits="0"></line>
+            <line number="2433" hits="1"></line>
             <line number="2434" hits="0"></line>
             <line number="2435" hits="0"></line>
-            <line number="2436" hits="0"></line>
+            <line number="2436" hits="1"></line>
             <line number="2437" hits="0"></line>
             <line number="2438" hits="0"></line>
             <line number="2439" hits="0"></line>
@@ -7896,10 +7896,10 @@
             <line number="2661" hits="0"></line>
             <line number="2662" hits="1"></line>
             <line number="2663" hits="1"></line>
-            <line number="2664" hits="0"></line>
+            <line number="2664" hits="1"></line>
             <line number="2665" hits="0"></line>
             <line number="2666" hits="0"></line>
-            <line number="2667" hits="0"></line>
+            <line number="2667" hits="1"></line>
             <line number="2668" hits="0"></line>
             <line number="2669" hits="0"></line>
             <line number="2670" hits="0"></line>
@@ -7951,17 +7951,17 @@
             <line number="2716" hits="0"></line>
             <line number="2717" hits="0"></line>
             <line number="2718" hits="1"></line>
-            <line number="2719" hits="0"></line>
+            <line number="2719" hits="1"></line>
             <line number="2720" hits="0"></line>
             <line number="2721" hits="0"></line>
             <line number="2722" hits="0"></line>
             <line number="2723" hits="0"></line>
             <line number="2724" hits="1"></line>
             <line number="2725" hits="1"></line>
-            <line number="2726" hits="0"></line>
+            <line number="2726" hits="1"></line>
             <line number="2727" hits="0"></line>
             <line number="2728" hits="0"></line>
-            <line number="2729" hits="0"></line>
+            <line number="2729" hits="1"></line>
             <line number="2730" hits="0"></line>
             <line number="2731" hits="0"></line>
             <line number="2732" hits="0"></line>
@@ -8223,27 +8223,27 @@
             <line number="2990" hits="0"></line>
             <line number="2991" hits="0"></line>
             <line number="2992" hits="0"></line>
-            <line number="2995" hits="0"></line>
+            <line number="2995" hits="1"></line>
             <line number="2996" hits="0"></line>
             <line number="2997" hits="0"></line>
             <line number="2999" hits="1"></line>
             <line number="3000" hits="1"></line>
-            <line number="3001" hits="0"></line>
+            <line number="3001" hits="1"></line>
             <line number="3002" hits="0"></line>
             <line number="3003" hits="0"></line>
-            <line number="3005" hits="0"></line>
+            <line number="3005" hits="1"></line>
             <line number="3006" hits="0"></line>
             <line number="3007" hits="0"></line>
-            <line number="3009" hits="0"></line>
+            <line number="3009" hits="1"></line>
             <line number="3010" hits="0"></line>
             <line number="3011" hits="0"></line>
-            <line number="3013" hits="0"></line>
+            <line number="3013" hits="1"></line>
             <line number="3014" hits="0"></line>
             <line number="3015" hits="0"></line>
-            <line number="3017" hits="0"></line>
+            <line number="3017" hits="1"></line>
             <line number="3018" hits="0"></line>
             <line number="3019" hits="0"></line>
-            <line number="3021" hits="0"></line>
+            <line number="3021" hits="1"></line>
             <line number="3022" hits="0"></line>
             <line number="3023" hits="0"></line>
             <line number="3024" hits="0"></line>
@@ -8343,7 +8343,7 @@
             <line number="3143" hits="0"></line>
             <line number="3145" hits="0"></line>
             <line number="3158" hits="1"></line>
-            <line number="3159" hits="0"></line>
+            <line number="3159" hits="1"></line>
             <line number="3160" hits="0"></line>
             <line number="3161" hits="0"></line>
             <line number="3163" hits="1"></line>
@@ -8358,39 +8358,39 @@
             <line number="3175" hits="1"></line>
             <line number="3176" hits="1"></line>
             <line number="3177" hits="1"></line>
-            <line number="3179" hits="0"></line>
+            <line number="3179" hits="1"></line>
             <line number="3180" hits="0"></line>
-            <line number="3181" hits="0"></line>
+            <line number="3181" hits="1"></line>
             <line number="3182" hits="1"></line>
             <line number="3183" hits="1"></line>
             <line number="3184" hits="1"></line>
-            <line number="3185" hits="0"></line>
+            <line number="3185" hits="1"></line>
             <line number="3186" hits="0"></line>
-            <line number="3187" hits="0"></line>
+            <line number="3187" hits="1"></line>
             <line number="3188" hits="1"></line>
             <line number="3189" hits="1"></line>
             <line number="3192" hits="1"></line>
             <line number="3193" hits="1"></line>
-            <line number="3194" hits="0"></line>
+            <line number="3194" hits="1"></line>
             <line number="3195" hits="0"></line>
             <line number="3196" hits="0"></line>
             <line number="3197" hits="1"></line>
             <line number="3200" hits="1"></line>
             <line number="3201" hits="1"></line>
-            <line number="3202" hits="0"></line>
+            <line number="3202" hits="1"></line>
             <line number="3203" hits="0"></line>
             <line number="3204" hits="0"></line>
             <line number="3205" hits="1"></line>
             <line number="3208" hits="1"></line>
             <line number="3209" hits="1"></line>
-            <line number="3210" hits="0"></line>
+            <line number="3210" hits="1"></line>
             <line number="3211" hits="0"></line>
             <line number="3212" hits="0"></line>
             <line number="3213" hits="0"></line>
-            <line number="3214" hits="0"></line>
+            <line number="3214" hits="1"></line>
             <line number="3215" hits="1"></line>
             <line number="3216" hits="1"></line>
-            <line number="3217" hits="0"></line>
+            <line number="3217" hits="1"></line>
             <line number="3218" hits="0"></line>
             <line number="3219" hits="0"></line>
             <line number="3220" hits="1"></line>
@@ -8399,22 +8399,22 @@
             <line number="3224" hits="0"></line>
             <line number="3226" hits="1"></line>
             <line number="3227" hits="1"></line>
-            <line number="3228" hits="0"></line>
+            <line number="3228" hits="1"></line>
             <line number="3229" hits="0"></line>
             <line number="3230" hits="0"></line>
-            <line number="3231" hits="0"></line>
+            <line number="3231" hits="1"></line>
             <line number="3232" hits="1"></line>
-            <line number="3233" hits="0"></line>
+            <line number="3233" hits="1"></line>
             <line number="3234" hits="0"></line>
             <line number="3235" hits="0"></line>
             <line number="3236" hits="0"></line>
             <line number="3237" hits="0"></line>
             <line number="3238" hits="0"></line>
             <line number="3239" hits="1"></line>
-            <line number="3240" hits="0"></line>
+            <line number="3240" hits="1"></line>
             <line number="3241" hits="0"></line>
             <line number="3242" hits="0"></line>
-            <line number="3243" hits="0"></line>
+            <line number="3243" hits="1"></line>
             <line number="3244" hits="0"></line>
             <line number="3245" hits="0"></line>
             <line number="3246" hits="0"></line>
@@ -8435,7 +8435,7 @@
             <line number="3267" hits="1"></line>
             <line number="3268" hits="0"></line>
             <line number="3269" hits="0"></line>
-            <line number="3276" hits="0"></line>
+            <line number="3276" hits="1"></line>
             <line number="3277" hits="0"></line>
             <line number="3278" hits="0"></line>
             <line number="3279" hits="0"></line>
@@ -8468,10 +8468,10 @@
             <line number="3318" hits="1"></line>
             <line number="3319" hits="1"></line>
             <line number="3320" hits="1"></line>
-            <line number="3324" hits="0"></line>
+            <line number="3324" hits="1"></line>
             <line number="3325" hits="0"></line>
             <line number="3326" hits="0"></line>
-            <line number="3329" hits="0"></line>
+            <line number="3329" hits="1"></line>
             <line number="3330" hits="0"></line>
             <line number="3331" hits="0"></line>
             <line number="3332" hits="0"></line>
@@ -8497,7 +8497,7 @@
             <line number="3355" hits="0"></line>
             <line number="3356" hits="0"></line>
             <line number="3357" hits="0"></line>
-            <line number="3361" hits="0"></line>
+            <line number="3361" hits="1"></line>
             <line number="3362" hits="0"></line>
             <line number="3363" hits="0"></line>
             <line number="3365" hits="1"></line>
@@ -8753,12 +8753,12 @@
             <line number="3468" hits="0"></line>
           </lines>
         </class>
-        <class name="Options" filename="src/options_no_pprof.go" line-rate="0.4" branch-rate="0" complexity="0">
+        <class name="Options" filename="src/options_no_pprof.go" line-rate="0.6" branch-rate="0" complexity="0">
           <methods>
-            <method name="initProfiling" signature="" line-rate="0.4" branch-rate="0" complexity="0">
+            <method name="initProfiling" signature="" line-rate="0.6" branch-rate="0" complexity="0">
               <lines>
                 <line number="8" hits="1"></line>
-                <line number="9" hits="0"></line>
+                <line number="9" hits="1"></line>
                 <line number="10" hits="0"></line>
                 <line number="11" hits="0"></line>
                 <line number="12" hits="1"></line>
@@ -8767,7 +8767,7 @@
           </methods>
           <lines>
             <line number="8" hits="1"></line>
-            <line number="9" hits="0"></line>
+            <line number="9" hits="1"></line>
             <line number="10" hits="0"></line>
             <line number="11" hits="0"></line>
             <line number="12" hits="1"></line>
@@ -8789,7 +8789,7 @@
             <line number="43" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/pattern.go" line-rate="0.9324324" branch-rate="0" complexity="0">
+        <class name="-" filename="src/pattern.go" line-rate="0.9594595" branch-rate="0" complexity="0">
           <methods>
             <method name="init" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -8798,21 +8798,21 @@
                 <line number="73" hits="1"></line>
               </lines>
             </method>
-            <method name="BuildPattern" signature="" line-rate="0.9166667" branch-rate="0" complexity="0">
+            <method name="BuildPattern" signature="" line-rate="0.9444444" branch-rate="0" complexity="0">
               <lines>
                 <line number="77" hits="1"></line>
                 <line number="78" hits="1"></line>
                 <line number="79" hits="1"></line>
                 <line number="80" hits="1"></line>
                 <line number="81" hits="1"></line>
-                <line number="82" hits="0"></line>
+                <line number="82" hits="1"></line>
                 <line number="83" hits="0"></line>
                 <line number="84" hits="0"></line>
                 <line number="85" hits="1"></line>
                 <line number="86" hits="1"></line>
                 <line number="87" hits="1"></line>
                 <line number="91" hits="1"></line>
-                <line number="92" hits="0"></line>
+                <line number="92" hits="1"></line>
                 <line number="93" hits="0"></line>
                 <line number="94" hits="0"></line>
                 <line number="96" hits="1"></line>
@@ -8874,7 +8874,7 @@
                 <line number="160" hits="1"></line>
               </lines>
             </method>
-            <method name="parseTerms" signature="" line-rate="0.94520545" branch-rate="0" complexity="0">
+            <method name="parseTerms" signature="" line-rate="0.9726027" branch-rate="0" complexity="0">
               <lines>
                 <line number="163" hits="1"></line>
                 <line number="164" hits="1"></line>
@@ -8911,10 +8911,10 @@
                 <line number="198" hits="1"></line>
                 <line number="199" hits="1"></line>
                 <line number="200" hits="1"></line>
-                <line number="202" hits="0"></line>
+                <line number="202" hits="1"></line>
                 <line number="203" hits="0"></line>
                 <line number="204" hits="0"></line>
-                <line number="205" hits="0"></line>
+                <line number="205" hits="1"></line>
                 <line number="206" hits="1"></line>
                 <line number="207" hits="1"></line>
                 <line number="208" hits="1"></line>
@@ -8961,14 +8961,14 @@
             <line number="79" hits="1"></line>
             <line number="80" hits="1"></line>
             <line number="81" hits="1"></line>
-            <line number="82" hits="0"></line>
+            <line number="82" hits="1"></line>
             <line number="83" hits="0"></line>
             <line number="84" hits="0"></line>
             <line number="85" hits="1"></line>
             <line number="86" hits="1"></line>
             <line number="87" hits="1"></line>
             <line number="91" hits="1"></line>
-            <line number="92" hits="0"></line>
+            <line number="92" hits="1"></line>
             <line number="93" hits="0"></line>
             <line number="94" hits="0"></line>
             <line number="96" hits="1"></line>
@@ -9063,10 +9063,10 @@
             <line number="198" hits="1"></line>
             <line number="199" hits="1"></line>
             <line number="200" hits="1"></line>
-            <line number="202" hits="0"></line>
+            <line number="202" hits="1"></line>
             <line number="203" hits="0"></line>
             <line number="204" hits="0"></line>
-            <line number="205" hits="0"></line>
+            <line number="205" hits="1"></line>
             <line number="206" hits="1"></line>
             <line number="207" hits="1"></line>
             <line number="208" hits="1"></line>
@@ -9103,7 +9103,7 @@
             <line number="243" hits="1"></line>
           </lines>
         </class>
-        <class name="Pattern" filename="src/pattern.go" line-rate="0.5151515" branch-rate="0" complexity="0">
+        <class name="Pattern" filename="src/pattern.go" line-rate="0.53939396" branch-rate="0" complexity="0">
           <methods>
             <method name="IsEmpty" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
@@ -9217,13 +9217,13 @@
                 <line number="359" hits="0"></line>
               </lines>
             </method>
-            <method name="basicMatch" signature="" line-rate="0.6363636" branch-rate="0" complexity="0">
+            <method name="basicMatch" signature="" line-rate="0.72727275" branch-rate="0" complexity="0">
               <lines>
                 <line number="362" hits="1"></line>
                 <line number="363" hits="1"></line>
                 <line number="364" hits="1"></line>
                 <line number="365" hits="1"></line>
-                <line number="366" hits="0"></line>
+                <line number="366" hits="1"></line>
                 <line number="367" hits="0"></line>
                 <line number="368" hits="0"></line>
                 <line number="369" hits="1"></line>
@@ -9232,13 +9232,13 @@
                 <line number="372" hits="0"></line>
               </lines>
             </method>
-            <method name="extendedMatch" signature="" line-rate="0.6904762" branch-rate="0" complexity="0">
+            <method name="extendedMatch" signature="" line-rate="0.7619048" branch-rate="0" complexity="0">
               <lines>
                 <line number="375" hits="1"></line>
                 <line number="376" hits="1"></line>
                 <line number="377" hits="1"></line>
                 <line number="378" hits="1"></line>
-                <line number="379" hits="0"></line>
+                <line number="379" hits="1"></line>
                 <line number="380" hits="0"></line>
                 <line number="381" hits="0"></line>
                 <line number="382" hits="1"></line>
@@ -9255,14 +9255,14 @@
                 <line number="393" hits="1"></line>
                 <line number="394" hits="1"></line>
                 <line number="395" hits="1"></line>
-                <line number="396" hits="0"></line>
+                <line number="396" hits="1"></line>
                 <line number="397" hits="0"></line>
                 <line number="399" hits="1"></line>
                 <line number="400" hits="1"></line>
                 <line number="401" hits="1"></line>
                 <line number="402" hits="1"></line>
                 <line number="403" hits="1"></line>
-                <line number="404" hits="0"></line>
+                <line number="404" hits="1"></line>
                 <line number="405" hits="0"></line>
                 <line number="406" hits="0"></line>
                 <line number="407" hits="0"></line>
@@ -9404,7 +9404,7 @@
             <line number="363" hits="1"></line>
             <line number="364" hits="1"></line>
             <line number="365" hits="1"></line>
-            <line number="366" hits="0"></line>
+            <line number="366" hits="1"></line>
             <line number="367" hits="0"></line>
             <line number="368" hits="0"></line>
             <line number="369" hits="1"></line>
@@ -9415,7 +9415,7 @@
             <line number="376" hits="1"></line>
             <line number="377" hits="1"></line>
             <line number="378" hits="1"></line>
-            <line number="379" hits="0"></line>
+            <line number="379" hits="1"></line>
             <line number="380" hits="0"></line>
             <line number="381" hits="0"></line>
             <line number="382" hits="1"></line>
@@ -9432,14 +9432,14 @@
             <line number="393" hits="1"></line>
             <line number="394" hits="1"></line>
             <line number="395" hits="1"></line>
-            <line number="396" hits="0"></line>
+            <line number="396" hits="1"></line>
             <line number="397" hits="0"></line>
             <line number="399" hits="1"></line>
             <line number="400" hits="1"></line>
             <line number="401" hits="1"></line>
             <line number="402" hits="1"></line>
             <line number="403" hits="1"></line>
-            <line number="404" hits="0"></line>
+            <line number="404" hits="1"></line>
             <line number="405" hits="0"></line>
             <line number="406" hits="0"></line>
             <line number="407" hits="0"></line>
@@ -9795,9 +9795,9 @@
             <line number="40" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/reader.go" line-rate="0.3448276" branch-rate="0" complexity="0">
+        <class name="-" filename="src/reader.go" line-rate="0.37931034" branch-rate="0" complexity="0">
           <methods>
-            <method name="NewReader" signature="" line-rate="0.90909094" branch-rate="0" complexity="0">
+            <method name="NewReader" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
                 <line number="35" hits="1"></line>
                 <line number="36" hits="1"></line>
@@ -9809,7 +9809,7 @@
                 <line number="42" hits="1"></line>
                 <line number="43" hits="1"></line>
                 <line number="44" hits="1"></line>
-                <line number="45" hits="0"></line>
+                <line number="45" hits="1"></line>
               </lines>
             </method>
             <method name="isSymlinkToDir" signature="" line-rate="0" branch-rate="0" complexity="0">
@@ -9850,7 +9850,7 @@
             <line number="42" hits="1"></line>
             <line number="43" hits="1"></line>
             <line number="44" hits="1"></line>
-            <line number="45" hits="0"></line>
+            <line number="45" hits="1"></line>
             <line number="245" hits="0"></line>
             <line number="246" hits="0"></line>
             <line number="247" hits="0"></line>
@@ -9871,26 +9871,26 @@
             <line number="266" hits="0"></line>
           </lines>
         </class>
-        <class name="Reader" filename="src/reader.go" line-rate="0.3266129" branch-rate="0" complexity="0">
+        <class name="Reader" filename="src/reader.go" line-rate="0.37903225" branch-rate="0" complexity="0">
           <methods>
-            <method name="startEventPoller" signature="" line-rate="0.6315789" branch-rate="0" complexity="0">
+            <method name="startEventPoller" signature="" line-rate="0.7894737" branch-rate="0" complexity="0">
               <lines>
                 <line number="50" hits="1"></line>
                 <line number="51" hits="1"></line>
                 <line number="52" hits="1"></line>
                 <line number="53" hits="1"></line>
                 <line number="54" hits="1"></line>
-                <line number="55" hits="0"></line>
+                <line number="55" hits="1"></line>
                 <line number="56" hits="0"></line>
                 <line number="57" hits="0"></line>
-                <line number="58" hits="0"></line>
+                <line number="58" hits="1"></line>
                 <line number="59" hits="1"></line>
                 <line number="60" hits="1"></line>
                 <line number="61" hits="1"></line>
                 <line number="62" hits="1"></line>
                 <line number="63" hits="1"></line>
                 <line number="64" hits="1"></line>
-                <line number="65" hits="0"></line>
+                <line number="65" hits="1"></line>
                 <line number="66" hits="0"></line>
                 <line number="67" hits="0"></line>
                 <line number="69" hits="1"></line>
@@ -9979,7 +9979,7 @@
                 <line number="149" hits="0"></line>
               </lines>
             </method>
-            <method name="feed" signature="" line-rate="0.5890411" branch-rate="0" complexity="0">
+            <method name="feed" signature="" line-rate="0.6849315" branch-rate="0" complexity="0">
               <lines>
                 <line number="152" hits="1"></line>
                 <line number="153" hits="1"></line>
@@ -9999,7 +9999,7 @@
                 <line number="167" hits="1"></line>
                 <line number="168" hits="1"></line>
                 <line number="169" hits="1"></line>
-                <line number="170" hits="0"></line>
+                <line number="170" hits="1"></line>
                 <line number="171" hits="0"></line>
                 <line number="172" hits="0"></line>
                 <line number="173" hits="0"></line>
@@ -10023,12 +10023,12 @@
                 <line number="198" hits="1"></line>
                 <line number="199" hits="1"></line>
                 <line number="200" hits="1"></line>
-                <line number="201" hits="0"></line>
+                <line number="201" hits="1"></line>
                 <line number="202" hits="0"></line>
-                <line number="203" hits="0"></line>
+                <line number="203" hits="1"></line>
                 <line number="204" hits="1"></line>
                 <line number="205" hits="1"></line>
-                <line number="206" hits="0"></line>
+                <line number="206" hits="1"></line>
                 <line number="207" hits="0"></line>
                 <line number="208" hits="0"></line>
                 <line number="209" hits="0"></line>
@@ -10045,13 +10045,13 @@
                 <line number="220" hits="0"></line>
                 <line number="221" hits="0"></line>
                 <line number="222" hits="0"></line>
-                <line number="226" hits="0"></line>
+                <line number="226" hits="1"></line>
                 <line number="227" hits="0"></line>
                 <line number="228" hits="0"></line>
-                <line number="231" hits="0"></line>
+                <line number="231" hits="1"></line>
                 <line number="232" hits="0"></line>
                 <line number="233" hits="0"></line>
-                <line number="235" hits="0"></line>
+                <line number="235" hits="1"></line>
                 <line number="236" hits="0"></line>
                 <line number="237" hits="0"></line>
               </lines>
@@ -10132,7 +10132,7 @@
                 <line number="339" hits="0"></line>
               </lines>
             </method>
-            <method name="readFromCommand" signature="" line-rate="0.52" branch-rate="0" complexity="0">
+            <method name="readFromCommand" signature="" line-rate="0.64" branch-rate="0" complexity="0">
               <lines>
                 <line number="342" hits="1"></line>
                 <line number="343" hits="1"></line>
@@ -10141,16 +10141,16 @@
                 <line number="346" hits="1"></line>
                 <line number="347" hits="1"></line>
                 <line number="348" hits="1"></line>
-                <line number="349" hits="0"></line>
+                <line number="349" hits="1"></line>
                 <line number="350" hits="0"></line>
                 <line number="351" hits="0"></line>
                 <line number="352" hits="1"></line>
-                <line number="353" hits="0"></line>
+                <line number="353" hits="1"></line>
                 <line number="354" hits="0"></line>
                 <line number="355" hits="0"></line>
                 <line number="356" hits="0"></line>
                 <line number="357" hits="0"></line>
-                <line number="360" hits="0"></line>
+                <line number="360" hits="1"></line>
                 <line number="361" hits="0"></line>
                 <line number="362" hits="0"></line>
                 <line number="363" hits="0"></line>
@@ -10168,17 +10168,17 @@
             <line number="52" hits="1"></line>
             <line number="53" hits="1"></line>
             <line number="54" hits="1"></line>
-            <line number="55" hits="0"></line>
+            <line number="55" hits="1"></line>
             <line number="56" hits="0"></line>
             <line number="57" hits="0"></line>
-            <line number="58" hits="0"></line>
+            <line number="58" hits="1"></line>
             <line number="59" hits="1"></line>
             <line number="60" hits="1"></line>
             <line number="61" hits="1"></line>
             <line number="62" hits="1"></line>
             <line number="63" hits="1"></line>
             <line number="64" hits="1"></line>
-            <line number="65" hits="0"></line>
+            <line number="65" hits="1"></line>
             <line number="66" hits="0"></line>
             <line number="67" hits="0"></line>
             <line number="69" hits="1"></line>
@@ -10263,7 +10263,7 @@
             <line number="167" hits="1"></line>
             <line number="168" hits="1"></line>
             <line number="169" hits="1"></line>
-            <line number="170" hits="0"></line>
+            <line number="170" hits="1"></line>
             <line number="171" hits="0"></line>
             <line number="172" hits="0"></line>
             <line number="173" hits="0"></line>
@@ -10287,12 +10287,12 @@
             <line number="198" hits="1"></line>
             <line number="199" hits="1"></line>
             <line number="200" hits="1"></line>
-            <line number="201" hits="0"></line>
+            <line number="201" hits="1"></line>
             <line number="202" hits="0"></line>
-            <line number="203" hits="0"></line>
+            <line number="203" hits="1"></line>
             <line number="204" hits="1"></line>
             <line number="205" hits="1"></line>
-            <line number="206" hits="0"></line>
+            <line number="206" hits="1"></line>
             <line number="207" hits="0"></line>
             <line number="208" hits="0"></line>
             <line number="209" hits="0"></line>
@@ -10309,13 +10309,13 @@
             <line number="220" hits="0"></line>
             <line number="221" hits="0"></line>
             <line number="222" hits="0"></line>
-            <line number="226" hits="0"></line>
+            <line number="226" hits="1"></line>
             <line number="227" hits="0"></line>
             <line number="228" hits="0"></line>
-            <line number="231" hits="0"></line>
+            <line number="231" hits="1"></line>
             <line number="232" hits="0"></line>
             <line number="233" hits="0"></line>
-            <line number="235" hits="0"></line>
+            <line number="235" hits="1"></line>
             <line number="236" hits="0"></line>
             <line number="237" hits="0"></line>
             <line number="240" hits="0"></line>
@@ -10393,16 +10393,16 @@
             <line number="346" hits="1"></line>
             <line number="347" hits="1"></line>
             <line number="348" hits="1"></line>
-            <line number="349" hits="0"></line>
+            <line number="349" hits="1"></line>
             <line number="350" hits="0"></line>
             <line number="351" hits="0"></line>
             <line number="352" hits="1"></line>
-            <line number="353" hits="0"></line>
+            <line number="353" hits="1"></line>
             <line number="354" hits="0"></line>
             <line number="355" hits="0"></line>
             <line number="356" hits="0"></line>
             <line number="357" hits="0"></line>
-            <line number="360" hits="0"></line>
+            <line number="360" hits="1"></line>
             <line number="361" hits="0"></line>
             <line number="362" hits="0"></line>
             <line number="363" hits="0"></line>
@@ -10561,7 +10561,7 @@
             <line number="120" hits="1"></line>
           </lines>
         </class>
-        <class name="Result" filename="src/result.go" line-rate="0.77310926" branch-rate="0" complexity="0">
+        <class name="Result" filename="src/result.go" line-rate="0.8235294" branch-rate="0" complexity="0">
           <methods>
             <method name="Index" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
@@ -10570,13 +10570,13 @@
                 <line number="116" hits="0"></line>
               </lines>
             </method>
-            <method name="colorOffsets" signature="" line-rate="0.79310346" branch-rate="0" complexity="0">
+            <method name="colorOffsets" signature="" line-rate="0.8448276" branch-rate="0" complexity="0">
               <lines>
                 <line number="122" hits="1"></line>
                 <line number="123" hits="1"></line>
                 <line number="124" hits="1"></line>
                 <line number="125" hits="1"></line>
-                <line number="126" hits="0"></line>
+                <line number="126" hits="1"></line>
                 <line number="127" hits="0"></line>
                 <line number="128" hits="0"></line>
                 <line number="129" hits="0"></line>
@@ -10616,13 +10616,13 @@
                 <line number="181" hits="1"></line>
                 <line number="182" hits="1"></line>
                 <line number="183" hits="1"></line>
-                <line number="184" hits="0"></line>
+                <line number="184" hits="1"></line>
                 <line number="185" hits="0"></line>
                 <line number="186" hits="0"></line>
                 <line number="187" hits="0"></line>
                 <line number="188" hits="0"></line>
                 <line number="189" hits="0"></line>
-                <line number="191" hits="0"></line>
+                <line number="191" hits="1"></line>
                 <line number="192" hits="0"></line>
                 <line number="193" hits="0"></line>
                 <line number="194" hits="0"></line>
@@ -10634,9 +10634,9 @@
                 <line number="202" hits="1"></line>
                 <line number="203" hits="1"></line>
                 <line number="204" hits="1"></line>
-                <line number="205" hits="0"></line>
+                <line number="205" hits="1"></line>
                 <line number="206" hits="0"></line>
-                <line number="207" hits="0"></line>
+                <line number="207" hits="1"></line>
                 <line number="208" hits="1"></line>
                 <line number="209" hits="1"></line>
                 <line number="210" hits="1"></line>
@@ -10654,7 +10654,7 @@
                 <line number="222" hits="1"></line>
                 <line number="223" hits="1"></line>
                 <line number="224" hits="1"></line>
-                <line number="225" hits="0"></line>
+                <line number="225" hits="1"></line>
                 <line number="226" hits="0"></line>
                 <line number="227" hits="0"></line>
                 <line number="228" hits="1"></line>
@@ -10699,7 +10699,7 @@
             <line number="123" hits="1"></line>
             <line number="124" hits="1"></line>
             <line number="125" hits="1"></line>
-            <line number="126" hits="0"></line>
+            <line number="126" hits="1"></line>
             <line number="127" hits="0"></line>
             <line number="128" hits="0"></line>
             <line number="129" hits="0"></line>
@@ -10739,13 +10739,13 @@
             <line number="181" hits="1"></line>
             <line number="182" hits="1"></line>
             <line number="183" hits="1"></line>
-            <line number="184" hits="0"></line>
+            <line number="184" hits="1"></line>
             <line number="185" hits="0"></line>
             <line number="186" hits="0"></line>
             <line number="187" hits="0"></line>
             <line number="188" hits="0"></line>
             <line number="189" hits="0"></line>
-            <line number="191" hits="0"></line>
+            <line number="191" hits="1"></line>
             <line number="192" hits="0"></line>
             <line number="193" hits="0"></line>
             <line number="194" hits="0"></line>
@@ -10757,9 +10757,9 @@
             <line number="202" hits="1"></line>
             <line number="203" hits="1"></line>
             <line number="204" hits="1"></line>
-            <line number="205" hits="0"></line>
+            <line number="205" hits="1"></line>
             <line number="206" hits="0"></line>
-            <line number="207" hits="0"></line>
+            <line number="207" hits="1"></line>
             <line number="208" hits="1"></line>
             <line number="209" hits="1"></line>
             <line number="210" hits="1"></line>
@@ -10777,7 +10777,7 @@
             <line number="222" hits="1"></line>
             <line number="223" hits="1"></line>
             <line number="224" hits="1"></line>
-            <line number="225" hits="0"></line>
+            <line number="225" hits="1"></line>
             <line number="226" hits="0"></line>
             <line number="227" hits="0"></line>
             <line number="228" hits="1"></line>
@@ -11319,7 +11319,7 @@
             <line number="225" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/terminal.go" line-rate="0.38066465" branch-rate="0" complexity="0">
+        <class name="-" filename="src/terminal.go" line-rate="0.3882175" branch-rate="0" complexity="0">
           <methods>
             <method name="init" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -11805,18 +11805,18 @@
                 <line number="1624" hits="0"></line>
               </lines>
             </method>
-            <method name="findPassThrough" signature="" line-rate="0.75" branch-rate="0" complexity="0">
+            <method name="findPassThrough" signature="" line-rate="0.8333333" branch-rate="0" complexity="0">
               <lines>
                 <line number="3309" hits="1"></line>
                 <line number="3310" hits="1"></line>
-                <line number="3311" hits="0"></line>
+                <line number="3311" hits="1"></line>
                 <line number="3312" hits="0"></line>
                 <line number="3313" hits="0"></line>
                 <line number="3315" hits="1"></line>
                 <line number="3316" hits="1"></line>
                 <line number="3317" hits="1"></line>
                 <line number="3318" hits="1"></line>
-                <line number="3319" hits="0"></line>
+                <line number="3319" hits="1"></line>
                 <line number="3320" hits="0"></line>
                 <line number="3321" hits="0"></line>
                 <line number="3322" hits="1"></line>
@@ -11836,7 +11836,7 @@
                 <line number="3336" hits="1"></line>
                 <line number="3337" hits="1"></line>
                 <line number="3341" hits="1"></line>
-                <line number="3342" hits="0"></line>
+                <line number="3342" hits="1"></line>
                 <line number="3343" hits="0"></line>
                 <line number="3344" hits="0"></line>
                 <line number="3345" hits="1"></line>
@@ -11962,7 +11962,7 @@
                 <line number="3769" hits="0"></line>
               </lines>
             </method>
-            <method name="replacePlaceholder" signature="" line-rate="0.7619048" branch-rate="0" complexity="0">
+            <method name="replacePlaceholder" signature="" line-rate="0.7809524" branch-rate="0" complexity="0">
               <lines>
                 <line number="3840" hits="1"></line>
                 <line number="3841" hits="1"></line>
@@ -12002,7 +12002,7 @@
                 <line number="3879" hits="1"></line>
                 <line number="3880" hits="1"></line>
                 <line number="3881" hits="1"></line>
-                <line number="3882" hits="0"></line>
+                <line number="3882" hits="1"></line>
                 <line number="3883" hits="0"></line>
                 <line number="3884" hits="0"></line>
                 <line number="3885" hits="0"></line>
@@ -12027,7 +12027,7 @@
                 <line number="3906" hits="1"></line>
                 <line number="3907" hits="1"></line>
                 <line number="3908" hits="1"></line>
-                <line number="3909" hits="0"></line>
+                <line number="3909" hits="1"></line>
                 <line number="3910" hits="0"></line>
                 <line number="3911" hits="0"></line>
                 <line number="3912" hits="0"></line>
@@ -12507,14 +12507,14 @@
             <line number="1624" hits="0"></line>
             <line number="3309" hits="1"></line>
             <line number="3310" hits="1"></line>
-            <line number="3311" hits="0"></line>
+            <line number="3311" hits="1"></line>
             <line number="3312" hits="0"></line>
             <line number="3313" hits="0"></line>
             <line number="3315" hits="1"></line>
             <line number="3316" hits="1"></line>
             <line number="3317" hits="1"></line>
             <line number="3318" hits="1"></line>
-            <line number="3319" hits="0"></line>
+            <line number="3319" hits="1"></line>
             <line number="3320" hits="0"></line>
             <line number="3321" hits="0"></line>
             <line number="3322" hits="1"></line>
@@ -12534,7 +12534,7 @@
             <line number="3336" hits="1"></line>
             <line number="3337" hits="1"></line>
             <line number="3341" hits="1"></line>
-            <line number="3342" hits="0"></line>
+            <line number="3342" hits="1"></line>
             <line number="3343" hits="0"></line>
             <line number="3344" hits="0"></line>
             <line number="3345" hits="1"></line>
@@ -12668,7 +12668,7 @@
             <line number="3879" hits="1"></line>
             <line number="3880" hits="1"></line>
             <line number="3881" hits="1"></line>
-            <line number="3882" hits="0"></line>
+            <line number="3882" hits="1"></line>
             <line number="3883" hits="0"></line>
             <line number="3884" hits="0"></line>
             <line number="3885" hits="0"></line>
@@ -12693,7 +12693,7 @@
             <line number="3906" hits="1"></line>
             <line number="3907" hits="1"></line>
             <line number="3908" hits="1"></line>
-            <line number="3909" hits="0"></line>
+            <line number="3909" hits="1"></line>
             <line number="3910" hits="0"></line>
             <line number="3911" hits="0"></line>
             <line number="3912" hits="0"></line>
@@ -21811,7 +21811,7 @@
             <line number="24" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/tokenizer.go" line-rate="0.76303315" branch-rate="0" complexity="0">
+        <class name="-" filename="src/tokenizer.go" line-rate="0.7819905" branch-rate="0" complexity="0">
           <methods>
             <method name="compareRanges" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
@@ -21861,20 +21861,20 @@
                 <line number="98" hits="1"></line>
               </lines>
             </method>
-            <method name="ParseRange" signature="" line-rate="0.7096774" branch-rate="0" complexity="0">
+            <method name="ParseRange" signature="" line-rate="0.8064516" branch-rate="0" complexity="0">
               <lines>
                 <line number="102" hits="1"></line>
                 <line number="103" hits="1"></line>
                 <line number="104" hits="1"></line>
                 <line number="105" hits="1"></line>
                 <line number="106" hits="1"></line>
-                <line number="107" hits="0"></line>
+                <line number="107" hits="1"></line>
                 <line number="108" hits="0"></line>
                 <line number="109" hits="0"></line>
                 <line number="110" hits="1"></line>
                 <line number="111" hits="1"></line>
                 <line number="112" hits="1"></line>
-                <line number="113" hits="0"></line>
+                <line number="113" hits="1"></line>
                 <line number="114" hits="0"></line>
                 <line number="115" hits="0"></line>
                 <line number="116" hits="1"></line>
@@ -21890,7 +21890,7 @@
                 <line number="126" hits="1"></line>
                 <line number="127" hits="1"></line>
                 <line number="130" hits="1"></line>
-                <line number="131" hits="0"></line>
+                <line number="131" hits="1"></line>
                 <line number="132" hits="0"></line>
                 <line number="133" hits="0"></line>
                 <line number="134" hits="1"></line>
@@ -21996,7 +21996,7 @@
                 <line number="240" hits="1"></line>
               </lines>
             </method>
-            <method name="Transform" signature="" line-rate="0.953125" branch-rate="0" complexity="0">
+            <method name="Transform" signature="" line-rate="0.96875" branch-rate="0" complexity="0">
               <lines>
                 <line number="244" hits="1"></line>
                 <line number="245" hits="1"></line>
@@ -22021,7 +22021,7 @@
                 <line number="265" hits="1"></line>
                 <line number="266" hits="1"></line>
                 <line number="267" hits="1"></line>
-                <line number="268" hits="0"></line>
+                <line number="268" hits="1"></line>
                 <line number="269" hits="0"></line>
                 <line number="270" hits="0"></line>
                 <line number="271" hits="1"></line>
@@ -22107,13 +22107,13 @@
             <line number="104" hits="1"></line>
             <line number="105" hits="1"></line>
             <line number="106" hits="1"></line>
-            <line number="107" hits="0"></line>
+            <line number="107" hits="1"></line>
             <line number="108" hits="0"></line>
             <line number="109" hits="0"></line>
             <line number="110" hits="1"></line>
             <line number="111" hits="1"></line>
             <line number="112" hits="1"></line>
-            <line number="113" hits="0"></line>
+            <line number="113" hits="1"></line>
             <line number="114" hits="0"></line>
             <line number="115" hits="0"></line>
             <line number="116" hits="1"></line>
@@ -22129,7 +22129,7 @@
             <line number="126" hits="1"></line>
             <line number="127" hits="1"></line>
             <line number="130" hits="1"></line>
-            <line number="131" hits="0"></line>
+            <line number="131" hits="1"></line>
             <line number="132" hits="0"></line>
             <line number="133" hits="0"></line>
             <line number="134" hits="1"></line>
@@ -22236,7 +22236,7 @@
             <line number="265" hits="1"></line>
             <line number="266" hits="1"></line>
             <line number="267" hits="1"></line>
-            <line number="268" hits="0"></line>
+            <line number="268" hits="1"></line>
             <line number="269" hits="0"></line>
             <line number="270" hits="0"></line>
             <line number="271" hits="1"></line>
@@ -22349,9 +22349,9 @@
         </class>
       </classes>
     </package>
-    <package name="github.com/junegunn/fzf/src/algo" line-rate="0.7839771" branch-rate="0" complexity="0">
+    <package name="github.com/junegunn/fzf/src/algo" line-rate="0.8082976" branch-rate="0" complexity="0">
       <classes>
-        <class name="-" filename="src/algo/algo.go" line-rate="0.79651165" branch-rate="0" complexity="0">
+        <class name="-" filename="src/algo/algo.go" line-rate="0.82122093" branch-rate="0" complexity="0">
           <methods>
             <method name="indexAt" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -22415,32 +22415,32 @@
                 <line number="225" hits="1"></line>
               </lines>
             </method>
-            <method name="alloc16" signature="" line-rate="0.33333334" branch-rate="0" complexity="0">
+            <method name="alloc16" signature="" line-rate="0.5" branch-rate="0" complexity="0">
               <lines>
                 <line number="228" hits="1"></line>
-                <line number="229" hits="0"></line>
+                <line number="229" hits="1"></line>
                 <line number="230" hits="0"></line>
                 <line number="231" hits="0"></line>
                 <line number="232" hits="0"></line>
                 <line number="233" hits="1"></line>
               </lines>
             </method>
-            <method name="alloc32" signature="" line-rate="0.33333334" branch-rate="0" complexity="0">
+            <method name="alloc32" signature="" line-rate="0.5" branch-rate="0" complexity="0">
               <lines>
                 <line number="236" hits="1"></line>
-                <line number="237" hits="0"></line>
+                <line number="237" hits="1"></line>
                 <line number="238" hits="0"></line>
                 <line number="239" hits="0"></line>
                 <line number="240" hits="0"></line>
                 <line number="241" hits="1"></line>
               </lines>
             </method>
-            <method name="charClassOfNonAscii" signature="" line-rate="0.2" branch-rate="0" complexity="0">
+            <method name="charClassOfNonAscii" signature="" line-rate="0.26666668" branch-rate="0" complexity="0">
               <lines>
                 <line number="244" hits="1"></line>
                 <line number="245" hits="1"></line>
                 <line number="246" hits="1"></line>
-                <line number="247" hits="0"></line>
+                <line number="247" hits="1"></line>
                 <line number="248" hits="0"></line>
                 <line number="249" hits="0"></line>
                 <line number="250" hits="0"></line>
@@ -22535,24 +22535,24 @@
                 <line number="343" hits="1"></line>
               </lines>
             </method>
-            <method name="isAscii" signature="" line-rate="0.5" branch-rate="0" complexity="0">
+            <method name="isAscii" signature="" line-rate="0.6666667" branch-rate="0" complexity="0">
               <lines>
                 <line number="346" hits="1"></line>
                 <line number="347" hits="1"></line>
-                <line number="348" hits="0"></line>
+                <line number="348" hits="1"></line>
                 <line number="349" hits="0"></line>
                 <line number="350" hits="0"></line>
                 <line number="352" hits="1"></line>
               </lines>
             </method>
-            <method name="asciiFuzzyIndex" signature="" line-rate="0.90625" branch-rate="0" complexity="0">
+            <method name="asciiFuzzyIndex" signature="" line-rate="0.9375" branch-rate="0" complexity="0">
               <lines>
                 <line number="355" hits="1"></line>
                 <line number="356" hits="1"></line>
                 <line number="357" hits="1"></line>
                 <line number="358" hits="1"></line>
                 <line number="359" hits="1"></line>
-                <line number="362" hits="0"></line>
+                <line number="362" hits="1"></line>
                 <line number="363" hits="0"></line>
                 <line number="364" hits="0"></line>
                 <line number="366" hits="1"></line>
@@ -22616,7 +22616,7 @@
                 <line number="428" hits="0"></line>
               </lines>
             </method>
-            <method name="FuzzyMatchV2" signature="" line-rate="0.875" branch-rate="0" complexity="0">
+            <method name="FuzzyMatchV2" signature="" line-rate="0.9076087" branch-rate="0" complexity="0">
               <lines>
                 <line number="432" hits="1"></line>
                 <line number="433" hits="1"></line>
@@ -22631,7 +22631,7 @@
                 <line number="442" hits="1"></line>
                 <line number="443" hits="1"></line>
                 <line number="444" hits="1"></line>
-                <line number="448" hits="0"></line>
+                <line number="448" hits="1"></line>
                 <line number="449" hits="0"></line>
                 <line number="450" hits="0"></line>
                 <line number="453" hits="1"></line>
@@ -22667,7 +22667,7 @@
                 <line number="484" hits="1"></line>
                 <line number="485" hits="1"></line>
                 <line number="486" hits="1"></line>
-                <line number="487" hits="0"></line>
+                <line number="487" hits="1"></line>
                 <line number="488" hits="0"></line>
                 <line number="489" hits="0"></line>
                 <line number="490" hits="1"></line>
@@ -22689,7 +22689,7 @@
                 <line number="510" hits="1"></line>
                 <line number="511" hits="1"></line>
                 <line number="512" hits="1"></line>
-                <line number="513" hits="0"></line>
+                <line number="513" hits="1"></line>
                 <line number="514" hits="0"></line>
                 <line number="515" hits="0"></line>
                 <line number="516" hits="0"></line>
@@ -22703,10 +22703,10 @@
                 <line number="526" hits="1"></line>
                 <line number="527" hits="1"></line>
                 <line number="529" hits="1"></line>
-                <line number="531" hits="0"></line>
+                <line number="531" hits="1"></line>
                 <line number="532" hits="0"></line>
                 <line number="533" hits="0"></line>
-                <line number="534" hits="0"></line>
+                <line number="534" hits="1"></line>
                 <line number="535" hits="0"></line>
                 <line number="536" hits="0"></line>
                 <line number="537" hits="0"></line>
@@ -22773,7 +22773,7 @@
                 <line number="605" hits="1"></line>
                 <line number="606" hits="1"></line>
                 <line number="607" hits="1"></line>
-                <line number="611" hits="0"></line>
+                <line number="611" hits="1"></line>
                 <line number="612" hits="0"></line>
                 <line number="613" hits="0"></line>
                 <line number="616" hits="1"></line>
@@ -22940,7 +22940,7 @@
                 <line number="806" hits="0"></line>
               </lines>
             </method>
-            <method name="exactMatchNaive" signature="" line-rate="0.75" branch-rate="0" complexity="0">
+            <method name="exactMatchNaive" signature="" line-rate="0.77380955" branch-rate="0" complexity="0">
               <lines>
                 <line number="808" hits="1"></line>
                 <line number="809" hits="1"></line>
@@ -22977,7 +22977,7 @@
                 <line number="845" hits="1"></line>
                 <line number="846" hits="1"></line>
                 <line number="847" hits="1"></line>
-                <line number="848" hits="0"></line>
+                <line number="848" hits="1"></line>
                 <line number="849" hits="0"></line>
                 <line number="850" hits="0"></line>
                 <line number="851" hits="0"></line>
@@ -23009,7 +23009,7 @@
                 <line number="882" hits="1"></line>
                 <line number="883" hits="1"></line>
                 <line number="884" hits="1"></line>
-                <line number="885" hits="0"></line>
+                <line number="885" hits="1"></line>
                 <line number="886" hits="0"></line>
                 <line number="887" hits="0"></line>
                 <line number="888" hits="0"></line>
@@ -23057,7 +23057,7 @@
                 <line number="935" hits="1"></line>
               </lines>
             </method>
-            <method name="SuffixMatch" signature="" line-rate="0.8965517" branch-rate="0" complexity="0">
+            <method name="SuffixMatch" signature="" line-rate="0.9310345" branch-rate="0" complexity="0">
               <lines>
                 <line number="939" hits="1"></line>
                 <line number="940" hits="1"></line>
@@ -23069,7 +23069,7 @@
                 <line number="946" hits="1"></line>
                 <line number="947" hits="1"></line>
                 <line number="948" hits="1"></line>
-                <line number="949" hits="0"></line>
+                <line number="949" hits="1"></line>
                 <line number="950" hits="0"></line>
                 <line number="951" hits="0"></line>
                 <line number="953" hits="1"></line>
@@ -23090,11 +23090,11 @@
                 <line number="969" hits="1"></line>
               </lines>
             </method>
-            <method name="EqualMatch" signature="" line-rate="0.5641026" branch-rate="0" complexity="0">
+            <method name="EqualMatch" signature="" line-rate="0.64102566" branch-rate="0" complexity="0">
               <lines>
                 <line number="973" hits="1"></line>
                 <line number="974" hits="1"></line>
-                <line number="975" hits="0"></line>
+                <line number="975" hits="1"></line>
                 <line number="976" hits="0"></line>
                 <line number="977" hits="0"></line>
                 <line number="980" hits="1"></line>
@@ -23105,7 +23105,7 @@
                 <line number="987" hits="1"></line>
                 <line number="988" hits="1"></line>
                 <line number="989" hits="1"></line>
-                <line number="991" hits="0"></line>
+                <line number="991" hits="1"></line>
                 <line number="992" hits="0"></line>
                 <line number="993" hits="0"></line>
                 <line number="994" hits="1"></line>
@@ -23116,7 +23116,7 @@
                 <line number="999" hits="1"></line>
                 <line number="1000" hits="1"></line>
                 <line number="1001" hits="1"></line>
-                <line number="1002" hits="0"></line>
+                <line number="1002" hits="1"></line>
                 <line number="1003" hits="0"></line>
                 <line number="1004" hits="0"></line>
                 <line number="1007" hits="0"></line>
@@ -23186,13 +23186,13 @@
             <line number="224" hits="1"></line>
             <line number="225" hits="1"></line>
             <line number="228" hits="1"></line>
-            <line number="229" hits="0"></line>
+            <line number="229" hits="1"></line>
             <line number="230" hits="0"></line>
             <line number="231" hits="0"></line>
             <line number="232" hits="0"></line>
             <line number="233" hits="1"></line>
             <line number="236" hits="1"></line>
-            <line number="237" hits="0"></line>
+            <line number="237" hits="1"></line>
             <line number="238" hits="0"></line>
             <line number="239" hits="0"></line>
             <line number="240" hits="0"></line>
@@ -23200,7 +23200,7 @@
             <line number="244" hits="1"></line>
             <line number="245" hits="1"></line>
             <line number="246" hits="1"></line>
-            <line number="247" hits="0"></line>
+            <line number="247" hits="1"></line>
             <line number="248" hits="0"></line>
             <line number="249" hits="0"></line>
             <line number="250" hits="0"></line>
@@ -23275,7 +23275,7 @@
             <line number="343" hits="1"></line>
             <line number="346" hits="1"></line>
             <line number="347" hits="1"></line>
-            <line number="348" hits="0"></line>
+            <line number="348" hits="1"></line>
             <line number="349" hits="0"></line>
             <line number="350" hits="0"></line>
             <line number="352" hits="1"></line>
@@ -23284,7 +23284,7 @@
             <line number="357" hits="1"></line>
             <line number="358" hits="1"></line>
             <line number="359" hits="1"></line>
-            <line number="362" hits="0"></line>
+            <line number="362" hits="1"></line>
             <line number="363" hits="0"></line>
             <line number="364" hits="0"></line>
             <line number="366" hits="1"></line>
@@ -23355,7 +23355,7 @@
             <line number="442" hits="1"></line>
             <line number="443" hits="1"></line>
             <line number="444" hits="1"></line>
-            <line number="448" hits="0"></line>
+            <line number="448" hits="1"></line>
             <line number="449" hits="0"></line>
             <line number="450" hits="0"></line>
             <line number="453" hits="1"></line>
@@ -23391,7 +23391,7 @@
             <line number="484" hits="1"></line>
             <line number="485" hits="1"></line>
             <line number="486" hits="1"></line>
-            <line number="487" hits="0"></line>
+            <line number="487" hits="1"></line>
             <line number="488" hits="0"></line>
             <line number="489" hits="0"></line>
             <line number="490" hits="1"></line>
@@ -23413,7 +23413,7 @@
             <line number="510" hits="1"></line>
             <line number="511" hits="1"></line>
             <line number="512" hits="1"></line>
-            <line number="513" hits="0"></line>
+            <line number="513" hits="1"></line>
             <line number="514" hits="0"></line>
             <line number="515" hits="0"></line>
             <line number="516" hits="0"></line>
@@ -23427,10 +23427,10 @@
             <line number="526" hits="1"></line>
             <line number="527" hits="1"></line>
             <line number="529" hits="1"></line>
-            <line number="531" hits="0"></line>
+            <line number="531" hits="1"></line>
             <line number="532" hits="0"></line>
             <line number="533" hits="0"></line>
-            <line number="534" hits="0"></line>
+            <line number="534" hits="1"></line>
             <line number="535" hits="0"></line>
             <line number="536" hits="0"></line>
             <line number="537" hits="0"></line>
@@ -23497,7 +23497,7 @@
             <line number="605" hits="1"></line>
             <line number="606" hits="1"></line>
             <line number="607" hits="1"></line>
-            <line number="611" hits="0"></line>
+            <line number="611" hits="1"></line>
             <line number="612" hits="0"></line>
             <line number="613" hits="0"></line>
             <line number="616" hits="1"></line>
@@ -23681,7 +23681,7 @@
             <line number="845" hits="1"></line>
             <line number="846" hits="1"></line>
             <line number="847" hits="1"></line>
-            <line number="848" hits="0"></line>
+            <line number="848" hits="1"></line>
             <line number="849" hits="0"></line>
             <line number="850" hits="0"></line>
             <line number="851" hits="0"></line>
@@ -23713,7 +23713,7 @@
             <line number="882" hits="1"></line>
             <line number="883" hits="1"></line>
             <line number="884" hits="1"></line>
-            <line number="885" hits="0"></line>
+            <line number="885" hits="1"></line>
             <line number="886" hits="0"></line>
             <line number="887" hits="0"></line>
             <line number="888" hits="0"></line>
@@ -23765,7 +23765,7 @@
             <line number="946" hits="1"></line>
             <line number="947" hits="1"></line>
             <line number="948" hits="1"></line>
-            <line number="949" hits="0"></line>
+            <line number="949" hits="1"></line>
             <line number="950" hits="0"></line>
             <line number="951" hits="0"></line>
             <line number="953" hits="1"></line>
@@ -23786,7 +23786,7 @@
             <line number="969" hits="1"></line>
             <line number="973" hits="1"></line>
             <line number="974" hits="1"></line>
-            <line number="975" hits="0"></line>
+            <line number="975" hits="1"></line>
             <line number="976" hits="0"></line>
             <line number="977" hits="0"></line>
             <line number="980" hits="1"></line>
@@ -23797,7 +23797,7 @@
             <line number="987" hits="1"></line>
             <line number="988" hits="1"></line>
             <line number="989" hits="1"></line>
-            <line number="991" hits="0"></line>
+            <line number="991" hits="1"></line>
             <line number="992" hits="0"></line>
             <line number="993" hits="0"></line>
             <line number="994" hits="1"></line>
@@ -23808,7 +23808,7 @@
             <line number="999" hits="1"></line>
             <line number="1000" hits="1"></line>
             <line number="1001" hits="1"></line>
-            <line number="1002" hits="0"></line>
+            <line number="1002" hits="1"></line>
             <line number="1003" hits="0"></line>
             <line number="1004" hits="0"></line>
             <line number="1007" hits="0"></line>
@@ -28147,14 +28147,14 @@
         </class>
       </classes>
     </package>
-    <package name="github.com/junegunn/fzf/src/util" line-rate="0.5972763" branch-rate="0" complexity="0">
+    <package name="github.com/junegunn/fzf/src/util" line-rate="0.6108949" branch-rate="0" complexity="0">
       <classes>
-        <class name="-" filename="src/util/atexit.go" line-rate="0.84615386" branch-rate="0" complexity="0">
+        <class name="-" filename="src/util/atexit.go" line-rate="0.9230769" branch-rate="0" complexity="0">
           <methods>
-            <method name="AtExit" signature="" line-rate="0.71428573" branch-rate="0" complexity="0">
+            <method name="AtExit" signature="" line-rate="0.85714287" branch-rate="0" complexity="0">
               <lines>
                 <line number="11" hits="1"></line>
-                <line number="12" hits="0"></line>
+                <line number="12" hits="1"></line>
                 <line number="13" hits="0"></line>
                 <line number="15" hits="1"></line>
                 <line number="16" hits="1"></line>
@@ -28175,7 +28175,7 @@
           </methods>
           <lines>
             <line number="11" hits="1"></line>
-            <line number="12" hits="0"></line>
+            <line number="12" hits="1"></line>
             <line number="13" hits="0"></line>
             <line number="15" hits="1"></line>
             <line number="16" hits="1"></line>
@@ -28247,9 +28247,9 @@
             <line number="34" hits="1"></line>
           </lines>
         </class>
-        <class name="-" filename="src/util/chars.go" line-rate="0.72727275" branch-rate="0" complexity="0">
+        <class name="-" filename="src/util/chars.go" line-rate="0.8181818" branch-rate="0" complexity="0">
           <methods>
-            <method name="checkAscii" signature="" line-rate="0.6" branch-rate="0" complexity="0">
+            <method name="checkAscii" signature="" line-rate="0.73333335" branch-rate="0" complexity="0">
               <lines>
                 <line number="27" hits="1"></line>
                 <line number="28" hits="1"></line>
@@ -28258,17 +28258,17 @@
                 <line number="31" hits="1"></line>
                 <line number="32" hits="1"></line>
                 <line number="34" hits="1"></line>
-                <line number="35" hits="0"></line>
+                <line number="35" hits="1"></line>
                 <line number="36" hits="0"></line>
                 <line number="37" hits="0"></line>
                 <line number="39" hits="1"></line>
-                <line number="40" hits="0"></line>
+                <line number="40" hits="1"></line>
                 <line number="41" hits="0"></line>
                 <line number="42" hits="0"></line>
                 <line number="44" hits="1"></line>
               </lines>
             </method>
-            <method name="ToChars" signature="" line-rate="0.8" branch-rate="0" complexity="0">
+            <method name="ToChars" signature="" line-rate="0.8666667" branch-rate="0" complexity="0">
               <lines>
                 <line number="48" hits="1"></line>
                 <line number="49" hits="1"></line>
@@ -28276,7 +28276,7 @@
                 <line number="51" hits="1"></line>
                 <line number="52" hits="1"></line>
                 <line number="54" hits="1"></line>
-                <line number="55" hits="0"></line>
+                <line number="55" hits="1"></line>
                 <line number="56" hits="0"></line>
                 <line number="57" hits="0"></line>
                 <line number="58" hits="1"></line>
@@ -28303,11 +28303,11 @@
             <line number="31" hits="1"></line>
             <line number="32" hits="1"></line>
             <line number="34" hits="1"></line>
-            <line number="35" hits="0"></line>
+            <line number="35" hits="1"></line>
             <line number="36" hits="0"></line>
             <line number="37" hits="0"></line>
             <line number="39" hits="1"></line>
-            <line number="40" hits="0"></line>
+            <line number="40" hits="1"></line>
             <line number="41" hits="0"></line>
             <line number="42" hits="0"></line>
             <line number="44" hits="1"></line>
@@ -28317,7 +28317,7 @@
             <line number="51" hits="1"></line>
             <line number="52" hits="1"></line>
             <line number="54" hits="1"></line>
-            <line number="55" hits="0"></line>
+            <line number="55" hits="1"></line>
             <line number="56" hits="0"></line>
             <line number="57" hits="0"></line>
             <line number="58" hits="1"></line>
@@ -28331,7 +28331,7 @@
             <line number="68" hits="1"></line>
           </lines>
         </class>
-        <class name="Chars" filename="src/util/chars.go" line-rate="0.55026454" branch-rate="0" complexity="0">
+        <class name="Chars" filename="src/util/chars.go" line-rate="0.5555556" branch-rate="0" complexity="0">
           <methods>
             <method name="IsBytes" signature="" line-rate="0" branch-rate="0" complexity="0">
               <lines>
@@ -28406,10 +28406,10 @@
                 <line number="131" hits="0"></line>
               </lines>
             </method>
-            <method name="TrimLength" signature="" line-rate="0.85714287" branch-rate="0" complexity="0">
+            <method name="TrimLength" signature="" line-rate="0.9047619" branch-rate="0" complexity="0">
               <lines>
                 <line number="134" hits="1"></line>
-                <line number="135" hits="0"></line>
+                <line number="135" hits="1"></line>
                 <line number="136" hits="0"></line>
                 <line number="137" hits="0"></line>
                 <line number="138" hits="1"></line>
@@ -28638,7 +28638,7 @@
             <line number="130" hits="0"></line>
             <line number="131" hits="0"></line>
             <line number="134" hits="1"></line>
-            <line number="135" hits="0"></line>
+            <line number="135" hits="1"></line>
             <line number="136" hits="0"></line>
             <line number="137" hits="0"></line>
             <line number="138" hits="1"></line>
@@ -28805,14 +28805,14 @@
             <line number="24" hits="1"></line>
           </lines>
         </class>
-        <class name="EventBox" filename="src/util/eventbox.go" line-rate="0.2857143" branch-rate="0" complexity="0">
+        <class name="EventBox" filename="src/util/eventbox.go" line-rate="0.30952382" branch-rate="0" complexity="0">
           <methods>
-            <method name="Wait" signature="" line-rate="0.625" branch-rate="0" complexity="0">
+            <method name="Wait" signature="" line-rate="0.75" branch-rate="0" complexity="0">
               <lines>
                 <line number="27" hits="1"></line>
                 <line number="28" hits="1"></line>
                 <line number="29" hits="1"></line>
-                <line number="30" hits="0"></line>
+                <line number="30" hits="1"></line>
                 <line number="31" hits="0"></line>
                 <line number="32" hits="0"></line>
                 <line number="34" hits="1"></line>
@@ -28878,7 +28878,7 @@
             <line number="27" hits="1"></line>
             <line number="28" hits="1"></line>
             <line number="29" hits="1"></line>
-            <line number="30" hits="0"></line>
+            <line number="30" hits="1"></line>
             <line number="31" hits="0"></line>
             <line number="32" hits="0"></line>
             <line number="34" hits="1"></line>
@@ -28957,7 +28957,7 @@
             <line number="12" hits="0"></line>
           </lines>
         </class>
-        <class name="-" filename="src/util/util.go" line-rate="0.8618421" branch-rate="0" complexity="0">
+        <class name="-" filename="src/util/util.go" line-rate="0.8684211" branch-rate="0" complexity="0">
           <methods>
             <method name="StringWidth" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
@@ -29126,7 +29126,7 @@
                 <line number="164" hits="1"></line>
               </lines>
             </method>
-            <method name="RepeatToFill" signature="" line-rate="0.84615386" branch-rate="0" complexity="0">
+            <method name="RepeatToFill" signature="" line-rate="0.9230769" branch-rate="0" complexity="0">
               <lines>
                 <line number="168" hits="1"></line>
                 <line number="169" hits="1"></line>
@@ -29135,7 +29135,7 @@
                 <line number="172" hits="1"></line>
                 <line number="173" hits="1"></line>
                 <line number="174" hits="1"></line>
-                <line number="175" hits="0"></line>
+                <line number="175" hits="1"></line>
                 <line number="176" hits="0"></line>
                 <line number="178" hits="1"></line>
                 <line number="179" hits="1"></line>
@@ -29299,7 +29299,7 @@
             <line number="172" hits="1"></line>
             <line number="173" hits="1"></line>
             <line number="174" hits="1"></line>
-            <line number="175" hits="0"></line>
+            <line number="175" hits="1"></line>
             <line number="176" hits="0"></line>
             <line number="178" hits="1"></line>
             <line number="179" hits="1"></line>
