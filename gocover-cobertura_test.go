@@ -257,3 +257,63 @@ func TestConvertSetMode(t *testing.T) {
 	require.NotNil(t, c.Methods)
 	require.Len(t, c.Methods, 3)
 }
+
+// TestConvertOverlappingBlocks verifies deduplication of coverage blocks
+// that overlap on line boundaries. This occurs with -coverpkg, where go
+// test produces separate blocks from each test package that may cover
+// different spans of the same lines.
+//
+// The test profile has overlapping blocks for func_overlap.go:
+//
+//	Block A: 9.30,10.13 (hit)   — covers lines 9-10
+//	Block B: 10.13,12.3 (miss)  — covers lines 10-12
+//	Block C: 12.3,13.2  (hit)   — covers line 12-13
+//	Block D: 9.30,12.3  (hit)   — covers lines 9-12 (same start as A, different end)
+//	Block E: 12.3,13.2  (miss)  — covers line 12-13
+//
+// BUG: The old AddOrUpdateLine only checks the *last* added line for
+// deduplication. When overlapping blocks produce non-adjacent duplicate
+// line entries, they are added as separate entries instead of merged.
+// This results in 10 line entries instead of 5, with some lines showing
+// hits=0 even though another entry for the same line has hits=1.
+//
+// See: https://github.com/boumenot/gocover-cobertura/pull/24
+func TestConvertOverlappingBlocks(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_overlap.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Equal(t, "coverage", v.XMLName.Local)
+	require.Len(t, v.Packages, 1)
+
+	p := v.Packages[0]
+	require.NotNil(t, p.Classes)
+	require.Len(t, p.Classes, 1)
+
+	c := p.Classes[0]
+	require.Equal(t, "-", c.Name)
+	require.Equal(t, "testdata/func_overlap.go", c.Filename)
+	require.Len(t, c.Methods, 1)
+
+	m := c.Methods[0]
+	require.Equal(t, "FuncOverlap", m.Name)
+
+	// BUG: With the current dedup logic, overlapping blocks produce
+	// duplicate line entries (10 instead of 5). Once PR #24 is merged,
+	// update this test to assert 5 unique lines, all with hits=1.
+	require.Equal(t, 10, len(m.Lines),
+		"BUG: duplicate lines due to overlapping blocks (expected 5 after fix)")
+}

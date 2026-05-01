@@ -1,0 +1,6 @@
+mode: set
+github.com/boumenot/gocover-cobertura/testdata/func_overlap.go:9.30,10.13 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_overlap.go:10.13,12.3 1 0
+github.com/boumenot/gocover-cobertura/testdata/func_overlap.go:12.3,13.2 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_overlap.go:9.30,12.3 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_overlap.go:12.3,13.2 1 0
