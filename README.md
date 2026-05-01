@@ -110,6 +110,9 @@ other operating systems.  To regenerate golden files on Windows, use WSL.
 | spf13/cobra | v1.8.1 | 4,420 |
 | approvals/go-approval-tests | v1.9.1 | 1,785 |
 | junegunn/fzf | v0.60.0 | 14,137 |
+| stretchr/testify | v1.10.0 | 3,196 |
+| prometheus/prometheus | v3.2.0 | 78,123 |
+| kubernetes/kubernetes | v1.32.0 | 26,956 |
 
 ~~Authors~~Merger
 -------

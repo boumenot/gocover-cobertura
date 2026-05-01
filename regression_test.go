@@ -31,6 +31,7 @@ var moduleRepos = map[string]string{
 	"cobra":              "https://github.com/spf13/cobra",
 	"fzf":               "https://github.com/junegunn/fzf",
 	"go-approval-tests": "https://github.com/approvals/go-approval-tests",
+	"kubernetes":         "https://github.com/kubernetes/kubernetes",
 	"mux":               "https://github.com/gorilla/mux",
 	"prometheus":         "https://github.com/prometheus/prometheus",
 	"testify":            "https://github.com/stretchr/testify",
