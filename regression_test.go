@@ -28,9 +28,10 @@ type regressionEntry struct {
 
 // moduleRepos maps project directory names to their Git clone URLs.
 var moduleRepos = map[string]string{
-	"cobra":            "https://github.com/spf13/cobra",
+	"cobra":              "https://github.com/spf13/cobra",
+	"fzf":               "https://github.com/junegunn/fzf",
 	"go-approval-tests": "https://github.com/approvals/go-approval-tests",
-	"mux":              "https://github.com/gorilla/mux",
+	"mux":               "https://github.com/gorilla/mux",
 }
 
 // discoverRegressionEntries walks root looking for coverage.txt files in the
