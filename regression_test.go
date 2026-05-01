@@ -32,6 +32,7 @@ var moduleRepos = map[string]string{
 	"fzf":               "https://github.com/junegunn/fzf",
 	"go-approval-tests": "https://github.com/approvals/go-approval-tests",
 	"mux":               "https://github.com/gorilla/mux",
+	"prometheus":         "https://github.com/prometheus/prometheus",
 }
 
 // discoverRegressionEntries walks root looking for coverage.txt files in the
