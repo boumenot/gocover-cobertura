@@ -248,7 +248,7 @@ func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
 			continue
 		}
 		for i := b.StartLine; i <= b.EndLine; i++ {
-			method.Lines.AddOrUpdateLine(i, int64(b.Count))
+			method.Lines.AddOrUpdateLine(i, int64(b.Count), v.profile.Mode)
 		}
 	}
 	return method
@@ -257,7 +257,7 @@ func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
 func (v *fileVisitor) class(n *ast.FuncDecl) *Class {
 	var className string
 	if byFiles {
-		//className = filepath.Base(v.fileName)
+		// className = filepath.Base(v.fileName)
 		//
 		// NOTE(boumenot): ReportGenerator creates links that collide if names are not distinct.
 		// This could be an issue in how I am generating the report, but I have not been able
