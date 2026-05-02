@@ -20,6 +20,7 @@ import (
 const coberturaDTDDecl = `<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">`
 
 var byFiles bool
+var projectDir string
 
 func fatal(format string, a ...interface{}) {
 	_, _ = fmt.Fprintf(os.Stderr, format, a...)
@@ -31,6 +32,7 @@ func main() {
 
 	flag.BoolVar(&byFiles, "by-files", false, "code coverage by file, not class")
 	flag.BoolVar(&ignore.GeneratedFiles, "ignore-gen-files", false, "ignore generated files")
+	flag.StringVar(&projectDir, "path", "", "set the project directory for package resolution")
 	ignoreDirsRe := flag.String("ignore-dirs", "", "ignore dirs matching this regexp")
 	ignoreFilesRe := flag.String("ignore-files", "", "ignore files matching this regexp")
 
@@ -51,18 +53,22 @@ func main() {
 		}
 	}
 
-	if err := convert(os.Stdin, os.Stdout, &ignore); err != nil {
+	if err := convert(os.Stdin, os.Stdout, &ignore, projectDir); err != nil {
 		fatal("code coverage conversion failed: %s\n", err)
 	}
 }
 
-func convert(in io.Reader, out io.Writer, ignore *Ignore) error {
+func convert(in io.Reader, out io.Writer, ignore *Ignore, pkgDir ...string) error {
 	profiles, err := ParseProfiles(in, ignore)
 	if err != nil {
 		return err
 	}
 
-	pkgs, err := getPackages(profiles)
+	var dir string
+	if len(pkgDir) > 0 {
+		dir = pkgDir[0]
+	}
+	pkgs, err := getPackages(profiles, dir)
 	if err != nil {
 		return err
 	}
@@ -98,7 +104,7 @@ func convert(in io.Reader, out io.Writer, ignore *Ignore) error {
 	return nil
 }
 
-func getPackages(profiles []*Profile) ([]*packages.Package, error) {
+func getPackages(profiles []*Profile, dir string) ([]*packages.Package, error) {
 	if len(profiles) == 0 {
 		return []*packages.Package{}, nil
 	}
@@ -107,7 +113,7 @@ func getPackages(profiles []*Profile) ([]*packages.Package, error) {
 	for _, profile := range profiles {
 		pkgNames = append(pkgNames, getPackageName(profile.FileName))
 	}
-	return packages.Load(&packages.Config{Mode: packages.NeedFiles | packages.NeedModule}, pkgNames...)
+	return packages.Load(&packages.Config{Mode: packages.NeedFiles | packages.NeedModule, Dir: dir}, pkgNames...)
 }
 
 func appendIfUnique(sources []*Source, dir string) []*Source {

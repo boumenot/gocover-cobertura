@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/xml"
 	"io"
 	"os"
@@ -514,4 +515,32 @@ func TestConvertShortAssignNotDoubleCounted(t *testing.T) {
 
 	require.Empty(t, duplicates,
 		":= closure lines should not be double-counted; duplicates at: %v", duplicates)
+}
+
+// TestConvertWithProjectDir verifies that the -path flag correctly sets the
+// working directory for package resolution via packages.Config.Dir, without
+// using os.Chdir.
+//
+// Inspired by: https://github.com/boumenot/gocover-cobertura/pull/23
+func TestConvertWithProjectDir(t *testing.T) {
+	// Get the absolute path to the repo root.
+	absRoot, err := filepath.Abs(".")
+	require.NoError(t, err)
+
+	// Change to a temp directory so the default resolution would fail.
+	origDir, err := os.Getwd()
+	require.NoError(t, err)
+	require.NoError(t, os.Chdir(t.TempDir()))
+	defer func() { require.NoError(t, os.Chdir(origDir)) }()
+
+	// Read testdata from the absolute path.
+	data, err := os.ReadFile(filepath.Join(absRoot, "testdata", "testdata_set.txt"))
+	require.NoError(t, err)
+
+	// convert with projectDir pointing to the original repo root should
+	// succeed even though cwd is a temp directory.
+	var buf bytes.Buffer
+	err = convert(strings.NewReader(string(data)), &buf, &Ignore{}, absRoot)
+	require.NoError(t, err)
+	require.Contains(t, buf.String(), "coverage")
 }
