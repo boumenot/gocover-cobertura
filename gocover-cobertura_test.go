@@ -311,6 +311,43 @@ func TestConvertByFilesMode(t *testing.T) {
 		"class name should be dot-separated file path")
 }
 
+// TestConvertInitFunc verifies that init() functions are included in
+// coverage output. init() is a regular FuncDecl with no receiver.
+func TestConvertInitFunc(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_init.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+	require.NotNil(t, p.Classes)
+
+	var methods []string
+	for _, c := range p.Classes {
+		if c.Filename == "testdata/func_init.go" {
+			for _, m := range c.Methods {
+				methods = append(methods, m.Name)
+			}
+		}
+	}
+
+	require.Contains(t, methods, "init",
+		"init() function should be included in coverage output")
+}
+
 // TestConvertOverlappingBlocks verifies deduplication of coverage blocks
 // that overlap on line boundaries. This occurs with -coverpkg, where go
 // test produces separate blocks from each test package that may cover

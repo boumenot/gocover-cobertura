@@ -1,0 +1,2 @@
+mode: set
+github.com/boumenot/gocover-cobertura/testdata/func_init.go:7.13,8.2 1 1
