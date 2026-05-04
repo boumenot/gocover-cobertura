@@ -537,10 +537,23 @@ func TestConvertWithProjectDir(t *testing.T) {
 	data, err := os.ReadFile(filepath.Join(absRoot, "testdata", "testdata_set.txt"))
 	require.NoError(t, err)
 
-	// convert with projectDir pointing to the original repo root should
-	// succeed even though cwd is a temp directory.
+	// Without projectDir, convert produces empty output because packages.Load
+	// cannot resolve the testdata packages from a temp directory.
+	var bufEmpty bytes.Buffer
+	err = convert(strings.NewReader(string(data)), &bufEmpty, &Ignore{})
+	require.NoError(t, err)
+	require.NotContains(t, bufEmpty.String(), "line-rate=\"0.1",
+		"without -path, coverage data should be missing from output")
+
+	// Re-read data (the reader was consumed).
+	data, err = os.ReadFile(filepath.Join(absRoot, "testdata", "testdata_set.txt"))
+	require.NoError(t, err)
+
+	// With projectDir pointing to the original repo root, convert should
+	// produce actual coverage data even though cwd is a temp directory.
 	var buf bytes.Buffer
 	err = convert(strings.NewReader(string(data)), &buf, &Ignore{}, absRoot)
 	require.NoError(t, err)
-	require.Contains(t, buf.String(), "coverage")
+	require.Contains(t, buf.String(), "line-rate=\"0.1",
+		"with -path, coverage data should be present in output")
 }
