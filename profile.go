@@ -10,7 +10,6 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"math"
 	"regexp"
 	"sort"
 	"strconv"
@@ -116,75 +115,4 @@ func toInt(s string) int {
 		panic(err)
 	}
 	return i
-}
-
-// Boundary represents the position in a source file of the beginning or end of a
-// block as reported by the coverage profile. In HTML mode, it will correspond to
-// the opening or closing of a <span> tag and will be used to colorize the source
-type Boundary struct {
-	Offset int     // Location as a byte offset in the source file.
-	Start  bool    // Is this the start of a block?
-	Count  int     // Event count from the cover profile.
-	Norm   float64 // Count normalized to [0..1].
-}
-
-// Boundaries returns a Profile as a set of Boundary objects within the provided src.
-func (p *Profile) Boundaries(src []byte) []Boundary {
-	var boundaries []Boundary
-
-	// Find maximum count.
-	max := 0
-	for _, b := range p.Blocks {
-		if b.Count > max {
-			max = b.Count
-		}
-	}
-	// Divisor for normalization.
-	divisor := math.Log(float64(max))
-
-	// boundary returns a Boundary, populating the Norm field with a normalized Count.
-	boundary := func(offset int, start bool, count int) Boundary {
-		b := Boundary{Offset: offset, Start: start, Count: count}
-		if !start || count == 0 {
-			return b
-		}
-		if max <= 1 {
-			b.Norm = 0.8 // Profile is in"set" mode; we want a heat map. Use cov8 in the CSS.
-		} else if count > 0 {
-			b.Norm = math.Log(float64(count)) / divisor
-		}
-		return b
-	}
-
-	line, col := 1, 2 // TODO: Why is this 2?
-	for si, bi := 0, 0; si < len(src) && bi < len(p.Blocks); {
-		b := p.Blocks[bi]
-		if b.StartLine == line && b.StartCol == col {
-			boundaries = append(boundaries, boundary(si, true, b.Count))
-		}
-		if b.EndLine == line && b.EndCol == col {
-			boundaries = append(boundaries, boundary(si, false, 0))
-			bi++
-			continue // Don't advance through src; maybe the next block starts here.
-		}
-		if src[si] == '\n' {
-			line++
-			col = 0
-		}
-		col++
-		si++
-	}
-	sort.Sort(boundariesByPos(boundaries))
-	return boundaries
-}
-
-type boundariesByPos []Boundary
-
-func (b boundariesByPos) Len() int      { return len(b) }
-func (b boundariesByPos) Swap(i, j int) { b[i], b[j] = b[j], b[i] }
-func (b boundariesByPos) Less(i, j int) bool {
-	if b[i].Offset == b[j].Offset {
-		return !b[i].Start && b[j].Start
-	}
-	return b[i].Offset < b[j].Offset
 }
