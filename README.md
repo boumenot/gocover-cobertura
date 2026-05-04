@@ -171,6 +171,19 @@ typically happens when the coverage profile was generated on a different
 platform (e.g. `_windows.go` files in a profile generated on Windows, but
 the converter is running on Linux).  These files are safely skipped.
 
+### Branch coverage is always 0
+
+The Cobertura format supports branch coverage (`branch-rate`, `branch="true"`
+on lines), but `gocover-cobertura` always reports `branch-rate="0"`.
+
+Go's [coverage instrumentation](https://go.dev/blog/cover) tracks which
+statement blocks were executed, not which branch paths were taken.  While
+branch points (if/else, switch) can sometimes be *inferred* from block
+boundaries, Go does not produce enough structural information to reliably
+count the number of branch arms at a decision point.  Reporting inaccurate
+branch coverage would be worse than reporting none, so this tool leaves
+branch-rate at 0.
+
 Regression Tests
 ----------------
 
