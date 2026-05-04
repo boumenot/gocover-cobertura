@@ -259,6 +259,58 @@ func TestConvertSetMode(t *testing.T) {
 	require.Len(t, c.Methods, 3)
 }
 
+// TestConvertByFilesMode verifies that the -by-files flag causes class
+// names to be derived from the file path (dot-separated) instead of
+// the receiver type name.
+func TestConvertByFilesMode(t *testing.T) {
+	// Set the global flag and restore after test.
+	byFiles = true
+	defer func() { byFiles = false }()
+
+	pipe1rd, err := os.Open("testdata/testdata_set.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{
+			GeneratedFiles: true,
+			Files:          regexp.MustCompile(`[\\/]func[45]\.go$`),
+		})
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+	require.NotNil(t, p.Classes)
+
+	// With -by-files, each file gets its own class with a dot-separated
+	// path name instead of receiver type names like "-" or "Type1".
+	classNames := make(map[string]bool)
+	for _, c := range p.Classes {
+		classNames[c.Name] = true
+	}
+
+	// Should NOT contain receiver-based names.
+	require.NotContains(t, classNames, "-",
+		"class name should not be '-' in by-files mode")
+	require.NotContains(t, classNames, "Type1",
+		"class name should not be receiver type in by-files mode")
+
+	// Should contain dot-separated file paths.
+	require.Contains(t, classNames, "testdata.func1.go",
+		"class name should be dot-separated file path")
+	require.Contains(t, classNames, "testdata.func2.go",
+		"class name should be dot-separated file path")
+}
+
 // TestConvertOverlappingBlocks verifies deduplication of coverage blocks
 // that overlap on line boundaries. This occurs with -coverpkg, where go
 // test produces separate blocks from each test package that may cover
