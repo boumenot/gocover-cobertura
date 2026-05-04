@@ -56,6 +56,8 @@ Usage
 
 Note that you should run this from the directory which holds your `go.mod` file.
 
+### Flags
+
 Some flags can be passed (each flag should only be used once):
 
 - `-by-files`
@@ -105,15 +107,52 @@ Some flags can be passed (each flag should only be used once):
 
       gocover-cobertura -path /repo/services/api < coverage.txt > coverage.xml
 
+### Build tags
+
+If your tests use [build tags](https://pkg.go.dev/cmd/go#hdr-Build_constraints),
+you must pass the same tags when running `gocover-cobertura`.  The tool uses
+[`packages.Load`](https://pkg.go.dev/golang.org/x/tools/go/packages#Load) to
+resolve source files, and it needs matching tags to find the right files.
+
+Pass tags via the
+[`GOFLAGS`](https://pkg.go.dev/cmd/go#hdr-Environment_variables) environment
+variable:
+
+    # Single tag
+    GOFLAGS="-tags=integration" gocover-cobertura < coverage.txt > coverage.xml
+
+    # Multiple tags
+    GOFLAGS="-tags=integration,e2e" gocover-cobertura < coverage.txt > coverage.xml
+
+On Windows (PowerShell):
+
+    $env:GOFLAGS="-tags=integration"; gocover-cobertura < coverage.txt > coverage.xml
+
+**Why is this needed?**  When you run `go test -tags=integration -coverprofile=coverage.txt`,
+the coverage profile includes files that are only compiled with that tag (e.g. files
+with `//go:build integration`).  Without the matching tag, `gocover-cobertura` cannot
+locate those files and will skip them with a warning on stderr.
+
 Troubleshooting
 ---------------
 
-*Error*: code coverage conversion failed: unable to determine file path for <file>
+### Warning: skipping profile — no package/module information available
 
-If you encounter this error, it may be due to missing build tags when running `gocover-cobertura`. You need to run the tool with the same tags you used when running the tests.
-To pass the tags, set the GOFLAGS environment variable:
+This warning means `gocover-cobertura` could not resolve a package from the
+coverage profile.  Common causes:
 
-    GOFLAGS="-tags=<tags from go test>" gocover-cobertura < coverage.txt > coverage.xml
+- **Missing build tags** — see [Build tags](#build-tags) above.
+- **Wrong working directory** — run from the directory containing `go.mod`,
+  or use the `-path` flag.
+- **Standard library packages** — coverage profiles occasionally include
+  stdlib packages, which have no module info.  These are safely skipped.
+
+### Warning: skipping profile — unable to determine file path
+
+The package was resolved but a specific source file was not found.  This
+typically happens when the coverage profile was generated on a different
+platform (e.g. `_windows.go` files in a profile generated on Windows, but
+the converter is running on Linux).  These files are safely skipped.
 
 Regression Tests
 ----------------
