@@ -1,0 +1,4 @@
+mode: set
+github.com/boumenot/gocover-cobertura/testdata/func_closure_arg.go:9.38,11.4 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_closure_arg.go:9.38,10.26 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_closure_arg.go:10.26,12.3 1 1

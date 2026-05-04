@@ -348,6 +348,50 @@ func TestConvertInitFunc(t *testing.T) {
 		"init() function should be included in coverage output")
 }
 
+// TestConvertClosureArg verifies that anonymous functions passed as
+// arguments (e.g. sort.Slice callback) are covered by the enclosing
+// FuncDecl. Since Visit returns nil after processing a FuncDecl, the
+// closure is NOT visited separately — its lines are counted as part
+// of the parent function's line range.
+func TestConvertClosureArg(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_closure_arg.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+
+	// Should have exactly one class with one method.
+	var totalMethods int
+	var totalLines int
+	for _, c := range p.Classes {
+		if c.Filename == "testdata/func_closure_arg.go" {
+			for _, m := range c.Methods {
+				totalMethods++
+				totalLines += len(m.Lines)
+			}
+		}
+	}
+
+	require.Equal(t, 1, totalMethods,
+		"closure arg should not create a separate method")
+	require.Greater(t, totalLines, 0,
+		"closure lines should be covered by enclosing FuncDecl")
+}
+
 // TestConvertOverlappingBlocks verifies deduplication of coverage blocks
 // that overlap on line boundaries. This occurs with -coverpkg, where go
 // test produces separate blocks from each test package that may cover
