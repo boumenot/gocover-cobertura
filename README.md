@@ -96,6 +96,15 @@ Some flags can be passed (each flag should only be used once):
   indicating that the file has been automatically generated. See
   `genCodeRe` regexp in [ignore.go](ignore.go).
 
+- `-path DIR`
+
+  set the project directory for package resolution.  By default,
+  `gocover-cobertura` resolves packages relative to the current working
+  directory.  Use this flag when running from a different directory than
+  the module root, for example in monorepos with nested modules:
+
+      gocover-cobertura -path /repo/services/api < coverage.txt > coverage.xml
+
 Troubleshooting
 ---------------
 
