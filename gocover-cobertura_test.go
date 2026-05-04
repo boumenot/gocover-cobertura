@@ -440,6 +440,54 @@ func TestConvertReceiverTypes(t *testing.T) {
 	require.Contains(t, classMap["Wrapper"], "Run")
 }
 
+// TestConvertMultipleFiles verifies that a coverage profile spanning
+// multiple files within one package produces the correct class/method
+// structure with methods grouped by their respective files and types.
+func TestConvertMultipleFiles(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_multi_file.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+
+	// Collect filenames and class names.
+	filenames := make(map[string]bool)
+	classNames := make(map[string]bool)
+	for _, c := range p.Classes {
+		filenames[c.Filename] = true
+		classNames[c.Name] = true
+	}
+
+	// Should have classes from multiple files.
+	require.Contains(t, filenames, "testdata/func1.go")
+	require.Contains(t, filenames, "testdata/func_init.go")
+	require.Contains(t, filenames, "testdata/func_receivers.go")
+
+	// Should have both package-level ("-") and receiver-based classes.
+	require.Contains(t, classNames, "-",
+		"package-level functions should have class '-'")
+	require.Contains(t, classNames, "MyService",
+		"receiver methods should have type-based class")
+
+	// Lines should sum correctly across all classes.
+	require.Greater(t, v.LinesValid, int64(0))
+	require.Greater(t, v.LinesCovered, int64(0))
+}
+
 // TestConvertOverlappingBlocks verifies deduplication of coverage blocks
 // that overlap on line boundaries. This occurs with -coverpkg, where go
 // test produces separate blocks from each test package that may cover
