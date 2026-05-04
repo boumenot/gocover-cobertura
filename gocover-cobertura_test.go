@@ -392,6 +392,54 @@ func TestConvertClosureArg(t *testing.T) {
 		"closure lines should be covered by enclosing FuncDecl")
 }
 
+// TestConvertReceiverTypes verifies that class names are correctly
+// derived from various receiver types: value receivers, pointer
+// receivers (star trimmed), and different type names.
+func TestConvertReceiverTypes(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_receivers.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+
+	// Build map of class name -> method names.
+	classMap := make(map[string][]string)
+	for _, c := range p.Classes {
+		if c.Filename == "testdata/func_receivers.go" {
+			for _, m := range c.Methods {
+				classMap[c.Name] = append(classMap[c.Name], m.Name)
+			}
+		}
+	}
+
+	// Value receiver: MyService -> class "MyService"
+	require.Contains(t, classMap, "MyService",
+		"value receiver should produce class named after type")
+	require.Contains(t, classMap["MyService"], "Handle")
+
+	// Pointer receiver: *MyService -> class "MyService" (star trimmed)
+	require.Contains(t, classMap["MyService"], "Process",
+		"pointer receiver should map to same class as value receiver")
+
+	// Different type: *Wrapper -> class "Wrapper"
+	require.Contains(t, classMap, "Wrapper")
+	require.Contains(t, classMap["Wrapper"], "Run")
+}
+
 // TestConvertOverlappingBlocks verifies deduplication of coverage blocks
 // that overlap on line boundaries. This occurs with -coverpkg, where go
 // test produces separate blocks from each test package that may cover

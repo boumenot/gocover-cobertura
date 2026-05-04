@@ -1,0 +1,4 @@
+mode: set
+github.com/boumenot/gocover-cobertura/testdata/func_receivers.go:10.39,11.2 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_receivers.go:15.42,16.2 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_receivers.go:23.37,24.2 1 1
