@@ -56,6 +56,14 @@ Usage
 
 Note that you should run this from the directory which holds your `go.mod` file.
 
+**Windows note:** PowerShell does not support the `<` operator for stdin
+redirection.  Use piping instead:
+
+    Get-Content coverage.txt | gocover-cobertura > coverage.xml
+
+In `cmd.exe`, `<` works but may cause encoding issues with non-ASCII file
+paths.  The piping approach above avoids this problem on both shells.
+
 ### Flags
 
 Some flags can be passed (each flag should only be used once):
