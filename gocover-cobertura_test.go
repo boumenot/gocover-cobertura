@@ -488,6 +488,54 @@ func TestConvertMultipleFiles(t *testing.T) {
 	require.Greater(t, v.LinesCovered, int64(0))
 }
 
+// TestConvertCountMode verifies that in "count" mode, hit counts are
+// summed (not OR'd) when the same line appears in multiple blocks.
+func TestConvertCountMode(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_count.txt")
+	require.NoError(t, err)
+
+	pipe2rd, pipe2wr := io.Pipe()
+
+	go func() {
+		err := convert(pipe1rd, pipe2wr, &Ignore{})
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	v := Coverage{}
+	dec := xml.NewDecoder(pipe2rd)
+	err = dec.Decode(&v)
+	require.NoError(t, err)
+
+	require.Len(t, v.Packages, 1)
+	p := v.Packages[0]
+	require.Len(t, p.Classes, 1)
+	c := p.Classes[0]
+	require.Len(t, c.Methods, 1)
+	m := c.Methods[0]
+
+	// Line 4 appears in two blocks with counts 3 and 2 — should sum to 5.
+	var line4 *Line
+	var line5 *Line
+	for _, l := range m.Lines {
+		switch l.Number {
+		case 4:
+			line4 = l
+		case 5:
+			line5 = l
+		}
+	}
+
+	require.NotNil(t, line4, "line 4 should exist")
+	require.Equal(t, int64(5), line4.Hits,
+		"count mode should sum hits (3+2=5)")
+
+	require.NotNil(t, line5, "line 5 should exist")
+	require.Equal(t, int64(6), line5.Hits,
+		"count mode should sum hits across all overlapping blocks")
+}
+
 // TestConvertOverlappingBlocks verifies deduplication of coverage blocks
 // that overlap on line boundaries. This occurs with -coverpkg, where go
 // test produces separate blocks from each test package that may cover
