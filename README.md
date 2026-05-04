@@ -107,6 +107,15 @@ Some flags can be passed (each flag should only be used once):
 
       gocover-cobertura -path /repo/services/api < coverage.txt > coverage.xml
 
+- `-strict`
+
+  exit with an error if any profiles are skipped due to missing package
+  or module information.  By default, skipped profiles produce warnings
+  on stderr but the tool exits successfully.  Use this flag in CI
+  pipelines to catch silent data loss:
+
+      gocover-cobertura -strict < coverage.txt > coverage.xml
+
 ### Build tags
 
 If your tests use [build tags](https://pkg.go.dev/cmd/go#hdr-Build_constraints),
