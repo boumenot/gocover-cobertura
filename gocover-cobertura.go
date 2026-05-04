@@ -21,6 +21,7 @@ const coberturaDTDDecl = `<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforg
 
 var byFiles bool
 var projectDir string
+var strict bool
 
 func fatal(format string, a ...interface{}) {
 	_, _ = fmt.Fprintf(os.Stderr, format, a...)
@@ -32,6 +33,7 @@ func main() {
 
 	flag.BoolVar(&byFiles, "by-files", false, "code coverage by file, not class")
 	flag.BoolVar(&ignore.GeneratedFiles, "ignore-gen-files", false, "ignore generated files")
+	flag.BoolVar(&strict, "strict", false, "exit with error if any profiles are skipped")
 	flag.StringVar(&projectDir, "path", "", "set the project directory for package resolution")
 	ignoreDirsRe := flag.String("ignore-dirs", "", "ignore dirs matching this regexp")
 	ignoreFilesRe := flag.String("ignore-files", "", "ignore files matching this regexp")
@@ -53,15 +55,39 @@ func main() {
 		}
 	}
 
-	if err := convert(os.Stdin, os.Stdout, &ignore, projectDir); err != nil {
-		fatal("code coverage conversion failed: %s\n", err)
+	if strict {
+		if err := convertStrict(os.Stdin, os.Stdout, &ignore, projectDir); err != nil {
+			fatal("code coverage conversion failed: %s\n", err)
+		}
+	} else {
+		if err := convert(os.Stdin, os.Stdout, &ignore, projectDir); err != nil {
+			fatal("code coverage conversion failed: %s\n", err)
+		}
 	}
 }
 
 func convert(in io.Reader, out io.Writer, ignore *Ignore, pkgDir ...string) error {
-	profiles, err := ParseProfiles(in, ignore)
+	_, err := convertInternal(in, out, ignore, pkgDir...)
+	return err
+}
+
+// convertStrict is like convert but returns an error if any profiles
+// were skipped due to missing package/module information.
+func convertStrict(in io.Reader, out io.Writer, ignore *Ignore, pkgDir ...string) error {
+	skipped, err := convertInternal(in, out, ignore, pkgDir...)
 	if err != nil {
 		return err
+	}
+	if skipped > 0 {
+		return fmt.Errorf("%d profile(s) skipped due to missing package/module information", skipped)
+	}
+	return nil
+}
+
+func convertInternal(in io.Reader, out io.Writer, ignore *Ignore, pkgDir ...string) (int, error) {
+	profiles, err := ParseProfiles(in, ignore)
+	if err != nil {
+		return 0, err
 	}
 
 	var dir string
@@ -70,7 +96,7 @@ func convert(in io.Reader, out io.Writer, ignore *Ignore, pkgDir ...string) erro
 	}
 	pkgs, err := getPackages(profiles, dir)
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	sources := make([]*Source, 0)
@@ -87,8 +113,9 @@ func convert(in io.Reader, out io.Writer, ignore *Ignore, pkgDir ...string) erro
 	}
 
 	coverage := Coverage{Sources: sources, Packages: nil, Timestamp: time.Now().UnixNano() / int64(time.Millisecond)}
-	if err := coverage.parseProfiles(profiles, pkgMap, ignore); err != nil {
-		return err
+	skipped, err := coverage.parseProfiles(profiles, pkgMap, ignore)
+	if err != nil {
+		return skipped, err
 	}
 
 	_, _ = fmt.Fprint(out, xml.Header)
@@ -97,11 +124,11 @@ func convert(in io.Reader, out io.Writer, ignore *Ignore, pkgDir ...string) erro
 	encoder := xml.NewEncoder(out)
 	encoder.Indent("", "  ")
 	if err := encoder.Encode(coverage); err != nil {
-		return err
+		return skipped, err
 	}
 
 	_, _ = fmt.Fprintln(out)
-	return nil
+	return skipped, nil
 }
 
 func getPackages(profiles []*Profile, dir string) ([]*packages.Package, error) {
@@ -141,44 +168,49 @@ func findAbsFilePath(pkg *packages.Package, profileName string) (string, error) 
 	return "", fmt.Errorf("unable to determine file path for %s", profileName)
 }
 
-func (cov *Coverage) parseProfiles(profiles []*Profile, pkgMap map[string]*packages.Package, ignore *Ignore) error {
+func (cov *Coverage) parseProfiles(profiles []*Profile, pkgMap map[string]*packages.Package, ignore *Ignore) (int, error) {
 	cov.Packages = []*Package{}
+	skipped := 0
 	for _, profile := range profiles {
 		pkgName := getPackageName(profile.FileName)
 		pkgPkg := pkgMap[pkgName]
-		if err := cov.parseProfile(profile, pkgPkg, ignore); err != nil {
-			return err
+		skip, err := cov.parseProfile(profile, pkgPkg, ignore)
+		if err != nil {
+			return skipped, err
+		}
+		if skip {
+			skipped++
 		}
 	}
 	cov.LinesValid = cov.NumLines()
 	cov.LinesCovered = cov.NumLinesWithHits()
 	cov.LineRate = cov.HitRate()
-	return nil
+	return skipped, nil
 }
 
-func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ignore *Ignore) error {
+func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ignore *Ignore) (bool, error) {
 	if pkgPkg == nil || pkgPkg.Module == nil {
 		fmt.Fprintf(os.Stderr, "warning: skipping profile %s: no package/module information available\n", profile.FileName)
-		return nil
+		return true, nil
 	}
 	fileName := profile.FileName[len(pkgPkg.Module.Path)+1:]
 	absFilePath, err := findAbsFilePath(pkgPkg, profile.FileName)
 	if err != nil {
-		return err
+		return false, err
 	}
 
 	fset := token.NewFileSet()
 	parsed, err := parser.ParseFile(fset, absFilePath, nil, 0)
 	if err != nil {
-		return err
+		return false, err
 	}
 	data, err := os.ReadFile(absFilePath)
 	if err != nil {
-		return err
+		return false, err
 	}
 
 	if ignore.Match(fileName, data) {
-		return nil
+		return false, nil
 	}
 
 	pkgPath, _ := filepath.Split(fileName)
@@ -207,7 +239,7 @@ func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ig
 	}
 	ast.Walk(visitor, parsed)
 	pkg.LineRate = pkg.HitRate()
-	return nil
+	return false, nil
 }
 
 type fileVisitor struct {

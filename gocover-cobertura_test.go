@@ -77,14 +77,14 @@ func TestConvertEmpty(t *testing.T) {
 func TestParseProfileNilPackages(t *testing.T) {
 	v := Coverage{}
 	profile := Profile{FileName: "does-not-exist"}
-	err := v.parseProfile(&profile, nil, &Ignore{})
+	_, err := v.parseProfile(&profile, nil, &Ignore{})
 	require.NoError(t, err)
 }
 
 func TestParseProfileEmptyPackages(t *testing.T) {
 	v := Coverage{}
 	profile := Profile{FileName: "does-not-exist"}
-	err := v.parseProfile(&profile, &packages.Package{}, &Ignore{})
+	_, err := v.parseProfile(&profile, &packages.Package{}, &Ignore{})
 	require.NoError(t, err)
 }
 
@@ -97,7 +97,7 @@ func TestParseProfileDoesNotExist(t *testing.T) {
 		Module: &packages.Module{},
 	}
 
-	err := v.parseProfile(&profile, &pkg, &Ignore{})
+	_, err := v.parseProfile(&profile, &pkg, &Ignore{})
 	require.Error(t, err)
 
 	if !strings.Contains(err.Error(), "unable to determine file path") {
@@ -108,7 +108,7 @@ func TestParseProfileDoesNotExist(t *testing.T) {
 func TestParseProfileNotReadable(t *testing.T) {
 	v := Coverage{}
 	profile := Profile{FileName: os.DevNull}
-	err := v.parseProfile(&profile, nil, &Ignore{})
+	_, err := v.parseProfile(&profile, nil, &Ignore{})
 	require.NoError(t, err)
 }
 
@@ -133,7 +133,7 @@ func TestParseProfilePermissionDenied(t *testing.T) {
 			Path: filepath.Dir(tempFile.Name()),
 		},
 	}
-	err = v.parseProfile(&profile, &pkg, &Ignore{})
+	_, err = v.parseProfile(&profile, &pkg, &Ignore{})
 	require.Error(t, err)
 	require.Contains(t, err.Error(), "permission denied")
 }
@@ -833,4 +833,38 @@ func TestConvertWithProjectDir(t *testing.T) {
 	require.NoError(t, err)
 	require.Contains(t, buf.String(), "line-rate=\"0.1",
 		"with -path, coverage data should be present in output")
+}
+
+// TestConvertStrictModeReturnsErrorOnSkippedProfiles verifies that when
+// strict mode is enabled, convert returns an error if any profiles are
+// skipped due to missing package/module information.
+func TestConvertStrictModeReturnsErrorOnSkippedProfiles(t *testing.T) {
+	// A coverage profile referencing a stdlib package triggers the nil
+	// Module path — these profiles get skipped with a warning.
+	data := "mode: set\nfmt/print.go:1.1,1.1 1 1\n"
+
+	var buf bytes.Buffer
+	err := convert(strings.NewReader(data), &buf, &Ignore{})
+
+	// Without strict mode, convert should succeed (profiles silently skipped).
+	require.NoError(t, err, "non-strict mode should not error on skipped profiles")
+
+	// With strict mode, convert should return an error.
+	var buf2 bytes.Buffer
+	err = convertStrict(strings.NewReader(data), &buf2, &Ignore{})
+	require.Error(t, err, "strict mode should error when profiles are skipped")
+	require.Contains(t, err.Error(), "skipped",
+		"error message should indicate profiles were skipped")
+}
+
+// TestConvertStrictModePassesWhenNoSkips verifies that strict mode does
+// not error when all profiles are resolved successfully.
+func TestConvertStrictModePassesWhenNoSkips(t *testing.T) {
+	pipe1rd, err := os.Open("testdata/testdata_set.txt")
+	require.NoError(t, err)
+
+	var buf bytes.Buffer
+	err = convertStrict(pipe1rd, &buf, &Ignore{})
+	require.NoError(t, err, "strict mode should pass when all profiles resolve")
+	require.Contains(t, buf.String(), "coverage")
 }
