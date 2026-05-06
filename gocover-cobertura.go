@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 	"time"
 
@@ -33,6 +34,7 @@ func main() {
 
 	flag.BoolVar(&byFiles, "by-files", false, "code coverage by file, not class")
 	flag.BoolVar(&ignore.GeneratedFiles, "ignore-gen-files", false, "ignore generated files")
+	flag.BoolVar(&ignore.NonCodeLines, "ignore-non-code-lines", false, "ignore lines with no code")
 	flag.BoolVar(&strict, "strict", false, "exit with error if any profiles are skipped")
 	flag.StringVar(&projectDir, "path", "", "set the project directory for package resolution")
 	ignoreDirsRe := flag.String("ignore-dirs", "", "ignore dirs matching this regexp")
@@ -229,26 +231,54 @@ func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ig
 		pkg = &Package{Name: pkgPkg.ID, Classes: []*Class{}}
 		cov.Packages = append(cov.Packages, pkg)
 	}
+
+	// Get the set of valid lines.
+	validVisitor := &validVisitor{
+		fset:       fset,
+		validLines: []int{},
+	}
+	ast.Walk(validVisitor, parsed)
+
 	visitor := &fileVisitor{
-		fset:     fset,
-		fileName: fileName,
-		fileData: data,
-		classes:  make(map[string]*Class),
-		pkg:      pkg,
-		profile:  profile,
+		fset:               fset,
+		fileName:           fileName,
+		fileData:           data,
+		classes:            make(map[string]*Class),
+		pkg:                pkg,
+		profile:            profile,
+		validLines:         validVisitor.validLines,
+		ignoreNonCodeLines: ignore.NonCodeLines,
 	}
 	ast.Walk(visitor, parsed)
 	pkg.LineRate = pkg.HitRate()
 	return false, nil
 }
 
+type validVisitor struct {
+	fset       *token.FileSet
+	validLines []int
+}
+
+func (v *validVisitor) Visit(node ast.Node) ast.Visitor {
+	// Add the line for this node to the list of valid lines.
+	if node != nil {
+		lineNumber := v.fset.Position(node.Pos()).Line
+		if !slices.Contains(v.validLines, lineNumber) {
+			v.validLines = append(v.validLines, lineNumber)
+		}
+	}
+	return v
+}
+
 type fileVisitor struct {
-	fset     *token.FileSet
-	fileName string
-	fileData []byte
-	pkg      *Package
-	classes  map[string]*Class
-	profile  *Profile
+	fset               *token.FileSet
+	fileName           string
+	fileData           []byte
+	pkg                *Package
+	classes            map[string]*Class
+	profile            *Profile
+	validLines         []int
+	ignoreNonCodeLines bool
 }
 
 func (v *fileVisitor) Visit(node ast.Node) ast.Visitor {
@@ -314,7 +344,9 @@ func (v *fileVisitor) methodFromNode(n ast.Node, name string) *Method {
 			continue
 		}
 		for i := b.StartLine; i <= b.EndLine; i++ {
-			method.Lines.AddOrUpdateLine(i, int64(b.Count), v.profile.Mode)
+			if slices.Contains(v.validLines, i) || !v.ignoreNonCodeLines {
+				method.Lines.AddOrUpdateLine(i, int64(b.Count), v.profile.Mode)
+			}
 		}
 	}
 	return method

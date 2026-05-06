@@ -869,94 +869,92 @@ func TestConvertStrictModePassesWhenNoSkips(t *testing.T) {
 	require.Contains(t, buf.String(), "coverage")
 }
 
-// TestNonCodeLinesBranch verifies that non code lines are/are not covered, as expected.
-func TestNonCodeLinesBranch(t *testing.T) {
-	pipe1rd, err := os.Open("testdata/testdata_non_code_branch.txt")
-	require.NoError(t, err)
-
-	pipe2rd, pipe2wr := io.Pipe()
-
-	go func() {
-		err := convert(pipe1rd, pipe2wr, &Ignore{})
-		if err != nil {
-			t.Logf("convert error: %v", err)
-		}
-		pipe2wr.Close()
-	}()
-
-	v := Coverage{}
-	dec := xml.NewDecoder(pipe2rd)
-	err = dec.Decode(&v)
-	require.NoError(t, err)
-
-	require.Equal(t, "coverage", v.XMLName.Local)
-	require.Len(t, v.Packages, 1)
-
-	p := v.Packages[0]
-	require.Equal(t, "github.com/boumenot/gocover-cobertura/testdata", strings.TrimRight(p.Name, "/"))
-	require.NotNil(t, p.Classes)
-	require.Len(t, p.Classes, 1)
-
-	c := p.Classes[0]
-	require.Equal(t, "-", c.Name)
-	require.Equal(t, "testdata/func_noncodelines.go", c.Filename)
-	require.NotNil(t, c.Methods)
-	require.Len(t, c.Methods, 1)
-	require.NotNil(t, c.Lines)
-	require.Len(t, c.Lines, 10)
-
-	hitLines := []int{}
-	for _, line := range c.Lines {
-		if line.Hits > 0 {
-			hitLines = append(hitLines, line.Number)
-		}
+// TestIgnoreNonCodeLines verifies that non code lines are/are not covered, as expected.
+func TestIgnoreNonCodeLines(t *testing.T) {
+	tests := []struct {
+		name          string
+		ignoreNonCode bool
+		filename      string
+		totalLines    int
+		coveredLines  []int
+	}{
+		{
+			name:          "Non branch, don't ignore non-code",
+			ignoreNonCode: false,
+			filename:      "testdata/testdata_non_code_branch.txt",
+			totalLines:    10,
+			coveredLines:  []int{5, 6, 7, 8, 9, 10, 11, 17, 18, 19},
+		},
+		{
+			name:          "Non branch, ignore non-code",
+			ignoreNonCode: true,
+			filename:      "testdata/testdata_non_code_branch.txt",
+			totalLines:    5,
+			coveredLines:  []int{5, 7, 10, 17, 19},
+		},
+		{
+			name:          "Branch, don't ignore non-code",
+			ignoreNonCode: false,
+			filename:      "testdata/testdata_non_code_non_branch.txt",
+			totalLines:    10,
+			coveredLines:  []int{5, 6, 7, 17, 18, 19},
+		},
+		{
+			name:          "Branch, ignore non-code",
+			ignoreNonCode: true,
+			filename:      "testdata/testdata_non_code_non_branch.txt",
+			totalLines:    5,
+			coveredLines:  []int{5, 7, 17, 19},
+		},
 	}
-	require.Len(t, hitLines, 10)
-	require.Equal(t, []int{5, 6, 7, 8, 9, 10, 11, 17, 18, 19}, hitLines)
-}
 
-// TestNonCodeLinesNonBranch verifies that non code lines are/are not covered, as expected.
-func TestNonCodeLinesNonBranch(t *testing.T) {
-	pipe1rd, err := os.Open("testdata/testdata_non_code_non_branch.txt")
-	require.NoError(t, err)
+	for _, test := range tests {
+		t.Run(
+			test.name,
+			func(t *testing.T) {
+				pipe1rd, err := os.Open(test.filename)
+				require.NoError(t, err)
 
-	pipe2rd, pipe2wr := io.Pipe()
+				pipe2rd, pipe2wr := io.Pipe()
 
-	go func() {
-		err := convert(pipe1rd, pipe2wr, &Ignore{})
-		if err != nil {
-			t.Logf("convert error: %v", err)
-		}
-		pipe2wr.Close()
-	}()
+				go func() {
+					err := convert(pipe1rd, pipe2wr, &Ignore{NonCodeLines: test.ignoreNonCode})
+					if err != nil {
+						t.Logf("convert error: %v", err)
+					}
+					pipe2wr.Close()
+				}()
 
-	v := Coverage{}
-	dec := xml.NewDecoder(pipe2rd)
-	err = dec.Decode(&v)
-	require.NoError(t, err)
+				v := Coverage{}
+				dec := xml.NewDecoder(pipe2rd)
+				err = dec.Decode(&v)
+				require.NoError(t, err)
 
-	require.Equal(t, "coverage", v.XMLName.Local)
-	require.Len(t, v.Packages, 1)
+				require.Equal(t, "coverage", v.XMLName.Local)
+				require.Len(t, v.Packages, 1)
 
-	p := v.Packages[0]
-	require.Equal(t, "github.com/boumenot/gocover-cobertura/testdata", strings.TrimRight(p.Name, "/"))
-	require.NotNil(t, p.Classes)
-	require.Len(t, p.Classes, 1)
+				p := v.Packages[0]
+				require.Equal(t, "github.com/boumenot/gocover-cobertura/testdata", strings.TrimRight(p.Name, "/"))
+				require.NotNil(t, p.Classes)
+				require.Len(t, p.Classes, 1)
 
-	c := p.Classes[0]
-	require.Equal(t, "-", c.Name)
-	require.Equal(t, "testdata/func_noncodelines.go", c.Filename)
-	require.NotNil(t, c.Methods)
-	require.Len(t, c.Methods, 1)
-	require.NotNil(t, c.Lines)
-	require.Len(t, c.Lines, 10)
+				c := p.Classes[0]
+				require.Equal(t, "-", c.Name)
+				require.Equal(t, "testdata/func_noncodelines.go", c.Filename)
+				require.NotNil(t, c.Methods)
+				require.Len(t, c.Methods, 1)
+				require.NotNil(t, c.Lines)
+				require.Len(t, c.Lines, test.totalLines)
 
-	hitLines := []int{}
-	for _, line := range c.Lines {
-		if line.Hits > 0 {
-			hitLines = append(hitLines, line.Number)
-		}
+				hitLines := []int{}
+				for _, line := range c.Lines {
+					if line.Hits > 0 {
+						hitLines = append(hitLines, line.Number)
+					}
+				}
+				require.Len(t, hitLines, len(test.coveredLines))
+				require.Equal(t, test.coveredLines, hitLines)
+			},
+		)
 	}
-	require.Len(t, hitLines, 6)
-	require.Equal(t, []int{5, 6, 7, 17, 18, 19}, hitLines)
 }
