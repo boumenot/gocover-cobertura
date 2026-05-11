@@ -879,30 +879,30 @@ func TestIgnoreNonCodeLines(t *testing.T) {
 		coveredLines  []int
 	}{
 		{
-			name:          "Non branch, don't ignore non-code",
+			name:          "if body covered, include non-code lines",
 			ignoreNonCode: false,
-			filename:      "testdata/testdata_non_code_branch.txt",
+			filename:      "testdata/testdata_non_code_if_taken.txt",
 			totalLines:    10,
 			coveredLines:  []int{5, 6, 7, 8, 9, 10, 11, 17, 18, 19},
 		},
 		{
-			name:          "Non branch, ignore non-code",
+			name:          "if body covered, ignore non-code lines",
 			ignoreNonCode: true,
-			filename:      "testdata/testdata_non_code_branch.txt",
+			filename:      "testdata/testdata_non_code_if_taken.txt",
 			totalLines:    5,
 			coveredLines:  []int{5, 7, 10, 17, 19},
 		},
 		{
-			name:          "Branch, don't ignore non-code",
+			name:          "if body not covered, include non-code lines",
 			ignoreNonCode: false,
-			filename:      "testdata/testdata_non_code_non_branch.txt",
+			filename:      "testdata/testdata_non_code_if_not_taken.txt",
 			totalLines:    10,
 			coveredLines:  []int{5, 6, 7, 17, 18, 19},
 		},
 		{
-			name:          "Branch, ignore non-code",
+			name:          "if body not covered, ignore non-code lines",
 			ignoreNonCode: true,
-			filename:      "testdata/testdata_non_code_non_branch.txt",
+			filename:      "testdata/testdata_non_code_if_not_taken.txt",
 			totalLines:    5,
 			coveredLines:  []int{5, 7, 17, 19},
 		},
