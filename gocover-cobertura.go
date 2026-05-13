@@ -11,7 +11,6 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"slices"
 	"strings"
 	"time"
 
@@ -232,12 +231,15 @@ func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ig
 		cov.Packages = append(cov.Packages, pkg)
 	}
 
-	// Get the set of valid lines.
+	// Get the set of valid lines, but only if we're ignoring non-code lines. We set up the struct
+	// regardless so that the array on fileVisitor isn't nil. It shouldnt matter, but just in case!
 	validVisitor := &validVisitor{
 		fset:       fset,
-		validLines: []int{},
+		validLines: make(map[int]bool),
 	}
-	ast.Walk(validVisitor, parsed)
+	if ignore.NonCodeLines {
+		ast.Walk(validVisitor, parsed)
+	}
 
 	visitor := &fileVisitor{
 		fset:               fset,
@@ -256,16 +258,13 @@ func (cov *Coverage) parseProfile(profile *Profile, pkgPkg *packages.Package, ig
 
 type validVisitor struct {
 	fset       *token.FileSet
-	validLines []int
+	validLines map[int]bool
 }
 
 func (v *validVisitor) Visit(node ast.Node) ast.Visitor {
 	// Add the line for this node to the list of valid lines.
 	if node != nil {
-		lineNumber := v.fset.Position(node.Pos()).Line
-		if !slices.Contains(v.validLines, lineNumber) {
-			v.validLines = append(v.validLines, lineNumber)
-		}
+		v.validLines[v.fset.Position(node.Pos()).Line] = true
 	}
 	return v
 }
@@ -277,7 +276,7 @@ type fileVisitor struct {
 	pkg                *Package
 	classes            map[string]*Class
 	profile            *Profile
-	validLines         []int
+	validLines         map[int]bool
 	ignoreNonCodeLines bool
 }
 
@@ -344,7 +343,7 @@ func (v *fileVisitor) methodFromNode(n ast.Node, name string) *Method {
 			continue
 		}
 		for i := b.StartLine; i <= b.EndLine; i++ {
-			if slices.Contains(v.validLines, i) || !v.ignoreNonCodeLines {
+			if !v.ignoreNonCodeLines || v.validLines[i] {
 				method.Lines.AddOrUpdateLine(i, int64(b.Count), v.profile.Mode)
 			}
 		}
