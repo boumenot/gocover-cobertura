@@ -23,7 +23,17 @@ type regressionEntry struct {
 	Project      string
 	Tag          string
 	CoveragePath string
-	GoldenPath   string
+}
+
+type regressionVariant struct {
+	Name       string
+	Args       []string
+	GoldenFile string
+}
+
+var regressionVariants = []regressionVariant{
+	{Name: "default", GoldenFile: "golden.xml"},
+	{Name: "ignore-non-code-lines", Args: []string{"-ignore-non-code-lines"}, GoldenFile: "golden-ignore-non-code-lines.xml"},
 }
 
 // moduleRepos maps project directory names to their Git clone URLs.
@@ -69,7 +79,6 @@ func discoverRegressionEntries(t *testing.T, root string) []regressionEntry {
 			Project:      parts[0],
 			Tag:          parts[1],
 			CoveragePath: path,
-			GoldenPath:   filepath.Join(filepath.Dir(path), "golden.xml"),
 		})
 		return nil
 	})
@@ -118,13 +127,13 @@ func ensureSourceAvailable(t *testing.T, project, tag string) string {
 	return cloneDir
 }
 
-// runConvertSubprocess runs the gocover-cobertura binary as a subprocess
-// with its working directory set to sourceDir (so packages.Load resolves
-// correctly). Coverage data is piped to stdin.
-func runConvertSubprocess(t *testing.T, binary, sourceDir, coverageData string) string {
+// runConvertSubprocess runs the gocover-cobertura binary as a subprocess with
+// its working directory set to sourceDir so packages.Load resolves correctly.
+// Coverage data is piped to stdin.
+func runConvertSubprocess(t *testing.T, binary string, args []string, sourceDir, coverageData string) string {
 	t.Helper()
 
-	cmd := exec.Command(binary)
+	cmd := exec.Command(binary, args...)
 	cmd.Dir = sourceDir
 	cmd.Stdin = strings.NewReader(coverageData)
 	var stdout, stderr strings.Builder
@@ -219,21 +228,26 @@ func TestRegression(t *testing.T) {
 			coverageData, err := os.ReadFile(entry.CoveragePath)
 			require.NoError(t, err)
 
-			actual := runConvertSubprocess(t, binary, sourceDir, string(coverageData))
+			for _, variant := range regressionVariants {
+				t.Run(variant.Name, func(t *testing.T) {
+					actual := runConvertSubprocess(t, binary, variant.Args, sourceDir, string(coverageData))
+					goldenPath := filepath.Join(filepath.Dir(entry.CoveragePath), variant.GoldenFile)
 
-			if *updateGolden {
-				err := os.WriteFile(entry.GoldenPath, []byte(actual), 0o644)
-				require.NoError(t, err)
-				t.Logf("updated golden file: %s", entry.GoldenPath)
-				return
-			}
+					if *updateGolden {
+						err := os.WriteFile(goldenPath, []byte(actual), 0o644)
+						require.NoError(t, err)
+						t.Logf("updated golden file: %s", goldenPath)
+						return
+					}
 
-			goldenData, err := os.ReadFile(entry.GoldenPath)
-			require.NoError(t, err, "golden file missing; run with -update to create")
+					goldenData, err := os.ReadFile(goldenPath)
+					require.NoError(t, err, "golden file missing; run with -update to create")
 
-			expected := normalizeOutput(string(goldenData))
-			if expected != actual {
-				t.Errorf("output differs from golden file %s:\n%s", entry.GoldenPath, unifiedDiff(expected, actual))
+					expected := normalizeOutput(string(goldenData))
+					if expected != actual {
+						t.Errorf("output differs from golden file %s:\n%s", goldenPath, unifiedDiff(expected, actual))
+					}
+				})
 			}
 		})
 	}

@@ -196,7 +196,9 @@ Regression Tests
 A snapshot-based regression test suite verifies that conversion output remains
 stable across code changes.  The suite converts real coverage profiles from
 open-source Go projects and compares the XML output against checked-in golden
-files.
+files.  Each regression fixture validates the default output against
+`golden.xml` and the `-ignore-non-code-lines` output against
+`golden-ignore-non-code-lines.xml`.
 
 **Running regression tests** (Linux only):
 
