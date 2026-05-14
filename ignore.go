@@ -13,6 +13,7 @@ type Ignore struct {
 	Dirs           *regexp.Regexp
 	Files          *regexp.Regexp
 	GeneratedFiles bool
+	NonCodeLines   bool
 	cache          map[string]bool
 }
 

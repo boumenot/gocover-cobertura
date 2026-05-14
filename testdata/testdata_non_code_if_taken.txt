@@ -1,0 +1,4 @@
+mode: set
+github.com/boumenot/gocover-cobertura/testdata/func_noncodelines.go:5.41,7.15 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_noncodelines.go:7.15,11.3 1 1
+github.com/boumenot/gocover-cobertura/testdata/func_noncodelines.go:17.2,19.13 2 1
